@@ -32,7 +32,24 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+  background-color: purple;
+  color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: 1.5em;
+  text-align: center;
 }
