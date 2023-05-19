@@ -1,7 +1,9 @@
 const Footer = (props) => {
   return (
     <>
-      <h2>Footer</h2>
+      <footer className='text-center p-4'>
+        <h6>© 2014-2016 SVGHunter.com by MichelleMyBelleCreations</h6>
+      </footer>
     </>
   );
 };
