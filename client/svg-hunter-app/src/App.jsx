@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Footer from './Footer';
+import Header from './Header';
 
 function App() {
   return (
     <div>
-      <h1>hi</h1>
+      <Header />
+      <Footer />
     </div>
   );
 }
