@@ -24,4 +24,25 @@ router.get("/display-by-tag/:svgTag", (req, res) => {
         res.status(500).json({ message: "Error retrieving SVGs by tag" });
     }
 });
+
+
+
+// http://localhost:4000/svg_tag/display-all
+router.get("/display-all", (req, res) => {
+    try {
+        let sql = `SELECT * FROM gomot1_upright_svghunter.SVG_Tags`;
+
+        db.query(sql, (error, results) => {
+            if (error) throw error;
+            res.json({ results: results });
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }
+});
+
+
+
+
+
 module.exports = router;
