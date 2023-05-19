@@ -36,6 +36,6 @@
     transform: rotate(360deg);
   }
 }
-.submit-button-login {
-  background-color: ad6ee7
+#submit-button-login {
+  background-color: #ad6ee7
 }
