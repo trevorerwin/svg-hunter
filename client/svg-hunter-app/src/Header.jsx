@@ -15,8 +15,8 @@ const Header = (props) => {
         <div className='video-container'>
           <video src={headerVideo} className='background-video' autoPlay loop muted></video>
         </div>
-        <NavBar />
       </div>
+      <NavBar />
     </>
   );
 };
