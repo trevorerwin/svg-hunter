@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const cors = require("cors"); 
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -7,6 +7,7 @@ const userController = require("../svg-hunter/controllers/user.controller");
 const svgController = require("../svg-hunter/controllers/svg.controller");
 const svg_tagController = require("../svg-hunter/controllers/svg_tag.controller");
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userController);
