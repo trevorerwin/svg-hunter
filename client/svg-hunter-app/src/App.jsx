@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
 import Footer from './Footer';
 import Header from './Header';
+import NavBar from './NavBar';
 
 function App() {
   return (
     <div>
       <Header />
+      <NavBar />
       <Footer />
     </div>
   );
