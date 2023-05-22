@@ -1,26 +1,27 @@
 import { Nav, NavItem, NavLink, Navbar } from 'reactstrap';
 import './styles/NavBar.css';
+import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
   return (
     <>
       <div className='navbar-container'>
         <nav className='navbar'>
-          <a className='navbar-ele-one' href='#'>
+          <Link to='/' className='navbar-ele-one'>
             Home
-          </a>
-          <a className='navbar-ele-two' href='#'>
+          </Link>
+          <Link to='/auth' className='navbar-ele-two'>
             Login
-          </a>
-          <a className='navbar-ele-three' href='#'>
+          </Link>
+          <Link to='/svg-hunter' className='navbar-ele-three'>
             SVG Hunter
-          </a>
-          <a className='navbar-ele-four' href='#'>
+          </Link>
+          <Link to='/help-guide' className='navbar-ele-four'>
             Help Guide
-          </a>
-          <a className='navbar-ele-five' href='#'>
+          </Link>
+          <Link to='/contact' className='navbar-ele-five'>
             Contact
-          </a>
+          </Link>
         </nav>
       </div>
     </>
