@@ -1,25 +1,27 @@
-import './styles/App.css';
+import './App.css';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import NavBar from './NavBar';
 import AuthToggle from './Auth/AuthToggle';
 import { Route, Routes } from 'react-router-dom';
-import Landing from './Landing/Landing';
 import Contact from './Landing/Contact';
-
+import Home from './Landing/Home';
+import SVGFinder from './Landing/SVGFinder/SVGFinder';
+import HelpGuide from './Landing/HelpGuide';
 
 function App() {
   return (
     <div>
       <Header />
       <NavBar />
-      <AuthToggle />
-      {/* <Routes>
-        <Route path="/" element={<AuthToggle />} />
-        </Routes> */}
-      <Landing />
-      <Contact />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/auth' element={<AuthToggle />} />
+        <Route path='/svg-hunter' element={<SVGFinder />} />
+        <Route path='/help-guide' element={<HelpGuide />} />
+        <Route path='/contact' element={<Contact />} />
+      </Routes>
       <Footer />
     </div>
   );

@@ -1,6 +1,4 @@
-import NavBar from './NavBar';
 import './styles/Header.css';
-import headerVideo from './video/header-video.mp4';
 
 const Header = (props) => {
   return (
