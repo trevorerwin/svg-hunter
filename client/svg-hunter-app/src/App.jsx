@@ -1,11 +1,17 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Home from "./Landing/Home";
-
+import React from "react";
+import "./App.css" 
+import AuthToggle from "./Auth/AuthToggle";
+import { Route, Routes } from "react-router-dom";
+import Landing from "./Landing/Landing";
 function App() {
-  return (
+
+ return (
     <div>
-      <Home />
+     <AuthToggle />
+        {/* <Routes>
+        <Route path="/" element={<AuthToggle />} />
+        </Routes> */}
+     <Landing />
     </div>
   );
 }
