@@ -28,6 +28,7 @@ const DisplayTags = (props) => {
         <>
         <div className="overflow-scroll" style={{height: "70vh", border: "solid", marginRight: "30px"}}>
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>TAGS</h5>
+            console.log({tagArray});
             {/* {tagArray.map((tag, index) => (
                 <option key={index} value={tag.svgTag}>{tag.svgTag}</option>
             ))} */}
