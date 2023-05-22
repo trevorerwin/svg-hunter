@@ -32,7 +32,24 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+#submit-button-login {
+  background-color: #ad6ee7;
+}
+
+#submit-button-signup {
+  background-color: #ad6ee7;
+}
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: 1.5em;
+  text-align: center;
 }

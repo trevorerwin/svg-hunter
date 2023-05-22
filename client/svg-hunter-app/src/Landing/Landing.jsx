@@ -1,13 +1,15 @@
 import SVGFinder from "./SVGFinder/SVGFinder";
-
+import Home from "./Home";
 
 const Landing = (props) => {
-    return ( 
-        <>
-        {/* <h2>Hello from Landing</h2> */}
+  return (
+    <>
+      <div>
+        <Home />
         <SVGFinder />
-        </>
-     );
-}
- 
+      </div>
+    </>
+  );
+};
+
 export default Landing;
