@@ -19,6 +19,7 @@ input[type="text"] {
     margin: 5px 1px 3px 0px;
     border: 1px solid #aeb5bf;
 }
+
 input[type="text"]:focus,
 textarea:focus {
     box-shadow: 0 0 20px #ad6ee7;
@@ -28,6 +29,11 @@ textarea:focus {
 }
 
 #change-button-color {
+    background-color: whitesmoke;
+    color: black;
+}
+
+#change-button-color:hover {
     background-color: #ad6ee7;
 }
 

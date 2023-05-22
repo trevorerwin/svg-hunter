@@ -1,4 +1,4 @@
-import { Form, FormGroup, Input, Label, Button } from "reactstrap";
+import { Form, FormGroup, Input, Button } from "reactstrap";
 
 const Contact = (props) => {
     function handleSubmit() {
