@@ -54,42 +54,43 @@ router.post("/signup", async (req, res) => {
 // http://localhost:4000/user/login
 router.post("/login", (req, res) => {
     try {
-      const { Username, Passphrase } = req.body;
-  
-      // Check if the username and passphrase are provided
-      if (!Username || !Passphrase) {
-        return res.status(400).json({ message: "Username and passphrase are required" });
-      }
-  
-      const sql = `SELECT * FROM sitelok WHERE Username = '${Username}'`;
-      db.query(sql, async (error, userArray) => {
-        if (error) {
+        const { Username, Passphrase } = req.body;
 
-          console.error("Error logging in: ", error);
-          return res.status(500).json({ message: error.message });
+        // Check if the username and passphrase are provided
+        if (!Username || !Passphrase) {
+            return res
+                .status(400)
+                .json({ message: "Username and passphrase are required" });
         }
-  
-        if (userArray.length === 0) {
-          return res.status(401).json({ message: "pooped my pants" });
-        }
-  
-        const user = userArray[0];
-    
-         isPassphraseValid = bcrypt.compare(Passphrase, user.Passphrase)
-  
-        if (isPassphraseValid == false) {
-          return res.json({ message: "Invalid credentials" });
-        }
-        // TODO make secret web token secret in dotenv file
-        // Generate a JWT token
-        const token = jwt.sign({ Username }, `${process.env.SECRET}`);
-  
-        // Send the token in the response
-        res.status(200).json({ message: "Login successful", token });
-      });
+
+        const sql = `SELECT * FROM sitelok WHERE Username = '${Username}'`;
+        db.query(sql, async (error, userArray) => {
+            if (error) {
+                console.error("Error logging in: ", error);
+                return res.status(500).json({ message: error.message });
+            }
+
+            if (userArray.length === 0) {
+                return res.status(401).json({ message: "pooped my pants" });
+            }
+
+            const user = userArray[0];
+
+            isPassphraseValid = bcrypt.compare(Passphrase, user.Passphrase);
+
+            if (isPassphraseValid == false) {
+                return res.json({ message: "Invalid credentials" });
+            }
+            // TODO make secret web token secret in dotenv file
+            // Generate a JWT token
+            const token = jwt.sign({ Username }, `${process.env.SECRET}`);
+
+            // Send the token in the response
+            res.status(200).json({ message: "Login successful", token });
+        });
     } catch (error) {
-      console.error("Error logging in: ", error);
-      res.status(500).json({ message: error.message });
+        console.error("Error logging in: ", error);
+        res.status(500).json({ message: error.message });
     }
-  });
+});
 module.exports = router;
