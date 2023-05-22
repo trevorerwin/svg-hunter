@@ -101,7 +101,7 @@ const Signup = (props) => {
 
         {/* Start of form submit button */}
         <div class="d-grid gap-2 mb-4">
-          <Button type="submit" color="danger">
+          <Button id="submit-button-signup" type="submit" >
             Signup
           </Button>
         </div>
