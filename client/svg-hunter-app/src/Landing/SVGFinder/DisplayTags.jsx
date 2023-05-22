@@ -4,6 +4,7 @@ const DisplayTags = (props) => {
     const [tagArray, setTagArray] = useState([]);
 
 
+
     async function getAllTags() {
         let url = `http://localhost:4000/svg_tag/display-all`;
         
@@ -13,7 +14,10 @@ const DisplayTags = (props) => {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
+            // const uniqueData = Array.from(new Set(data))
+            // console.log(uniqueData)
             setTagArray(data.results)
+
         } catch (error) {
             console.error(error.message);
         }
@@ -22,7 +26,7 @@ const DisplayTags = (props) => {
 
     return ( 
         <>
-        <div className="overflow-scroll" style={{height: "75vh", border: "solid", marginRight: "30px"}}>
+        <div className="overflow-scroll" style={{height: "70vh", border: "solid", marginRight: "30px"}}>
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>TAGS</h5>
             {/* {tagArray.map((tag, index) => (
                 <option key={index} value={tag.svgTag}>{tag.svgTag}</option>

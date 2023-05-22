@@ -2,7 +2,7 @@
 
 import DisplaySVG from "./DisplaySVG";
 import DisplayTags from "./DisplayTags";
-import { Button, Col, Container, Input, Row } from "reactstrap";
+import { Col, Container, Input, Row } from "reactstrap";
 // import React, { useState } from 'react';
 
 
@@ -22,9 +22,9 @@ const SVGFinder = (props) => {
             </Col>
                 
             <Col lg="1">
-                [Button]
+                <button>Search</button>
             </Col>
-            
+
             <Col lg="2">
             </Col>
         </Row>
