@@ -36,6 +36,7 @@ const Contact = (props) => {
                                     }}
                                     className=" align-left"
                                     placeholder="Name:"
+                                    required
                                     type="text"
                                 />
                             </div>
@@ -52,6 +53,7 @@ const Contact = (props) => {
                                     }}
                                     className="align-left"
                                     placeholder="Email:"
+                                    required
                                     type="text"
                                 />
                             </div>
@@ -68,6 +70,7 @@ const Contact = (props) => {
                                     }}
                                     className="align-left"
                                     placeholder="Subject:"
+                                    required
                                     type="text"
                                 />
                             </div>
@@ -85,6 +88,7 @@ const Contact = (props) => {
                                     }}
                                     className=" align-left"
                                     placeholder="Message:"
+                                    required
                                     rows={6}
                                 ></textarea>
                             </div>
