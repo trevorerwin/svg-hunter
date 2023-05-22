@@ -8,12 +8,12 @@ import { Route, Routes } from 'react-router-dom';
 import Landing from './Landing/Landing';
 import Contact from './Landing/Contact';
 
+
 function App() {
   return (
     <div>
       <Header />
       <NavBar />
-
       <AuthToggle />
       {/* <Routes>
         <Route path="/" element={<AuthToggle />} />

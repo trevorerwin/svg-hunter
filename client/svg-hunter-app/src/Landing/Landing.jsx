@@ -1,3 +1,4 @@
+import SVGFinder from "./SVGFinder/SVGFinder";
 import Home from "./Home";
 
 const Landing = (props) => {
@@ -5,6 +6,7 @@ const Landing = (props) => {
     <>
       <div>
         <Home />
+        <SVGFinder />
       </div>
     </>
   );
