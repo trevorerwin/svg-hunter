@@ -1,0 +1,53 @@
+.container-fluid {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.header-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/header-photo.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo-image {
+  width: 200px; /* Adjust the size as needed */
+}
+
+.header-text {
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .header-content {
+    top: 30%; /* Adjust the position for smaller screens */
+  }
+
+  .logo-image {
+    width: 100px; /* Adjust the size for smaller screens */
+  }
+
+  .header-text {
+    font-size: 1.5rem; /* Adjust the font size for smaller screens */
+  }
+
+  .video-container {
+    padding-bottom: 60%;
+  }
+}
