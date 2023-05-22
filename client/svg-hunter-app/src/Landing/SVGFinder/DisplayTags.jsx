@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const DisplayTags = (props) => {
     const [tagArray, setTagArray] = useState([]);
 
+    useEffect(() => {
+      getAllTags();
+    }, []);
+
+    useEffect(() => {
+        console.log("Tag Array", tagArray);
+      }, [tagArray]);
 
     function processStrings(dataArray) {
         // Step 1: Remove hyphens from the start of a word
@@ -42,27 +49,46 @@ const DisplayTags = (props) => {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            const tagData = data.results.map((tag) => tag.svgTag.trim());
-            
+            const tagData = data.results.map((tag) => tag.svgTag.trim());           
             const tagDataArray = processStrings(tagData);
-            console.log(tagDataArray);
-            // setTagArray(tagDataArray);
-            // console.log("Tag Array", tagArray);
-
+            setTagArray(tagDataArray);
         } catch (error) {
             console.error(error.message);
         }
     }
-    getAllTags();
+
+
+    const handleCheckboxChange = (index) => {
+        setTagArray((prevTagArray) => {
+          const newTagArray = [...prevTagArray];
+          newTagArray[index].checked = !newTagArray[index].checked;
+          return newTagArray;
+        });
+      };
+
 
     return ( 
         <>
-        <div className="overflow-scroll" style={{height: "70vh", border: "solid", marginRight: "30px"}}>
+        <div className="overflow-scroll" style={{height: "70vh", border: "solid", marginRight: "30px", paddingLeft: "0px"}}>
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>TAGS</h5>
-            {/* {tagArray.forEach(tag => {
-                <p>{tag}</p>
-            })} */}
-
+            <ul style={{ listStyleType: "none" }}>
+                {tagArray.map((tag, index) => (
+                    <li key={index}>
+                      <input
+                        type="checkbox"
+                        style={{marginLeft: "0px", marginRight: "10px"}}
+                        checked={tag.checked || false}
+                        onChange={() => handleCheckboxChange(index)}
+                      />
+                      {tag}
+                    </li>
+                ))}
+            </ul>
+            {/* <ul>
+                {tagArray.map((tag, index) => (
+                    <li key={index}>{tag}</li>
+                ))}
+            </ul> */}
         </div>
         </>
      );
