@@ -11,7 +11,7 @@ const SVGFinder = (props) => {
     
     return ( 
     <>
-    <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
+    <Container style={{ paddingLeft: 0, paddingRight: 0 }}> 
         <Row className="align-items-center">
             <Col lg="2">
             </Col>

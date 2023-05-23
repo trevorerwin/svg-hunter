@@ -7,9 +7,10 @@ const DisplayTags = (props) => {
       getAllTags();
     }, []);
 
-    useEffect(() => {
-        console.log("Tag Array", tagArray);
-      }, [tagArray]);
+    //! TEST CODE TO SEE IF TAG ARRAY IS BEING UPDATED
+    // useEffect(() => {
+    //     console.log("Tag Array", tagArray);
+    //   }, [tagArray]);
 
     function processStrings(dataArray) {
         // Step 1: Remove hyphens from the start of a word
