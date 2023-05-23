@@ -54,6 +54,7 @@
   text-align: center;
 }
 
+
 .cardtitle,
 h4 {
   text-align: left;
@@ -68,3 +69,8 @@ ListGroupItem {
 ClassText {
   font-size: 1rem;
 }
+
+#login-text {
+  color: #ad6ee7
+}
+

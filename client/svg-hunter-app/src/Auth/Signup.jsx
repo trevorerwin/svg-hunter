@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import AuthContext from "./AuthContext";
 
 // firstName lastName username password
 const Signup = (props) => {
@@ -12,7 +13,9 @@ const Signup = (props) => {
  
 
   // BrowserRouter Navigate
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const {updateToken} = useContext(AuthContext)
 
   // Functions Here
   async function handleSubmit(e) {
@@ -41,8 +44,8 @@ const Signup = (props) => {
       const data = await response.json();
       console.log(data);
       if (data.message === "new user created") {
-        props.updateToken(data.token);
-        // navigate("/lobby");
+        updateToken(data.token);
+        navigate("/svg-hunter");
       }
     } catch (error) {
       console.error(error.message);
