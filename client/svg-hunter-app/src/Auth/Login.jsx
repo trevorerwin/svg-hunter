@@ -4,10 +4,11 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import "../App.css"
 import AuthContext from "./AuthContext";
 
+
 const Login = (props) => {
   // UseState variables
-  const [Username, setUsername] = useState("");
-  const [Passphrase, setPassphrase] = useState("");
+  const [Username, setUsername] = useState('');
+  const [Passphrase, setPassphrase] = useState('');
   //BrowserRouter Hook
   const navigate = useNavigate();
 
@@ -25,11 +26,11 @@ const Login = (props) => {
     };
 
     let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
     const requestOptions = {
       headers: myHeaders,
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(bodyObject),
     };
 
@@ -49,15 +50,10 @@ const Login = (props) => {
     <>
       <h2 className="text-center" id="login-text">Login to your account</h2>
       {/* Start of Username */}
-        <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label> Username:</Label>
-          <Input
-            value={Username}
-            type="text"
-            required
-            onChange={(e) => setUsername(e.target.value)}
-          ></Input>
+          <Input value={Username} type='text' onChange={(e) => setUsername(e.target.value)}></Input>
         </FormGroup>
 
         {/* End of Username */}
@@ -65,23 +61,18 @@ const Login = (props) => {
         {/* Start of Password */}
         <FormGroup>
           <Label>Passphrase:</Label>
-          <Input
-            value={Passphrase}
-            type="password"
-            required
-            onChange={(e) => setPassphrase(e.target.value)}
-          />
+          <Input value={Passphrase} type='password' onChange={(e) => setPassphrase(e.target.value)} />
         </FormGroup>
-     
-      {/* End of Password */}
 
-      {/* Start of form submit button */}
-      <div   className="d-grid gap-2 mb-4">
-            <Button id= "submit-button-login" type="submit">
-              Login
-            </Button>
-          </div>
-      {/* Eond of form submit button */}
+        {/* End of Password */}
+
+        {/* Start of form submit button */}
+        <div className='d-grid gap-2 mb-4'>
+          <Button id='submit-button-login' type='submit'>
+            Login
+          </Button>
+        </div>
+        {/* Eond of form submit button */}
       </Form>
     </>
   );

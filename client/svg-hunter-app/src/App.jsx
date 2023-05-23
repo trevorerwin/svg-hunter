@@ -9,7 +9,9 @@ import Contact from './Landing/Contact';
 import Home from './Landing/Home';
 import SVGFinder from './Landing/SVGFinder/SVGFinder';
 import HelpGuide from './Landing/HelpGuide';
+import ProductDisplay from './Auth/ProductDisplay';
 import AuthContext from './Auth/AuthContext';
+
 
 
   function App() {
@@ -39,6 +41,7 @@ import AuthContext from './Auth/AuthContext';
         <Route path='/svg-hunter' element={<SVGFinder />} />
         <Route path='/help-guide' element={<HelpGuide />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/checkout' element={<ProductDisplay />} />
       </Routes>
       </AuthContext.Provider>
       <Footer />
