@@ -1,6 +1,14 @@
+import React, { useState, useEffect } from "react";
+import { Col, Container, Row } from "reactstrap";
 
 
 const DisplaySVG = (props) => {
+    const [SVGArray, setSVGArray] = useState([]);
+
+
+    useEffect(() => {
+        getAllSVG();
+      }, []);
 
 
     async function getAllSVG() {
@@ -12,18 +20,27 @@ const DisplaySVG = (props) => {
         try {
             const response = await fetch(url, requestOptions);
             const data = await response.json();
-            const SVGData = data.results.map((svg) => svg.SVGData);           
-            console.log("SVG Data", SVGData)
+            const SVGData = data.results.map((svg) => svg)           
+            setSVGArray(SVGData);
 
         } catch (error) {
             console.error(error.message);
         }
     }
-    getAllSVG();
+
 
     return ( 
         <>
         <h3>Hello from DisplaySVG</h3>
+        <Container>
+            <Row style={{marginTop: "40px", marginLeft: "40px", justifyContent: "space-between"}}>
+                <Col>
+                        {SVGArray.map((svg, index) => (
+                            <img style={{width: "200px", height: "200px"}} key={index} src={svg.svgData} alt={svg.svgName} />
+                        ))}               
+                </Col>
+            </Row>
+        </Container>
         </>
      );
 }
