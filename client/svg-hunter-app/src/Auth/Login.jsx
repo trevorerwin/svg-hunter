@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import "../App.css"
+import AuthContext from "./AuthContext";
 
 const Login = (props) => {
   // UseState variables
   const [Username, setUsername] = useState("");
   const [Passphrase, setPassphrase] = useState("");
   //BrowserRouter Hook
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const {updateToken} = useContext(AuthContext)
 
   //Functions Here
   async function handleSubmit(e) {
@@ -34,9 +37,9 @@ const Login = (props) => {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
       console.log(data);
-      if (data.message === "passwords matched") {
-        props.updateToken(data.token);
-        //   navigate("/lobby")
+      if (data.message === "Login successful") {
+        updateToken(data.token);
+          navigate("/svg-hunter")
       }
     } catch (error) {
       console.error(error.message);
@@ -44,7 +47,7 @@ const Login = (props) => {
   }
   return (
     <>
-      <h2 className="text-center text-warning">Hello from Login</h2>
+      <h2 className="text-center" id="login-text">Login to your account</h2>
       {/* Start of Username */}
         <Form onSubmit={handleSubmit}>
         <FormGroup>
