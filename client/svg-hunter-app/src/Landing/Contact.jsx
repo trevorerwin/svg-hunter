@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import axios from "axios";
+import "../styles/Contact.css";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -40,122 +41,70 @@ const Contact = () => {
     };
 
     return (
-        <>
-            <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ height: "60vh" }}
-            >
-                <Form onSubmit={handleSubmit}>
-                    <FormGroup>
-                        <div className="text-center mt-4">
-                            <p
-                                className="mb-5"
-                                style={{
-                                    fontFamily: "Roboto",
-                                    fontSize: "1.5rem",
-                                }}
-                            >
-                                Fill in the form below to send us an email. We
-                                will usually get back to you within 24 hours.
-                            </p>
-                        </div>
+        <div className="contact-container">
+            <Form onSubmit={handleSubmit}>
+                <div className="form-header">
+                    <h2 className="form-title">Contact Us</h2>
+                    <p id="move-p-tag" className="form-subtitle">
+                        Fill in the form below to send us an email. We will
+                        usually get back to you within 24 hours.
+                    </p>
+                </div>
 
-                        <div className="text-center mb-2">
-                            <div className="d-flex justify-content-center">
-                                <Input
-                                    style={{
-                                        width: "700px",
-                                        fontFamily: "Roboto",
-                                        fontSize: "1.5rem",
-                                        marginBottom: "20px",
-                                    }}
-                                    className=" align-left"
-                                    placeholder="Name:"
-                                    required
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
+                <FormGroup>
+                    <Input
+                        style={{ height: "40px" }}
+                        className="form-input custom-input"
+                        placeholder="Name"
+                        required
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
 
-                        <div className="text-center mb-2">
-                            <div className="d-flex justify-content-center">
-                                <Input
-                                    style={{
-                                        width: "700px",
-                                        fontFamily: "Roboto",
-                                        fontSize: "1.5rem",
-                                        marginBottom: "20px",
-                                    }}
-                                    className="align-left"
-                                    placeholder="Email:"
-                                    required
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
+                    <Input
+                        style={{ height: "40px" }}
+                        className="form-input custom-input"
+                        placeholder="Email"
+                        required
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
 
-                        <div className="text-center mb-2">
-                            <div className="d-flex justify-content-center">
-                                <Input
-                                    style={{
-                                        width: "700px",
-                                        fontFamily: "Roboto",
-                                        fontSize: "1.5rem",
-                                        marginBottom: "20px",
-                                    }}
-                                    className="align-left"
-                                    placeholder="Subject:"
-                                    required
-                                    type="text"
-                                    name="subject"
-                                    value={formData.subject}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
+                    <Input
+                        style={{ height: "40px" }}
+                        className="form-input custom-input"
+                        placeholder="Subject"
+                        required
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                    />
 
-                        <div className="text-center mb-2">
-                            <div className="d-flex justify-content-center">
-                                <textarea
-                                    style={{
-                                        width: "700px",
-                                        resize: "none",
-                                        outline: "none",
-                                        height: "100px",
-                                        fontFamily: "Roboto",
-                                        fontSize: "1.5rem",
-                                    }}
-                                    placeholder="Message:"
-                                    required
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
+                    <textarea
+                        className="form-input form-textarea custom-textarea"
+                        placeholder="Message"
+                        required
+                        style={{ height: "200px" }}
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                    />
 
-                        <div className="text-center mt-4">
-                            <Button
-                                style={{
-                                    fontFamily: "Roboto",
-                                    fontSize: "1.5rem",
-                                }}
-                                className="submit-button"
-                                type="submit"
-                            >
-                                Submit
-                            </Button>
-                        </div>
-                    </FormGroup>
-                </Form>
-            </div>
-        </>
+                    <Button
+                        id="change-button-color"
+                        className="form-button custom-button"
+                        type="submit"
+                    >
+                        Submit
+                    </Button>
+                </FormGroup>
+            </Form>
+        </div>
     );
 };
 
