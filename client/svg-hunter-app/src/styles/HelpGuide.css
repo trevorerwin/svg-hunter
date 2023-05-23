@@ -1,0 +1,14 @@
+.cardtitle,
+h4 {
+    text-align: left;
+    color: #ad6ee7;
+}
+
+ListGroupItem {
+    font-size: 4rem;
+}
+
+.paragraph,
+ClassText {
+    font-size: 1rem;
+}

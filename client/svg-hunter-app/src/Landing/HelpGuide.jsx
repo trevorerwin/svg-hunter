@@ -1,4 +1,5 @@
 import { Card, CardBody, CardText, CardTitle, ListGroupItem } from "reactstrap";
+import "../styles/HelpGuide.css";
 const HelpGuide = (props) => {
   return (
     <>

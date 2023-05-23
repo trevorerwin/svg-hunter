@@ -1,12 +1,6 @@
 // Desc: This is the home page for the SVG Hunter App
-import {
-  Card,
-  CardBody,
-  CardGroup,
-  CardText,
-  CardTitle,
-  Col,
-} from "reactstrap";
+import { Card, CardBody, CardGroup, CardText, CardTitle } from "reactstrap";
+import "../styles/Home.css";
 
 const Home = (props) => {
   return (
