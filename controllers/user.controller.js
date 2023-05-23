@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
 
     const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
 
-    const sql = 'INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups, HasActiveStripeSub) VALUES (?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)';
     const values = [Username, Email, hashedPassphrase, Name, `${process.env.SECRET}`];
 
     db.query(sql, values, (error) => {

@@ -22,6 +22,28 @@ router.post('/create-checkout-session', async (req, res) => {
 
 router.get('/subscription/status', async (req, res) => {
   try {
+    const { id } = req.body;
+
+    const sql = `SELECT HasActiveStripeSub FROM gomot1_upright_svghunter.sitelok WHERE id = ?`;
+
+    db.query(sql, [id], (error, results) => {
+      if (error) {
+        console.error('Error verifying subscription status: ', error);
+        res.status(500).json({ message: error.message });
+      }
+
+      console.log(results);
+
+      if (results.length === 0) {
+        res.status(404).json({ message: 'User not found' });
+      }
+
+      const HasActiveStripeSub = results[0].HasActiveStripeSub;
+
+      console.log(HasActiveStripeSub);
+
+      res.status(200).json({ HasActiveStripeSub });
+    });
   } catch (error) {
     console.error('Error verifying subscription status: ', error);
     res.status(500).json({ message: 'Error verifying subscription status' });
