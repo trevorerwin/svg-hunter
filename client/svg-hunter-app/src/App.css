@@ -45,15 +45,32 @@
 #submit-button-signup {
   background-color: #ad6ee7;
 }
+
 .center {
   text-align: center;
 }
 
-p {
-  font-size: 1.5em;
+.container {
   text-align: center;
+}
+
+
+.cardtitle,
+h4 {
+  text-align: left;
+  color: #ad6ee7;
+}
+
+ListGroupItem {
+  font-size: 4rem;
+}
+
+.paragraph,
+ClassText {
+  font-size: 1rem;
 }
 
 #login-text {
   color: #ad6ee7
 }
+
