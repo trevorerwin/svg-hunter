@@ -9,6 +9,7 @@ import Contact from './Landing/Contact';
 import Home from './Landing/Home';
 import SVGFinder from './Landing/SVGFinder/SVGFinder';
 import HelpGuide from './Landing/HelpGuide';
+import ProductDisplay from './Auth/ProductDisplay';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/svg-hunter' element={<SVGFinder />} />
         <Route path='/help-guide' element={<HelpGuide />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/checkout' element={<ProductDisplay />} />
       </Routes>
       <Footer />
     </div>
