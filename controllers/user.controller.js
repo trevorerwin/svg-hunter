@@ -42,7 +42,7 @@ router.post("/signup", async (req, res) => {
                     { Username, Email },
                     `${process.env.SECRET}`
                 );
-                res.status(200).json({ message: "User signed up", token });
+                res.status(200).json({ message: "new user created", token });
             }
         });
     } catch (error) {
@@ -71,15 +71,15 @@ router.post("/login", (req, res) => {
             }
 
             if (userArray.length === 0) {
-                return res.status(401).json({ message: "pooped my pants" });
+                return res.status(401).json({ message: "pooped my pants / Username Incorrect" });
             }
-
+            console.log(userArray)
             const user = userArray[0];
-
-            isPassphraseValid = bcrypt.compare(Passphrase, user.Passphrase);
+            console.log(user)
+            let isPassphraseValid = await bcrypt.compare(Passphrase, user.Passphrase);
 
             if (isPassphraseValid == false) {
-                return res.json({ message: "Invalid credentials" });
+                return res.json({ message: "Password Incorrect" });
             }
             // TODO make secret web token secret in dotenv file
             // Generate a JWT token
