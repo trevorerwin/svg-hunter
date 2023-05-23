@@ -11,9 +11,9 @@ const AuthToggle = (props) => {
     <Row>
       <Col className="d-grid justify-center ">
         {showLogin ? (
-          <Login updateToken={props.updateToken} />
+          <Login />
         ) : (
-          <Signup updateToken={props.updateToken} />
+          <Signup />
         )}
         <div className="text-center"  >
         

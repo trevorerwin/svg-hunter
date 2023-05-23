@@ -1,9 +1,44 @@
+import { useState } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
+import axios from "axios";
 
-const Contact = (props) => {
-    function handleSubmit() {
-        console.log("does it work?");
-    }
+const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const { name, email, subject, message } = formData;
+
+        // Send the email data to the backend server
+        try {
+            await axios.post("http://localhost:4000/user/send-email", {
+                name,
+                email, // Use the user-entered email as the recipient
+                subject,
+                message,
+            });
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+
+        setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+        });
+    };
+
     return (
         <>
             <div
@@ -38,6 +73,9 @@ const Contact = (props) => {
                                     placeholder="Name:"
                                     required
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -54,7 +92,10 @@ const Contact = (props) => {
                                     className="align-left"
                                     placeholder="Email:"
                                     required
-                                    type="text"
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -72,6 +113,9 @@ const Contact = (props) => {
                                     placeholder="Subject:"
                                     required
                                     type="text"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -83,25 +127,32 @@ const Contact = (props) => {
                                         width: "700px",
                                         resize: "none",
                                         outline: "none",
+                                        height: "100px",
                                         fontFamily: "Roboto",
                                         fontSize: "1.5rem",
                                     }}
-                                    className=" align-left"
                                     placeholder="Message:"
                                     required
-                                    rows={6}
-                                ></textarea>
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
+
+                        <div className="text-center mt-4">
+                            <Button
+                                style={{
+                                    fontFamily: "Roboto",
+                                    fontSize: "1.5rem",
+                                }}
+                                className="submit-button"
+                                type="submit"
+                            >
+                                Submit
+                            </Button>
+                        </div>
                     </FormGroup>
-                    <div className="text-center mb-2 button">
-                        <Button
-                            style={{ fontSize: "1.5rem" }}
-                            id="change-button-color"
-                        >
-                            Submit
-                        </Button>
-                    </div>
                 </Form>
             </div>
         </>
