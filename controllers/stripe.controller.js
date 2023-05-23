@@ -20,9 +20,9 @@ router.post('/create-checkout-session', async (req, res) => {
   res.redirect(303, session.url);
 });
 
-router.get('/subscription/status', async (req, res) => {
+router.get('/subscription/status/:id', async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const sql = `SELECT HasActiveStripeSub FROM gomot1_upright_svghunter.sitelok WHERE id = ?`;
 
