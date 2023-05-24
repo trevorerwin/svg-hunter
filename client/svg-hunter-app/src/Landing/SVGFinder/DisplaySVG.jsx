@@ -10,12 +10,20 @@ const DisplaySVG = (props) => {
     getAllSVG();
   }, [currentPage]);
 
+
   async function getAllSVG() {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
 
     const requestOptions = {
       method: "GET",
     };
+
+// if nothing is checked getAllSVG
+// if something is checked call the function with getAllChecked
+//     useEffect(() => {
+//         getAllSVG(/* props.newTagValue */);
+//       }, []);
+
 
     try {
       const response = await fetch(url, requestOptions);
