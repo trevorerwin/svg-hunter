@@ -46,11 +46,11 @@ const DisplaySVG = (props) => {
 
   return (
     <>
-      <h3>Hello from DisplaySVG</h3>
+      {/* <h3>Hello from DisplaySVG</h3> */}
       <Container>
         <Row
           style={{
-            marginTop: "40px",
+            marginTop: "20px",
             marginLeft: "40px",
             justifyContent: "space-between",
           }}
