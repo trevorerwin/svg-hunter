@@ -31,7 +31,7 @@ const SVGFinder = (props) => {
         
 
         <Row>
-          <Col lg='2' style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Col lg='2' style={{ marginLeft: 0, paddingRight: 0 }}>
             <DisplayTags />
           </Col>
 
