@@ -1,0 +1,14 @@
+.sticky-search-bar {
+    /* display: absolute; */
+    position: sticky;
+    align-items: center;
+    top: 120px;
+    /* margin-top: ; */
+    z-index: 99;
+    
+}
+
+.SVG-finder-container {
+    height: 2500px;
+
+}
