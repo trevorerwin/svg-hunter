@@ -25,7 +25,8 @@
 }
 
 .logo-image {
-  width: 200px; /* Adjust the size as needed */
+  width: 200px;
+  /* Adjust the size as needed */
 }
 
 .header-text {
@@ -36,18 +37,22 @@
 /* Mobile responsiveness */
 @media (max-width: 767px) {
   .header-content {
-    top: 30%; /* Adjust the position for smaller screens */
+    top: 30%;
+    /* Adjust the position for smaller screens */
   }
 
   .logo-image {
-    width: 100px; /* Adjust the size for smaller screens */
+    width: 100px;
+    /* Adjust the size for smaller screens */
   }
 
   .header-text {
-    font-size: 1.5rem; /* Adjust the font size for smaller screens */
+    font-size: 1.5rem;
+    /* Adjust the font size for smaller screens */
   }
 
   .video-container {
     padding-bottom: 60%;
   }
+
 }

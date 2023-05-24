@@ -12,3 +12,21 @@ ListGroupItem {
 ClassText {
     font-size: 1rem;
 }
+
+/* Mobile Responsive Section */
+/* add mobile responsive */
+/* add font-size for mobile responsive */
+
+@media only screen and (max-width: 767px) {
+
+    .paragraph,
+    ClassText {
+        width: 100%;
+        flex: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        font-size: 1.5rem;
+    }
+}
