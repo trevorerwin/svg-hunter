@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
-import './SVG-Styles.css'
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
@@ -8,11 +7,9 @@ const DisplaySVG = (props) => {
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
-
   useEffect(() => {
     getAllSVG();
   }, [currentPage]);
-
 
   async function getAllSVG() {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
@@ -20,13 +17,6 @@ const DisplaySVG = (props) => {
     const requestOptions = {
       method: "GET",
     };
-
-// if nothing is checked getAllSVG
-// if something is checked call the function with getAllChecked
-//     useEffect(() => {
-//         getAllSVG(/* props.newTagValue */);
-//       }, []);
-
 
     try {
       const response = await fetch(url, requestOptions);
@@ -82,11 +72,8 @@ const DisplaySVG = (props) => {
     }
   }
 
-
-
   return (
     <>
-      {/* <h3>Hello from DisplaySVG</h3> */}
       <Container>
         <Row
           style={{
@@ -97,49 +84,31 @@ const DisplaySVG = (props) => {
         >
           <Col>
             {displayedSVGs.map((svg, index) => (
-              <a href={svg.svgURL} target="_blank" rel="noreferrer">
               <img
-                className="svg-image"
-                style={{ width: "180px", height: "180px", marginRight: "50px", marginBottom: "50px", borderRadius: "5px", padding: "20px", boxShadow: "0 0 10px rgba(0,0,0,0.5)" }}
+                style={{ width: "150px", height: "150px", marginRight: "80px", marginBottom: "80px" }}
                 key={index}
                 src={svg.svgData}
                 alt={svg.svgName}
-                value={svg.svgURL}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg";
-                }}
               />
-              </a>
             ))}
           </Col>
         </Row>
         <Row>
-          <Col style={{marginTop: "10px"}}>
-            <button onClick={() =>{
-                      handlePreviousPage(); 
-                      // scroll to the top of the DisplaySVG component
-                      window.scrollTo(0, 655.66);
-                    }}
-                    disabled={currentPage === 1}>
+          <Col style={{ marginTop: "50px" }}>
+            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
               Previous
             </button>
             {pageNumbers.map((pageNumber, index) => (
               <React.Fragment key={index}>
                 {pageNumber === "..." ? (
-                  <span style={{ marginRight: "5px", marginBottom: "40px" }}>...</span>
+                  <span style={{ marginRight: "5px", marginBottom: "30px" }}>...</span>
                 ) : (
                   <button
-                    onClick={() =>{
-                      setCurrentPage(pageNumber); 
-                      // scroll to the top of the DisplaySVG component
-                      window.scrollTo(0, 655.66);
-                    }}
+                    onClick={() => setCurrentPage(pageNumber)}
                     style={{
                       marginRight: "5px",
                       marginBottom: "30px",
                       fontWeight: pageNumber === currentPage ? "bold" : "normal",
-                      border: "none",
                     }}
                   >
                     {pageNumber}
@@ -147,12 +116,7 @@ const DisplaySVG = (props) => {
                 )}
               </React.Fragment>
             ))}
-            <button onClick={() =>{
-                      handleNextPage(); 
-                      // scroll to the top of the DisplaySVG component
-                      window.scrollTo(0, 655.66);
-                    }}
-                    disabled={currentPage === totalPages}>
+            <button onClick={handleNextPage} disabled={currentPage === totalPages}>
               Next
             </button>
           </Col>

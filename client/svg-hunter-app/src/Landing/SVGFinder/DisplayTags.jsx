@@ -70,9 +70,9 @@ const DisplayTags = (props) => {
 
     return ( 
         <>
-        <div className="overflow-scroll sticky-top bg-white" style={{height: "70vh", border: "solid", marginRight: "30px", top:"120px", paddingLeft: "0px"}}>
+        <div className="overflow-scroll sticky-top bg-white" style={{height: "60vh", border: "solid", marginRight: "30px", top:"210px", paddingLeft: "0px"}}>
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>POPULAR TAGS</h5>
-            <ul style={{ listStyleType: "none" }}>
+            <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {tagArray.map((tag, index) => (
                     <li key={index}>
                       <input

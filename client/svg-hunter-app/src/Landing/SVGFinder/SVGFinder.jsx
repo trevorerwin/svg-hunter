@@ -14,29 +14,32 @@ const SVGFinder = (props) => {
             <Col lg="2">
             </Col>
 
-            <Col lg="7" style={{ paddingLeft: 0, paddingRight: 0, marginTop: "20px", marginBottom: "40px" }}>
+            <Col lg="8" style={{ paddingLeft: 0, paddingRight: 0, marginTop: "20px", marginBottom: "40px" }}>
                 <Input placeholder="Search" className= ""/>
             </Col>
                 
             <Col lg="1">
-                <button>Search</button>
+                <button style={{marginTop: "22%"}}>Search</button>
             </Col>
 
-            <Col lg="2">
+            <Col lg="1">
             </Col>
         </Row>
     </Container>
 
-    <Container className ="SVG-finder-container" style={{ paddingLeft: 0, paddingRight: 0 }}> 
+    <Container fluid className ="SVG-finder-container" style={{ paddingLeft: 0, paddingRight: 0 }}> 
         
 
         <Row>
-          <Col lg='2' style={{ marginLeft: 0, paddingRight: 0 }}>
+          <Col lg='2' style={{ marginLeft: "20px", paddingRight: 0 }}>
             <DisplayTags />
           </Col>
 
-          <Col lg='10' style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Col lg='9' style={{ paddingLeft: 0, paddingRight: 0 }}>
             <DisplaySVG />
+          </Col>
+
+          <Col lg="1">
           </Col>
         </Row>
       </Container>
