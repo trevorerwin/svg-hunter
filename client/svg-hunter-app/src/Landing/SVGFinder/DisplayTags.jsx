@@ -70,8 +70,8 @@ const DisplayTags = (props) => {
 
     return ( 
         <>
-        <div className="overflow-scroll" style={{height: "70vh", border: "solid", marginRight: "30px", paddingLeft: "0px"}}>
-            <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>TAGS</h5>
+        <div className="overflow-scroll sticky-top bg-white" style={{height: "70vh", border: "solid", marginRight: "30px", top:"120px", paddingLeft: "0px"}}>
+            <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>POPULAR TAGS</h5>
             <ul style={{ listStyleType: "none" }}>
                 {tagArray.map((tag, index) => (
                     <li key={index}>
@@ -79,7 +79,7 @@ const DisplayTags = (props) => {
                         type="checkbox"
                         style={{marginLeft: "0px", marginRight: "10px"}}
                         checked={tag.checked || false}
-                        onChange={() => handleCheckboxChange(index)}
+                        onChange={() => handleCheckboxChange(index,/* target.tagvalue */)}
                       />
                       {tag}
                     </li>

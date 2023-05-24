@@ -5,9 +5,10 @@ import { Col, Container, Row } from "reactstrap";
 const DisplaySVG = (props) => {
     const [SVGArray, setSVGArray] = useState([]);
 
-
+// if nothing is checked getAllSVG
+// if something is checked call the function with getAllChecked
     useEffect(() => {
-        getAllSVG();
+        getAllSVG(/* props.newTagValue */);
       }, []);
 
 
