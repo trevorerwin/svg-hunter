@@ -26,3 +26,42 @@
 .navbar-container a:active {
   color: #61dafb;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 831px) {
+  .navbar-container a {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .navbar.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .navbar-icon:hover {
+    color: #61dafb;
+  }
+}
