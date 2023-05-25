@@ -7,10 +7,6 @@ const DisplayTags = (props) => {
       getAllTags();
     }, []);
 
-    //! TEST CODE TO SEE IF TAG ARRAY IS BEING UPDATED
-    // useEffect(() => {
-    //     console.log("Tag Array", tagArray);
-    //   }, [tagArray]);
 
     function processStrings(dataArray) {
         // Step 1: Remove hyphens from the start of a word
@@ -25,9 +21,8 @@ const DisplayTags = (props) => {
           const lowercaseTag = tag.toLowerCase();
           counts[lowercaseTag] = (counts[lowercaseTag] || 0) + 1;
         });
-
         
-        // Step 4: If a string occurs 10 or more times, add it to a new array
+        // Step 4: If a string occurs 10 or more times, add it to a new array and lowercase it
         const newTagArray = dataArray.filter(tag => counts[tag.toLowerCase()] >= 10);
 
         const lowerCaseTagArray = newTagArray.map(tag => tag.toLowerCase());
@@ -70,7 +65,7 @@ const DisplayTags = (props) => {
 
     return ( 
         <>
-        <div className="overflow-scroll sticky-top bg-white" style={{height: "60vh", border: "solid", marginRight: "30px", top:"210px", paddingLeft: "0px"}}>
+        <div className="tag-display-window" >
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>POPULAR TAGS</h5>
             <ul style={{ listStyleType: "none", textAlign: "left" }}>
                 {tagArray.map((tag, index) => (

@@ -82,6 +82,14 @@ const DisplaySVG = (props) => {
     }
   }
 
+  function shortenName(name) {
+    if (name.length > 20) {
+      return name.slice(0, 20) + "...";
+    } else {
+      return name;
+    }
+  }
+
 
 
   return (
@@ -96,32 +104,43 @@ const DisplaySVG = (props) => {
           }}
         >
           <Col>
-            {displayedSVGs.map((svg, index) => (
+          {displayedSVGs.map((svg, index) => (
+            <div key={index} style={{ textAlign: "center", display: "inline-block" }}>
               <a href={svg.svgURL} target="_blank" rel="noreferrer">
-              <img
-                className="svg-image"
-                style={{ width: "180px", height: "180px", marginRight: "50px", marginBottom: "50px", borderRadius: "5px", padding: "20px", boxShadow: "0 0 10px rgba(0,0,0,0.5)" }}
-                key={index}
-                src={svg.svgData}
-                alt={svg.svgName}
-                value={svg.svgURL}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg";
-                }}
-              />
+                <img
+                  className="svg-image"
+                  style={{
+                    width: "180px",
+                    height: "180px",
+                    margin: 'auto 25px 5px 25px',
+                    borderRadius: "5px",
+                    padding: "20px",
+                    boxShadow: "0 0 10px rgba(0,0,0,0.5)"
+                  }}
+                  src={svg.svgData}
+                  alt={svg.svgName}
+                  value={svg.svgURL}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg";
+                  }}
+                />
               </a>
-            ))}
+              <a href={svg.svgURL} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                <p style={{ color: "#ad6ee7", marginBottom: "50px", textAlign: "center", alignSelf: "center" }}>{shortenName(svg.svgName)}</p>
+              </a>
+            </div>
+          ))}
           </Col>
         </Row>
         <Row>
           <Col style={{marginTop: "10px"}}>
             <button onClick={() =>{
-                      handlePreviousPage(); 
-                      // scroll to the top of the DisplaySVG component
-                      window.scrollTo(0, 655.66);
-                    }}
-                    disabled={currentPage === 1}>
+                handlePreviousPage(); 
+                // scroll to the top of the DisplaySVG component
+                window.scrollTo(0, 655.66);
+              }}
+              disabled={currentPage === 1}>
               Previous
             </button>
             {pageNumbers.map((pageNumber, index) => (
