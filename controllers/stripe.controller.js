@@ -12,7 +12,7 @@ router.post('/create-checkout-session', async (req, res) => {
         quantity: 1,
       },
     ],
-    mode: 'payment',
+    mode: 'subscription',
     success_url: `${domain}/success.html`,
     cancel_url: `${domain}/cancel.html`,
   });
@@ -20,33 +20,37 @@ router.post('/create-checkout-session', async (req, res) => {
   res.redirect(303, session.url);
 });
 
-router.get('/subscription/status', async (req, res) => {
+router.get('/subscription/status/:id', async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
-    const sql = `SELECT HasActiveStripeSub FROM gomot1_upright_svghunter.sitelok WHERE id = ?`;
+    const sql = `SELECT StripeID FROM gomot1_upright_svghunter.sitelok WHERE id = ?`;
 
-    db.query(sql, [id], (error, results) => {
+    db.query(sql, id, (error, results) => {
       if (error) {
-        console.error('Error verifying subscription status: ', error);
-        res.status(500).json({ message: error.message });
+        console.error('Error retrieving subscription status:', error);
+        return res.status(500).json({ message: error.message });
       }
 
-      console.log(results);
-
-      if (results.length === 0) {
-        res.status(404).json({ message: 'User not found' });
+      if (results.length === 0 || results[0].StripeID === null) {
+        return res.status(404).json({ message: 'User not found or subscription not active' });
       }
 
-      const HasActiveStripeSub = results[0].HasActiveStripeSub;
+      const stripeID = results[0].StripeID;
+      console.log(stripeID);
 
-      console.log(HasActiveStripeSub);
+      stripe.subscriptions.retrieve(stripeID, (error, subscription) => {
+        if (error) {
+          console.error('Error retrieving subscription status:', error);
+          return res.status(500).json({ message: error.message });
+        }
 
-      res.status(200).json({ HasActiveStripeSub });
+        res.status(200).json({ subscription });
+      });
     });
   } catch (error) {
-    console.error('Error verifying subscription status: ', error);
-    res.status(500).json({ message: 'Error verifying subscription status' });
+    console.error('Error retrieving user subscriptions:', error);
+    res.status(500).json({ message: 'Error retrieving user subscriptions' });
   }
 });
 

@@ -1,11 +1,9 @@
 // mount the DisplaySVG and DisplayTags components to this file
-import React, { useState } from 'react';
-
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
 import './SVG-Styles.css'
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 const SVGFinder = (props) => {
     const [selectedTags, setSelectedTags] = useState("");
@@ -28,7 +26,6 @@ const SVGFinder = (props) => {
 
             <Col lg="2">
             </Col>
-
         </Row>
     </Container>
 
