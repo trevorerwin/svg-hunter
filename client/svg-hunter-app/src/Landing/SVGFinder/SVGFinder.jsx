@@ -1,5 +1,4 @@
 // mount the DisplaySVG and DisplayTags components to this file
-
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
@@ -8,21 +7,19 @@ import { Col, Container, Input, Row } from 'reactstrap';
 const SVGFinder = (props) => {
   return (
     <>
-    <Container style={{ paddingLeft: 0, paddingRight: 0 }}> 
-        <Row className="align-items-center">
-            <Col lg="2">
-            </Col>
+      <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <Row className='align-items-center'>
+          <Col lg='2'></Col>
 
-            <Col lg="7" style={{ paddingLeft: 0, paddingRight: 0, marginTop: "20px", marginBottom: "40px" }}>
-                <Input placeholder="Search" />
-            </Col>
-                
-            <Col lg="1">
-                <button>Search</button>
-            </Col>
+          <Col lg='7' style={{ paddingLeft: 0, paddingRight: 0, marginTop: '20px', marginBottom: '40px' }}>
+            <Input placeholder='Search' />
+          </Col>
 
-            <Col lg="2">
-            </Col>
+          <Col lg='1'>
+            <button>Search</button>
+          </Col>
+
+          <Col lg='2'></Col>
         </Row>
 
         <Row>

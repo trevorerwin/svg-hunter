@@ -34,17 +34,14 @@
 }
 
 /* Mobile responsiveness */
-@media (max-width: 767px) {
-  .header-content {
-    top: 30%; /* Adjust the position for smaller screens */
+@media (max-width: 831px) {
+  .header-text {
+    font-size: 1.5rem; /* Adjust the font size for smaller screens */
   }
 
   .logo-image {
-    width: 100px; /* Adjust the size for smaller screens */
-  }
-
-  .header-text {
-    font-size: 1.5rem; /* Adjust the font size for smaller screens */
+    height: 150px;
+    width: 150px;
   }
 
   .video-container {
