@@ -34,11 +34,11 @@ const SVGFinder = (props) => {
 
         <Row>
           <Col lg='2' className='tag-display-column' >
-            <DisplayTags />
+            <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags}/>
           </Col>
 
           <Col lg='9' className='svg-display-column'>
-            <DisplaySVG />
+            <DisplaySVG selectedTags={selectedTags}/>
 
           </Col>
 

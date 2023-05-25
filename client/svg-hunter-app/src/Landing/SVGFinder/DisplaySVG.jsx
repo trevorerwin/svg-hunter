@@ -12,11 +12,11 @@ const DisplaySVG = (props) => {
 //   let multiTags = [...props.selectedTags];
 
   useEffect(() => {
-    if ((props.selectedTags === "")) {
+    // if ((props.selectedTags === "")) {
       getAllSVG()
-    } else {
-      getSVGByTags();
-    } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
+//     } else {
+//       getSVGByTags();
+//     } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
   },
    [currentPage, props.selectedTags]);
 
@@ -43,21 +43,21 @@ const DisplaySVG = (props) => {
     }
   }
 
-  async function getSVGByTags() {
-    let url = `http://localhost:4000/svg_tag/multi-tag/${props.selectedTags}?page=${currentPage}&limit=${perPage}`;
-    const requestOptions = {
-      method: "GET",
-    };
+//   async function getSVGByTags() {
+//     let url = `http://localhost:4000/svg_tag/multi-tag/${props.selectedTags}?page=${currentPage}&limit=${perPage}`;
+//     const requestOptions = {
+//       method: "GET",
+//     };
 
-    try {
-      const response = await fetch(url, requestOptions);
-      const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
-      setSVGArray(SVGData);
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
+//     try {
+//       const response = await fetch(url, requestOptions);
+//       const data = await response.json();
+//       const SVGData = data.results.map((svg) => svg);
+//       setSVGArray(SVGData);
+//     } catch (error) {
+//       console.error(error.message);
+//     }
+//   }
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
