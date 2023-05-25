@@ -110,10 +110,10 @@ const DisplayTags = (props) => {
                       <input
                         type="checkbox"
                         style={{marginLeft: "0px", marginRight: "10px"}}
-                        checked={tag.checked || false}
+                        checked={tag.isChecked}
                         onChange={() => handleCheckboxChange(index,/* target.tagvalue */)}
                       />
-                      {tag}
+                      {tag.tagName}
                     </li>
                 ))}
             </ul>
