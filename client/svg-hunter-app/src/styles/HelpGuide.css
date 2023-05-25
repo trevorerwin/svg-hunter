@@ -1,26 +1,42 @@
+.background {
+    background-color: whitesmoke;
+}
+
+.title {
+    text-align: center;
+    color: #ad6ee7;
+    font-size: 3rem;
+    text-decoration: underline;
+
+}
+
 .cardtitle,
 h4 {
-    text-align: left;
+    text-align: center;
     color: #ad6ee7;
 }
 
-ListGroupItem {
-    font-size: 4rem;
+#view {
+    border-bottom: 1px solid #ad6ee7;
+    font-size: 1.2rem;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
+
 .paragraph,
-ClassText {
-    font-size: 1rem;
+p {
+    font-size: 1.2rem;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 /* Mobile Responsive Section */
-/* add mobile responsive */
-/* add font-size for mobile responsive */
 
 @media only screen and (max-width: 767px) {
 
     .paragraph,
-    ClassText {
+    p {
         width: 100%;
         flex: 100%;
         flex-direction: column;
