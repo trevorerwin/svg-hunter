@@ -1,30 +1,42 @@
-import { Nav, NavItem, NavLink, Navbar } from 'reactstrap';
 import './styles/NavBar.css';
 import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-const NavBar = (props) => {
+const NavBar = () => {
+  // keep track of whether the menu is open or not
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <>
-      <div className='navbar-container'>
-        <nav className='navbar'>
-          <Link to='/' className='navbar-ele-one'>
+    <div className='navbar-container'>
+      <nav className='navbar'>
+        <div className='hamburger-menu' onClick={toggleMenu}>
+          <div className={`line line-1 ${isOpen ? 'active' : ''}`} />
+          <div className={`line line-2 ${isOpen ? 'active' : ''}`} />
+          <div className={`line line-3 ${isOpen ? 'active' : ''}`} />
+        </div>
+        <div className={`navbar-links ${isOpen ? 'active' : ''}`}>
+          <a href='/' className='navbar-ele'>
             Home
-          </Link>
-          <Link to='/auth' className='navbar-ele-two'>
+          </a>
+          <a href='/auth' className='navbar-ele'>
             Login
-          </Link>
-          <Link to='/svg-hunter' className='navbar-ele-three'>
+          </a>
+          <a href='/svg-hunter' className='navbar-ele'>
             SVG Hunter
-          </Link>
-          <Link to='/help-guide' className='navbar-ele-four'>
+          </a>
+          <a href='/help-guide' className='navbar-ele'>
             Help Guide
-          </Link>
-          <Link to='/contact' className='navbar-ele-five'>
+          </a>
+          <a href='/contact' className='navbar-ele'>
             Contact
-          </Link>
-        </nav>
-      </div>
-    </>
+          </a>
+        </div>
+      </nav>
+    </div>
   );
 };
 
