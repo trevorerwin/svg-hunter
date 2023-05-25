@@ -6,13 +6,25 @@ const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
-  const maxPageNumbers = 3; // maximum number of page numbers to display
 
+  const maxPageNumbers = 3; // maximum number of page numbers to display
+  
+//   let multiTags = [...props.selectedTags];
 
   useEffect(() => {
-    getAllSVG();
-  }, [currentPage]);
+    if ((props.selectedTags === "")) {
+      getAllSVG()
+    } else {
+      getSVGByTags();
+    } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
+  },
+   [currentPage, props.selectedTags]);
 
+  // if nothing is checked getAllSVG
+  // if something is checked call the function with getAllChecked
+  //     useEffect(() => {
+  //         getAllSVG(/* props.newTagValue */);
+  //       }, []);
 
   async function getAllSVG() {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
@@ -20,13 +32,6 @@ const DisplaySVG = (props) => {
     const requestOptions = {
       method: "GET",
     };
-
-// if nothing is checked getAllSVG
-// if something is checked call the function with getAllChecked
-//     useEffect(() => {
-//         getAllSVG(/* props.newTagValue */);
-//       }, []);
-
 
     try {
       const response = await fetch(url, requestOptions);
@@ -38,6 +43,21 @@ const DisplaySVG = (props) => {
     }
   }
 
+  async function getSVGByTags() {
+    let url = `http://localhost:4000/svg_tag/multi-tag/${props.selectedTags}?page=${currentPage}&limit=${perPage}`;
+    const requestOptions = {
+      method: "GET",
+    };
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      const SVGData = data.results.map((svg) => svg);
+      setSVGArray(SVGData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -104,6 +124,7 @@ const DisplaySVG = (props) => {
           }}
         >
           <Col>
+
           {displayedSVGs.map((svg, index) => (
             <div key={index} style={{ textAlign: "center", display: "inline-block" }}>
               <a href={svg.svgURL} target="_blank" rel="noreferrer">

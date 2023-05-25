@@ -1,66 +1,103 @@
 import React, { useState, useEffect } from "react";
 
 const DisplayTags = (props) => {
-    const [tagArray, setTagArray] = useState([]);
+  const [tagArray, setTagArray] = useState([]);
+  const [selectedTag, setSelectedTag] = useState("");
 
-    useEffect(() => {
-      getAllTags();
-    }, []);
+  useEffect(() => {
+    getAllTags();
+  }, []);
 
 
-    function processStrings(dataArray) {
-        // Step 1: Remove hyphens from the start of a word
-        dataArray = dataArray.map(tag => tag.replace(/^-/, ''));
-        
-        // Step 2: Remove empty strings from the array
-        dataArray = dataArray.filter(tag => tag !== '');
-        
-        // Step 3: Count the number of times each string occurs in the array
-        const counts = {};
-        dataArray.forEach(tag => {
-          const lowercaseTag = tag.toLowerCase();
-          counts[lowercaseTag] = (counts[lowercaseTag] || 0) + 1;
-        });
-        
-        // Step 4: If a string occurs 10 or more times, add it to a new array and lowercase it
-        const newTagArray = dataArray.filter(tag => counts[tag.toLowerCase()] >= 10);
+  useEffect(() => {
+    let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
+    props.setSelectedTags(tagNames);
 
-        const lowerCaseTagArray = newTagArray.map(tag => tag.toLowerCase());
-        
-        // Step 5: Remove duplicate strings from the new array
-        const uniqueTags = [...new Set(lowerCaseTagArray)];
-        
-        // Step 6: Sort the strings in the new array alphabetically
-        uniqueTags.sort();
-        
-        return uniqueTags;
-      }
+    
+  }, [tagArray]);
 
-    async function getAllTags() {
-        let url = `http://localhost:4000/svg_tag/display-all`;
+  //! TEST CODE TO SEE IF TAG ARRAY IS BEING UPDATED
+  // useEffect(() => {
+  //     console.log("Tag Array", tagArray);
+  //   }, [tagArray]);
+
+
+  function processStrings(dataArray) {
+    // Step 1: Remove hyphens from the start of a word
+    dataArray = dataArray.map((tag) =>{
+      return{tagName:  tag.tagName.toLowerCase().replace(/^-/, ""), isChecked: false}
+    });
+
+    // Step 2: Remove empty strings from the array
+    dataArray = dataArray.filter((tag) => tag.tagName !== "");
+
+    // Step 3: Count the number of times each string occurs in the array
+    const counts = {};
+    dataArray.forEach((tag) => {
+      const lowercaseTag = tag.tagName.toLowerCase();
+      counts[lowercaseTag] = (counts[lowercaseTag] || 0) + 1;
+    });
+
+    // Step 4: If a string occurs 10 or more times, add it to a new array
+    // const newTagArray = dataArray.filter(
+    //   (tag) => counts[tag] >= 10
+    // );
+    let newTagArray = []
+    for (let item in counts) {
+      if (counts[item] >= 10) {
         
-        const requestOptions = {
-            method: "GET",
-        };
-        try {
-            const response = await fetch(url, requestOptions);
-            const data = await response.json();
-            const tagData = data.results.map((tag) => tag.svgTag.trim());           
-            const tagDataArray = processStrings(tagData);
-            setTagArray(tagDataArray);
-        } catch (error) {
-            console.error(error.message);
-        }
+        newTagArray.push(item)
+      } 
     }
+    const lowerCaseTagArray = newTagArray.map((tag) => tag.toLowerCase());
 
+    // Step 5: Remove duplicate strings from the new array
+    let uniqueTags = [...new Set(lowerCaseTagArray)];
 
-    const handleCheckboxChange = (index) => {
-        setTagArray((prevTagArray) => {
-          const newTagArray = [...prevTagArray];
-          newTagArray[index].checked = !newTagArray[index].checked;
-          return newTagArray;
-        });
-      };
+     uniqueTags = uniqueTags.map(tag=> {
+      return{tagName:  tag, isChecked: false}
+    })
+
+    // Step 6: Sort the strings in the new array alphabetically
+    uniqueTags.sort((word1, word2)=> word1.tagName>word2.tagName ? 1 : -1);
+
+    return uniqueTags;
+  }
+
+  async function getAllTags() {
+    let url = `http://localhost:4000/svg_tag/display-all`;
+
+    const requestOptions = {
+      method: "GET",
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      const tagData = data.results.map((tag) => {
+        return { tagName: tag.svgTag.trim(), isChecked: false };
+      });
+      const tagDataArray = processStrings(tagData);
+      
+      setTagArray(tagDataArray);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  console.log(props);
+
+  const handleCheckboxChange = (index) => {
+
+   let prev= [...tagArray]
+   prev[index].isChecked = !prev[index].isChecked
+   
+    setTagArray(prev);
+
+   
+
+    // Get the selected tag value
+    // const selectedTagValue = tagArray[index];
+    // Pass the selected tag value to the parent component
+  };
 
 
     return ( 
@@ -92,4 +129,4 @@ const DisplayTags = (props) => {
  
 
 
-export default DisplayTags
+export default DisplayTags;

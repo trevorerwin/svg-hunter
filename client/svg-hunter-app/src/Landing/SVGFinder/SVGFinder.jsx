@@ -1,4 +1,5 @@
 // mount the DisplaySVG and DisplayTags components to this file
+import React, { useState } from 'react';
 
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
@@ -7,6 +8,8 @@ import './SVG-Styles.css'
 // import React, { useState } from 'react';
 
 const SVGFinder = (props) => {
+    const [selectedTags, setSelectedTags] = useState("");
+
   return (
     <>
     <div className='svg-finder-page'>
@@ -39,6 +42,7 @@ const SVGFinder = (props) => {
 
           <Col lg='9' className='svg-display-column'>
             <DisplaySVG />
+
           </Col>
 
           <Col lg="1">
