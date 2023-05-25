@@ -4,7 +4,9 @@ const HelpGuide = (props) => {
     <>
       <div class="background">
         <br />
-        <h2 class="title">SVG Hunter Overview</h2>
+        <h2 class="title">
+          <strong>SVG Hunter Overview</strong>
+        </h2>
         <br />
         <h4 class="cardtitle">Top Menu Toolbar</h4>
         <br />
