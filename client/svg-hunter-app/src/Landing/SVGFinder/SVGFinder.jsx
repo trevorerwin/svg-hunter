@@ -2,36 +2,51 @@
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
-// import React, { useState } from 'react';
+import './SVG-Styles.css'
+import React, { useState } from 'react';
 
 const SVGFinder = (props) => {
+    const [selectedTags, setSelectedTags] = useState("");
+
   return (
     <>
-      <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <Row className='align-items-center'>
-          <Col lg='2'></Col>
+    <div className='svg-finder-page'>
+    <Container fluid className='svg-search-bar-container' >
+    <Row className='w-100'>
+            <Col lg="2">
+            </Col>
 
-          <Col lg='7' style={{ paddingLeft: 0, paddingRight: 0, marginTop: '20px', marginBottom: '40px' }}>
-            <Input placeholder='Search' />
-          </Col>
+            <Col lg="7" className='svg-search-bar' >
+                <Input className='svg-search-input' placeholder="Search" />
+            </Col>
+                
+            <Col lg="1" className='svg-search-btn' >
+                <button className='search-btn'>Search</button>
+            </Col>
 
-          <Col lg='1'>
-            <button>Search</button>
-          </Col>
-
-          <Col lg='2'></Col>
+            <Col lg="2">
+            </Col>
         </Row>
+    </Container>
+
+    <Container fluid className ="SVG-finder-container" > 
+        
 
         <Row>
-          <Col lg='2' style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Col lg='2' className='tag-display-column' >
             <DisplayTags />
           </Col>
 
-          <Col lg='10' style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Col lg='9' className='svg-display-column'>
             <DisplaySVG />
+
+          </Col>
+
+          <Col lg="1">
           </Col>
         </Row>
       </Container>
+      </div>
     </>
   );
 };
