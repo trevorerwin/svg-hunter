@@ -12,37 +12,44 @@ const SVGFinder = (props) => {
 
   return (
     <>
-    <Container fluid className='sticky-top mb-3' style={{top:"100px", backgroundColor: "#ad6ee7"}}>
-    <Row >
+    <div className='svg-finder-page'>
+    <Container fluid className='svg-search-bar-container' >
+    <Row className='w-100'>
             <Col lg="2">
             </Col>
 
-            <Col lg="7" style={{ paddingLeft: 0, paddingRight: 0, marginTop: "20px", marginBottom: "40px" }}>
-                <Input placeholder="Search" className= ""/>
+            <Col lg="7" className='svg-search-bar' >
+                <Input className='svg-search-input' placeholder="Search" />
             </Col>
                 
-            <Col lg="1">
-                <button>Search</button>
+            <Col lg="1" className='svg-search-btn' >
+                <button className='search-btn'>Search</button>
             </Col>
 
             <Col lg="2">
             </Col>
+
         </Row>
     </Container>
 
-    <Container className ="SVG-finder-container" style={{ paddingLeft: 0, paddingRight: 0 }}> 
+    <Container fluid className ="SVG-finder-container" > 
         
 
         <Row>
-          <Col lg='2' style={{ marginLeft: 0, paddingRight: 0 }}>
-            <DisplayTags  selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+          <Col lg='2' className='tag-display-column' >
+            <DisplayTags />
           </Col>
 
-          <Col lg='10' style={{ paddingLeft: 0, paddingRight: 0 }}>
-            <DisplaySVG selectedTags={selectedTags} />
+          <Col lg='9' className='svg-display-column'>
+            <DisplaySVG />
+
+          </Col>
+
+          <Col lg="1">
           </Col>
         </Row>
       </Container>
+      </div>
     </>
   );
 };

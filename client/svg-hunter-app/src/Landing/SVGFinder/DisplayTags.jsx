@@ -8,6 +8,7 @@ const DisplayTags = (props) => {
     getAllTags();
   }, []);
 
+
   useEffect(() => {
     let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
     props.setSelectedTags(tagNames);
@@ -19,6 +20,7 @@ const DisplayTags = (props) => {
   // useEffect(() => {
   //     console.log("Tag Array", tagArray);
   //   }, [tagArray]);
+
 
   function processStrings(dataArray) {
     // Step 1: Remove hyphens from the start of a word
@@ -97,48 +99,34 @@ const DisplayTags = (props) => {
     // Pass the selected tag value to the parent component
   };
 
-  return (
-    <>
-      <div
-        className="overflow-scroll sticky-top bg-white"
-        style={{
-          height: "70vh",
-          border: "solid",
-          marginRight: "30px",
-          top: "120px",
-          paddingLeft: "0px",
-        }}
-      >
-        <h5
-          style={{
-            textAlign: "center",
-            marginTop: "10px",
-            marginBottom: "10px",
-          }}
-        >
-          POPULAR TAGS
-        </h5>
-        <ul style={{ listStyleType: "none" }}>
-          {tagArray.map((tag, index) => (
-            <li key={index}>
-              <input
-                type="checkbox"
-                style={{ marginLeft: "0px", marginRight: "10px" }}
-                checked={tag.isChecked}
-                onChange={(e) =>
-                  handleCheckboxChange(
-                   
-                    index /* ,e.setSelectedTag.value --- target.tagvalue */
-                  )
-                }
-              />
-              {tag.tagName}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
-  );
-};
+
+    return ( 
+        <>
+        <div className="tag-display-window" >
+            <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>POPULAR TAGS</h5>
+            <ul style={{ listStyleType: "none", textAlign: "left" }}>
+                {tagArray.map((tag, index) => (
+                    <li key={index}>
+                      <input
+                        type="checkbox"
+                        style={{marginLeft: "0px", marginRight: "10px"}}
+                        checked={tag.checked || false}
+                        onChange={() => handleCheckboxChange(index,/* target.tagvalue */)}
+                      />
+                      {tag}
+                    </li>
+                ))}
+            </ul>
+            {/* <ul>
+                {tagArray.map((tag, index) => (
+                    <li key={index}>{tag}</li>
+                ))}
+            </ul> */}
+        </div>
+        </>
+     );
+}
+ 
+
 
 export default DisplayTags;
