@@ -1,4 +1,5 @@
 // mount the DisplaySVG and DisplayTags components to this file
+import React, { useState } from 'react';
 
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
@@ -7,6 +8,8 @@ import './SVG-Styles.css'
 // import React, { useState } from 'react';
 
 const SVGFinder = (props) => {
+    const [selectedTags, setSelectedTags] = useState("");
+
   return (
     <>
     <Container fluid className='sticky-top mb-3' style={{top:"100px", backgroundColor: "#ad6ee7"}}>
@@ -32,11 +35,11 @@ const SVGFinder = (props) => {
 
         <Row>
           <Col lg='2' style={{ marginLeft: 0, paddingRight: 0 }}>
-            <DisplayTags />
+            <DisplayTags  selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
           </Col>
 
           <Col lg='10' style={{ paddingLeft: 0, paddingRight: 0 }}>
-            <DisplaySVG />
+            <DisplaySVG selectedTags={selectedTags} />
           </Col>
         </Row>
       </Container>
