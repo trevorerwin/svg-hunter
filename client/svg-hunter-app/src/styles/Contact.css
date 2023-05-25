@@ -1,0 +1,91 @@
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #aeb5bf;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-input:focus {
+    box-shadow: 0 0 20px #ad6ee7;
+    border: 2px solid #ad6ee7;
+}
+
+.custom-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #aeb5bf;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none !important;
+    resize: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+}
+
+.custom-textarea:focus,
+.custom-textarea:active {
+    outline: none !important;
+    border-color: #ad6ee7;
+    box-shadow: 0 0 20px #ad6ee7;
+}
+
+.custom-input:not(:last-child),
+.custom-textarea {
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"] {
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    padding: 2px 0px 2px 2px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #aeb5bf;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    box-shadow: 0 0 20px #ad6ee7;
+    border: 2px solid #ad6ee7;
+}
+
+#change-button-color {
+    background-color: whitesmoke;
+    color: black;
+}
+
+#change-button-color:hover {
+    background-color: #ad6ee7;
+}
+
+#move-p-tag{
+    margin-top: 25px;
+}

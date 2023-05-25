@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, FormGroup, Input, Button } from "reactstrap";
 import axios from "axios";
+import "../styles/Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -38,6 +39,7 @@ const Contact = () => {
       message: "",
     });
   };
+
 
   return (
     <>
@@ -159,6 +161,7 @@ const Contact = () => {
       </div>
     </>
   );
+
 };
 
 export default Contact;
