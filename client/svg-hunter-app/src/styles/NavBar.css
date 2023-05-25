@@ -30,7 +30,6 @@
 .navbar-links {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .navbar-links.active {
@@ -66,6 +65,9 @@
 }
 
 @media (max-width: 640px) {
+  .navbar-container {
+    justify-content: flex-start;
+  }
   .navbar-container a {
     margin: 10px 0;
   }
@@ -81,9 +83,6 @@
     background-color: #282c34;
     position: absolute;
     top: 80px;
-    left: 0;
-    right: 0;
-    opacity: 0;
     width: 100vw;
     transition: opacity 0.2s ease-in-out;
   }
