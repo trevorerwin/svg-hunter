@@ -25,6 +25,9 @@
 
 .navbar-container a:active {
   color: #61dafb;
+
+}
+
 }
 
 .navbar-links {
@@ -96,3 +99,4 @@
     flex-direction: column;
   }
 }
+

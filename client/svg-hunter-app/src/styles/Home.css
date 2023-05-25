@@ -1,0 +1,32 @@
+main {
+    background-color: whitesmoke;
+}
+
+#title {
+    font-size: 2rem !important;
+    color: #ad6ee7
+}
+
+.card-body {
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.main-part,
+.center {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+
+}
+
+/* Mobile Responsives Section */
+@media only screen and (max-width: 767px) {
+    .container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+}

@@ -25,7 +25,8 @@
 }
 
 .logo-image {
-  width: 200px; /* Adjust the size as needed */
+  width: 200px;
+  /* Adjust the size as needed */
 }
 
 .header-text {
@@ -34,6 +35,7 @@
 }
 
 /* Mobile responsiveness */
+
 @media (max-width: 831px) {
   .header-text {
     font-size: 1.5rem; /* Adjust the font size for smaller screens */
@@ -47,4 +49,5 @@
   .video-container {
     padding-bottom: 60%;
   }
+
 }
