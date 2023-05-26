@@ -6,26 +6,22 @@ const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
-
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
-  //   let multiTags = [...props.selectedTags];
 
   useEffect(() => {
 
-    if ((props.selectedTags === "")) {
+    if ((props.selectedTags === "" || props.searchedTags === "")) {
       getAllSVG()
+    // } else if (props.searchedTags !== "") {
+    //     getSVGBySearch()
     } else {
       getSVGByTags();
-    } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
+    } 
   },
    [currentPage, props.selectedTags]);
 
-  // if nothing is checked getAllSVG
-  // if something is checked call the function with getAllChecked
-  //     useEffect(() => {
-  //         getAllSVG(/* props.newTagValue */);
-  //       }, []);
+
 
   async function getAllSVG() {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
@@ -50,9 +46,6 @@ async function getSVGByTags() {
         const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
         let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
       
-    // const selectedTags = props.selectedTags.split('','')/* .map(tag => tag.trim()).join(','); */
-    // let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
-  
     const requestOptions = {
       method: "GET",
     };
@@ -66,27 +59,7 @@ async function getSVGByTags() {
       console.error(error.message);
     }
   }
-// async function getSVGByTags() {
-//     const selectedTags = props.selectedTags.split(',').map(tag => tag.trim()).join('', '');
-  
-//     const url = 'http://localhost:4000/svg_tag/multi-tag';
-//     const requestOptions = {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ svgTags: selectedTags }),
-//     };
-  
-//     try {
-//       const response = await fetch(url, requestOptions);
-//       const data = await response.json();
-//       const SVGData = data.results.map((svg) => svg);
-//       setSVGArray(SVGData);
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   }
+
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
