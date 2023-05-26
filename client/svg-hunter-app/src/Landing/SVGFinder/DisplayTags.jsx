@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
-  const [selectedTag, setSelectedTag] = useState("");
+
 
   useEffect(() => {
     getAllTags();
@@ -12,15 +12,8 @@ const DisplayTags = (props) => {
   useEffect(() => {
     let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
     props.setSelectedTags(tagNames);
-
-    
+  
   }, [tagArray]);
-
-  //! TEST CODE TO SEE IF TAG ARRAY IS BEING UPDATED
-  // useEffect(() => {
-  //     console.log("Tag Array", tagArray);
-  //   }, [tagArray]);
-
 
   function processStrings(dataArray) {
     // Step 1: Remove hyphens from the start of a word
@@ -39,9 +32,7 @@ const DisplayTags = (props) => {
     });
 
     // Step 4: If a string occurs 10 or more times, add it to a new array
-    // const newTagArray = dataArray.filter(
-    //   (tag) => counts[tag] >= 10
-    // );
+   
     let newTagArray = []
     for (let item in counts) {
       if (counts[item] >= 10) {
@@ -92,11 +83,6 @@ const DisplayTags = (props) => {
    
     setTagArray(prev);
 
-   
-
-    // Get the selected tag value
-    // const selectedTagValue = tagArray[index];
-    // Pass the selected tag value to the parent component
   };
 
 
@@ -111,17 +97,12 @@ const DisplayTags = (props) => {
                         type="checkbox"
                         style={{marginLeft: "0px", marginRight: "10px"}}
                         checked={tag.isChecked}
-                        onChange={() => handleCheckboxChange(index,/* target.tagvalue */)}
+                        onChange={() => handleCheckboxChange(index)}
                       />
                       {tag.tagName}
                     </li>
                 ))}
             </ul>
-            {/* <ul>
-                {tagArray.map((tag, index) => (
-                    <li key={index}>{tag}</li>
-                ))}
-            </ul> */}
         </div>
         </>
      );
