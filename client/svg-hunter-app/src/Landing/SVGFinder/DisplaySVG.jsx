@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "reactstrap";
-import './SVG-Styles.css'
+import React, { useState, useEffect } from 'react';
+import { Col, Container, Row } from 'reactstrap';
+import './SVG-Styles.css';
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
@@ -8,15 +8,16 @@ const DisplaySVG = (props) => {
   const perPage = 60; // number of SVGs to display per page
 
   const maxPageNumbers = 3; // maximum number of page numbers to display
-  
-//   let multiTags = [...props.selectedTags];
+
+  //   let multiTags = [...props.selectedTags];
 
   useEffect(() => {
-    // if ((props.selectedTags === "")) {
+
+    if ((props.selectedTags === "")) {
       getAllSVG()
-//     } else {
-//       getSVGByTags();
-//     } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
+    } else {
+      getSVGByTags();
+    } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
   },
    [currentPage, props.selectedTags]);
 
@@ -30,7 +31,7 @@ const DisplaySVG = (props) => {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
 
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
     };
 
     try {
@@ -42,13 +43,41 @@ const DisplaySVG = (props) => {
       console.error(error.message);
     }
   }
-
-//   async function getSVGByTags() {
-//     let url = `http://localhost:4000/svg_tag/multi-tag/${props.selectedTags}?page=${currentPage}&limit=${perPage}`;
+// console.log(selectedTags)
+console.log(props.selectedTags)
+async function getSVGByTags() {
+    
+        const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
+        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
+      
+    // const selectedTags = props.selectedTags.split('','')/* .map(tag => tag.trim()).join(','); */
+    // let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
+  
+    const requestOptions = {
+      method: "GET",
+    };
+  
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      const SVGData = data.results.map((svg) => svg);
+      setSVGArray(SVGData);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+// async function getSVGByTags() {
+//     const selectedTags = props.selectedTags.split(',').map(tag => tag.trim()).join('', '');
+  
+//     const url = 'http://localhost:4000/svg_tag/multi-tag';
 //     const requestOptions = {
-//       method: "GET",
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ svgTags: selectedTags }),
 //     };
-
+  
 //     try {
 //       const response = await fetch(url, requestOptions);
 //       const data = await response.json();
@@ -93,24 +122,22 @@ const DisplaySVG = (props) => {
     }
 
     if (middlePage > 1) {
-      pageNumbers.unshift("...");
+      pageNumbers.unshift('...');
       pageNumbers.unshift(1);
     }
     if (endPage < totalPages) {
-      pageNumbers.push("...");
+      pageNumbers.push('...');
       pageNumbers.push(totalPages);
     }
   }
 
   function shortenName(name) {
     if (name.length > 20) {
-      return name.slice(0, 20) + "...";
+      return name.slice(0, 20) + '...';
     } else {
       return name;
     }
   }
-
-
 
   return (
     <>
@@ -118,68 +145,75 @@ const DisplaySVG = (props) => {
       <Container>
         <Row
           style={{
-            marginTop: "20px",
-            marginLeft: "40px",
-            justifyContent: "space-between",
+            marginTop: '20px',
+            marginLeft: '40px',
+            justifyContent: 'space-between',
           }}
         >
           <Col>
-
-          {displayedSVGs.map((svg, index) => (
-            <div key={index} style={{ textAlign: "center", display: "inline-block" }}>
-              <a href={svg.svgURL} target="_blank" rel="noreferrer">
-                <img
-                  className="svg-image"
-                  style={{
-                    width: "180px",
-                    height: "180px",
-                    margin: 'auto 25px 5px 25px',
-                    borderRadius: "5px",
-                    padding: "20px",
-                    boxShadow: "0 0 10px rgba(0,0,0,0.5)"
-                  }}
-                  src={svg.svgData}
-                  alt={svg.svgName}
-                  value={svg.svgURL}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg";
-                  }}
-                />
-              </a>
-              <a href={svg.svgURL} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
-                <p style={{ color: "#ad6ee7", marginBottom: "50px", textAlign: "center", alignSelf: "center" }}>{shortenName(svg.svgName)}</p>
-              </a>
-            </div>
-          ))}
+            {displayedSVGs.map((svg, index) => (
+              <div key={index} style={{ textAlign: 'center', display: 'inline-block' }}>
+                <a href={svg.svgURL} target='_blank' rel='noreferrer'>
+                  <img
+                    className='svg-image'
+                    style={{
+                      width: '180px',
+                      height: '180px',
+                      margin: 'auto 25px 5px 25px',
+                      borderRadius: '5px',
+                      padding: '20px',
+                      boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                    }}
+                    src={svg.svgData}
+                    alt={svg.svgName}
+                    value={svg.svgURL}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://t3.ftcdn.net/jpg/05/03/24/40/360_F_503244059_fRjgerSXBfOYZqTpei4oqyEpQrhbpOML.jpg';
+                    }}
+                  />
+                </a>
+                <a href={svg.svgURL} target='_blank' rel='noreferrer' style={{ textDecoration: 'none' }}>
+                  <p style={{ color: '#ad6ee7', marginBottom: '50px', textAlign: 'center', alignSelf: 'center' }}>{shortenName(svg.svgName)}</p>
+                </a>
+              </div>
+            ))}
           </Col>
         </Row>
         <Row>
-          <Col style={{marginTop: "10px"}}>
-            <button onClick={() =>{
-                handlePreviousPage(); 
+          <Col className='svg-page-buttons' style={{ marginTop: '10px' }}>
+            <button
+              onClick={() => {
+                handlePreviousPage();
                 // scroll to the top of the DisplaySVG component
                 window.scrollTo(0, 655.66);
               }}
-              disabled={currentPage === 1}>
+              disabled={currentPage === 1}
+              style={{
+                marginRight: '5px',
+                marginBottom: '30px',
+
+                border: 'none',
+              }}
+            >
               Previous
             </button>
             {pageNumbers.map((pageNumber, index) => (
               <React.Fragment key={index}>
-                {pageNumber === "..." ? (
-                  <span style={{ marginRight: "5px", marginBottom: "40px" }}>...</span>
+                {pageNumber === '...' ? (
+                  <span style={{ marginRight: '5px', marginBottom: '40px' }}>...</span>
                 ) : (
                   <button
-                    onClick={() =>{
-                      setCurrentPage(pageNumber); 
+                    onClick={() => {
+                      setCurrentPage(pageNumber);
                       // scroll to the top of the DisplaySVG component
                       window.scrollTo(0, 655.66);
                     }}
                     style={{
-                      marginRight: "5px",
-                      marginBottom: "30px",
-                      fontWeight: pageNumber === currentPage ? "bold" : "normal",
-                      border: "none",
+                      marginRight: '5px',
+                      marginBottom: '30px',
+                      fontWeight: pageNumber === currentPage ? 'bold' : 'normal',
+                      border: 'none',
                     }}
                   >
                     {pageNumber}
@@ -187,12 +221,20 @@ const DisplaySVG = (props) => {
                 )}
               </React.Fragment>
             ))}
-            <button onClick={() =>{
-                      handleNextPage(); 
-                      // scroll to the top of the DisplaySVG component
-                      window.scrollTo(0, 655.66);
-                    }}
-                    disabled={currentPage === totalPages}>
+            <button
+              onClick={() => {
+                handleNextPage();
+                // scroll to the top of the DisplaySVG component
+                window.scrollTo(0, 655.66);
+              }}
+              disabled={currentPage === totalPages}
+              style={{
+                marginRight: '5px',
+                marginBottom: '30px',
+
+                border: 'none',
+              }}
+            >
               Next
             </button>
           </Col>
