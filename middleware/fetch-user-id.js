@@ -5,9 +5,11 @@ const fetchUserID = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, 'HUNTERKILL');
-    const sql = `SELECT * FROM gomot1_upright_svghunter.sitelok WHERE id = ?`;
+    const sql = `SELECT * FROM gomot1_upright_svghunter.sitelok WHERE Username = ?`;
 
-    db.query(sql, [decodedToken.id], (error, results) => {
+    console.log(decodedToken);
+
+    db.query(sql, [decodedToken.Username], (error, results) => {
       if (error) {
         console.error('Error retrieving user: ', error);
         res.status(500).json({ message: error.message });
