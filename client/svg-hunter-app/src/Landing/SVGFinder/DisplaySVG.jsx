@@ -43,14 +43,20 @@ const DisplaySVG = (props) => {
       console.error(error.message);
     }
   }
-
-
-  async function getSVGByTags() {
-    let url = `http://localhost:4000/svg_tag/multi-tag/${props.selectedTags}?page=${currentPage}&limit=${perPage}`;
+// console.log(selectedTags)
+console.log(props.selectedTags)
+async function getSVGByTags() {
+    
+        const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
+        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
+      
+    // const selectedTags = props.selectedTags.split('','')/* .map(tag => tag.trim()).join(','); */
+    // let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
+  
     const requestOptions = {
       method: "GET",
     };
-
+  
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
@@ -60,6 +66,27 @@ const DisplaySVG = (props) => {
       console.error(error.message);
     }
   }
+// async function getSVGByTags() {
+//     const selectedTags = props.selectedTags.split(',').map(tag => tag.trim()).join('', '');
+  
+//     const url = 'http://localhost:4000/svg_tag/multi-tag';
+//     const requestOptions = {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ svgTags: selectedTags }),
+//     };
+  
+//     try {
+//       const response = await fetch(url, requestOptions);
+//       const data = await response.json();
+//       const SVGData = data.results.map((svg) => svg);
+//       setSVGArray(SVGData);
+//     } catch (error) {
+//       console.error(error.message);
+//     }
+//   }
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
   };
