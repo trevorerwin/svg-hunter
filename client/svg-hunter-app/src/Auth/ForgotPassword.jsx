@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 const ForgotPassword = () => {
-    const [Email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -11,7 +11,7 @@ const ForgotPassword = () => {
 
         const url = "http://localhost:4000/user/reset-password";
         const bodyObject = {
-            Email: Email,
+            Email: email,
         };
 
         const myHeaders = new Headers();
@@ -30,7 +30,7 @@ const ForgotPassword = () => {
 
             if (response.ok) {
                 // Password reset email sent successfully
-                navigate("/auth");
+                navigate("/auth"); // Navigate to the ChangePassword component
             } else {
                 // Handle error response from the backend
                 console.error("Error resetting password:", data.message);
@@ -49,7 +49,7 @@ const ForgotPassword = () => {
                         <Label>Email:</Label>
                         <Input
                             style={{ width: "200px" }}
-                            value={Email}
+                            value={email}
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
