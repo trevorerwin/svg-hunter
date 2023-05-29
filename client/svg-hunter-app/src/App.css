@@ -54,7 +54,6 @@
   color: #ad6ee7
 }
 
-
 .login-signup-toggle,
 .forgot-password {
   font-size: 1.5rem;
@@ -71,6 +70,7 @@
   margin-top: 20px;
   /* Optional margin on the top */
 }
+
 
 .btn-login,
 .btn-password,

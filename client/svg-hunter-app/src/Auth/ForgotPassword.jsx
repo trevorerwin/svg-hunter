@@ -42,11 +42,12 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <h2 className="text-center">Forgot Password</h2>
       <div
         className="forgot-password"
         style={{ display: "flex", justifyContent: "center" }}
       >
+        <h2 className="text-center">Forgot Password</h2>
+
         <Form onSubmit={handleSubmit}>
           <FormGroup>
             <Label>Email:</Label>
