@@ -84,8 +84,9 @@ input[type="email"]:focus {
 
 #change-button-color:hover {
     background-color: #ad6ee7;
+    color: white;
 }
 
-#move-p-tag{
+#move-p-tag {
     margin-top: 25px;
 }

@@ -10,12 +10,11 @@ const Signup = (props) => {
   const [Email, setEmail] = useState("");
   const [Username, setUsername] = useState("");
   const [Passphrase, setPassphrase] = useState("");
- 
 
   // BrowserRouter Navigate
   const navigate = useNavigate();
 
-  const {updateToken} = useContext(AuthContext)
+  const { updateToken } = useContext(AuthContext);
 
   // Functions Here
   async function handleSubmit(e) {
@@ -54,15 +53,14 @@ const Signup = (props) => {
 
   return (
     <>
-      <h2 className="text-center">Please fill out the form below to register</h2>
-      <Form onSubmit={handleSubmit}>
+      <h2 className="text-center">
+        Please fill out the form below to register
+      </h2>
+      <Form className="signup-form" onSubmit={handleSubmit}>
         {/* Start of Name */}
         <FormGroup>
           <Label>Name:</Label>
-          <Input
-            value={Name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <Input value={Name} onChange={(e) => setName(e.target.value)} />
         </FormGroup>
         {/* End of Name */}
 
@@ -103,8 +101,8 @@ const Signup = (props) => {
         {/* End of Password */}
 
         {/* Start of form submit button */}
-        <div class="d-grid gap-2 mb-4">
-          <Button id="submit-button-signup" type="submit" >
+        <div class="btn-login">
+          <Button id="submit-button-signup" type="submit">
             Signup
           </Button>
         </div>
