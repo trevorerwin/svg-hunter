@@ -7,11 +7,13 @@ const DisplaySVG = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
+  const searchedTags = [...props.chosenSearchTag];
 
 
   useEffect(() => {
 
     if ((props.selectedTags === "" || props.searchedTags === "")) {
+
       getAllSVG()
     // } else if (props.searchedTags !== "") {
     //     getSVGBySearch()
@@ -20,7 +22,6 @@ const DisplaySVG = (props) => {
     } 
   },
    [currentPage, props.selectedTags]);
-
 
 
   async function getAllSVG() {

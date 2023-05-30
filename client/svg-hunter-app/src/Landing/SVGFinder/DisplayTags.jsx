@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
+  // const [totalTagArray, setTotalTagArray] = useState([]);
 
 
   useEffect(() => {
@@ -12,8 +13,28 @@ const DisplayTags = (props) => {
   useEffect(() => {
     let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
     props.setSelectedTags(tagNames);
-  
+
   }, [tagArray]);
+
+
+  function processTotalData(totalDataArray) {
+    // Remove hyphens from the start of a word
+    totalDataArray = totalDataArray.map((word) => word.tagName.replace(/^-/, "").trim());   
+    // Remove empty strings from the array
+    totalDataArray = totalDataArray.filter((word) => word.trim() !== '');
+    
+    // Convert all strings to lowercase
+    totalDataArray = totalDataArray.map(word => word.toLowerCase());
+    
+    // Remove duplicate strings from the array
+    totalDataArray = [...new Set(totalDataArray)];
+    
+    // Sort the strings alphabetically
+    totalDataArray.sort();
+  
+    return totalDataArray;
+  }
+
 
   function processStrings(dataArray) {
     // Step 1: Remove hyphens from the start of a word
@@ -27,6 +48,7 @@ const DisplayTags = (props) => {
     // Step 3: Count the number of times each string occurs in the array
     const counts = {};
     dataArray.forEach((tag) => {
+      // console.log(dataArray)
       const lowercaseTag = tag.tagName.toLowerCase();
       counts[lowercaseTag] = (counts[lowercaseTag] || 0) + 1;
     });
@@ -55,6 +77,7 @@ const DisplayTags = (props) => {
     return uniqueTags;
   }
 
+
   async function getAllTags() {
     let url = `http://localhost:4000/svg_tag/display-all`;
 
@@ -68,13 +91,15 @@ const DisplayTags = (props) => {
         return { tagName: tag.svgTag.trim(), isChecked: false };
       });
       const tagDataArray = processStrings(tagData);
+      const totalTags = processTotalData(tagData);
       
       setTagArray(tagDataArray);
+      props.setTotalTagArray(totalTags);
     } catch (error) {
       console.error(error.message);
     }
   }
-  console.log(props);
+  // console.log(props);
 
   const handleCheckboxChange = (index) => {
 
