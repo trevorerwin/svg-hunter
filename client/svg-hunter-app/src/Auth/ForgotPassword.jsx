@@ -17,6 +17,7 @@ const ForgotPassword = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+
     const requestOptions = {
       headers: myHeaders,
       method: "POST",
@@ -39,25 +40,21 @@ const ForgotPassword = () => {
       console.error("Error resetting password:", error.message);
     }
   };
-
-  return (
-    <>
-      <div
-        className="forgot-password"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
-        <h2 className="text-center">Forgot Password</h2>
-
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label>Email:</Label>
-            <Input
-              style={{ width: "100%" }}
-              value={email}
-              type="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormGroup>
+         
+    return (
+        <>
+            <h2 className="text-center">Forgot Password</h2>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup>
+                        <Label>Email:</Label>
+                        <Input
+                            style={{ width: "200px" }}
+                            value={email}
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </FormGroup>
 
           <div className="btn-password">
             <Button type="submit">Reset Password</Button>
