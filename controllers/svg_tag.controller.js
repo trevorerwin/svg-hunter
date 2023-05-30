@@ -6,11 +6,7 @@ const db = require('../db.js');
 
 function multiTag(...tags) {
   return tags;
-   
- 
-  
 }
-
 
 // http://localhost:4000/svg_tag/display-by-tag/:svgTag
 router.get('/display-by-tag/:svgTag', (req, res) => {
@@ -57,7 +53,7 @@ router.get('/multi-tag/:svgTag', (req, res) => {
    const multiTagArray = []
     multiTagArray.push(svgTag)
     console.log("pooped my pants" + multiTagArray)
-    // console.log("parameter" + multiTagArray.map(() => '?').join(','))
+
     const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${multiTagArray}))`;
     const values = [];
 
