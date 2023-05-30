@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
-  const [selectedTag, setSelectedTag] = useState("");
   // const [totalTagArray, setTotalTagArray] = useState([]);
+
 
   useEffect(() => {
     getAllTags();
