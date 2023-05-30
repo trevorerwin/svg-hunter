@@ -9,9 +9,12 @@ const DisplaySVG = (props) => {
 
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
+  const searchedTags = [...props.chosenSearchTag];
+
   //   let multiTags = [...props.selectedTags];
 
   useEffect(() => {
+
 
     if ((props.selectedTags === "")) {
       getAllSVG()
@@ -20,7 +23,6 @@ const DisplaySVG = (props) => {
     } // if selectedtags = "" then getall svgs.(run the getallsvg function) else create a new function that does your tag fetch
   },
    [currentPage, props.selectedTags]);
-
   // if nothing is checked getAllSVG
   // if something is checked call the function with getAllChecked
   //     useEffect(() => {
