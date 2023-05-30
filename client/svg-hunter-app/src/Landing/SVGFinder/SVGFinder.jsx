@@ -85,14 +85,8 @@ const SVGFinder = (props) => {
           You must have a paying subscription in order to access our SVG Finder. Please click the button below to pay and access our application through{' '}
           <span className='login-stripe-text'>Stripe</span>
         </p>
-        <button
-          className='login-prompt-button'
-          onClick={() => {
-            /* Handle subscription redirect */
-          }}
-        >
-          Subscribe
-        </button>
+
+        <stripe-buy-button buy-button-id={process.env.REACT_APP_STRIPE_BUTTON_ID} publishable-key={process.env.REACT_APP_STRIPE_PUBLISH_KEY}></stripe-buy-button>
       </div>
     );
   } else {
