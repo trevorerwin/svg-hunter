@@ -40,13 +40,20 @@ const Contact = () => {
     });
   };
 
-
   return (
     <>
       <div
         className="d-flex justify-content-center align-items-center"
         style={{
-          height: "60vh",
+          borderRadius: "15px",
+          backgroundColor: "whitesmoke",
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+          width: "100%",
+          maxWidth: "1000px",
+          padding: "2rem",
+          margin: "0 auto",
+          marginTop: "20px",
+          flexDirection: "column",
         }}
       >
         <Form onSubmit={handleSubmit}>
@@ -152,6 +159,7 @@ const Contact = () => {
                 }}
                 className="submit-button"
                 type="submit"
+                id="change-button-color"
               >
                 Submit
               </Button>
@@ -161,7 +169,6 @@ const Contact = () => {
       </div>
     </>
   );
-
 };
 
 export default Contact;
