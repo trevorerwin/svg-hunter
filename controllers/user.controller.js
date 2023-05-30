@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
     const { Username, Email, Passphrase, Name } = req.body;
     const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
     const sql = 'INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)';
-    const values = [Username, Email, hashedPassphrase, Name, `${process.env.SECRET}`];
+    const values = [Username, Email, hashedPassphrase, Name, `${process.env.USER_GROUP}`];
     db.query(sql, values, (error) => {
       if (error) {
         console.error('Error signing up: ', error);
@@ -58,7 +58,7 @@ router.post('/login', (req, res) => {
             }
 
             if (userArray.length === 0) {
-                return res.status(401).json({ message: "pooped my pants" });
+                return res.status(401).json({ message: "Invalid Username" });
             }
 
             const user = userArray[0];
@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
             console.log(user);
 
             if (!isPassphraseValid) {
-                return res.json({ message: "Invalid credentials" });
+                return res.json({ message: "Invalid Passphrase" });
             }
             // TODO make secret web token secret in dotenv file
             // Generate a JWT token
