@@ -7,6 +7,21 @@ import React, { useState } from 'react';
 
 const SVGFinder = (props) => {
     const [selectedTags, setSelectedTags] = useState("");
+    const [totalTagArray, setTotalTagArray] = useState([]);
+    const [search, setSearch] = useState("");
+    const [searchList, setSearchList] = useState([]);
+    const [chosenSearchTag, setChosenSearchTag] = useState("");
+
+    function handleSelect(item) {
+      setChosenSearchTag(item);
+    }
+
+    async function displayByInput(e) {
+      setSearch(e.target.value)
+      let searchTagName = totalTagArray.filter((searchTag) => searchTag.includes(e.target.value.toLowerCase()));
+      setSearchList(searchTagName);
+      console.log("Search List", searchList)
+  }
 
   return (
     <>
@@ -17,7 +32,7 @@ const SVGFinder = (props) => {
             </Col>
 
             <Col lg="7" className='svg-search-bar' >
-                <Input className='svg-search-input' placeholder="Search" />
+                <Input onChange={displayByInput} className='svg-search-input' placeholder="Search" />
             </Col>
                 
             <Col lg="1" className='svg-search-btn' >
@@ -34,11 +49,11 @@ const SVGFinder = (props) => {
 
         <Row>
           <Col lg='2' className='tag-display-column' >
-            <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags}/>
+            <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray}/>
           </Col>
 
           <Col lg='9' className='svg-display-column'>
-            <DisplaySVG selectedTags={selectedTags}/>
+            <DisplaySVG selectedTags={selectedTags} chosenSearchTag={chosenSearchTag}/>
 
           </Col>
 
