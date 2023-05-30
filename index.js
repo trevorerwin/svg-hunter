@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/user', userController);
 app.use('/svg', svgController);
 app.use('/svg_tag', svg_tagController);
-app.use('/checkout', stripeController);
+app.use('/stripe', stripeController);
 
 app.listen(process.env.PORT, () => {
   console.log(`mysql server running on port ${process.env.PORT}`);
