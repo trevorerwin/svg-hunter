@@ -17,12 +17,15 @@ router.post('/create-customer', fetchUserID, async (req, res) => {
       invoice_settings: {
         default_payment_method: paymentMethod,
       },
-      items: [{ price: priceID }],
     });
 
-    const userID = req.user.id;
     const customerID = customer.id;
-    const subscription = customer.subscriptions.data[0];
+    const subscription = await stripe.subscriptions.create({
+      customer: customerID,
+      items: [{ price: priceID }],
+      expand: ['latest_invoice.payment_intent'],
+    });
+    const userID = req.user.id;
     const updatedUsergroups = `${process.env.SECRET}:${subscription.id}`;
 
     const sql = `UPDATE gomot1_upright_svghunter.sitelok SET StripeID = ?, Usergroups = ? WHERE id = ?`;
