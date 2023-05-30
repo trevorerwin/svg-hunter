@@ -7,7 +7,7 @@ const DisplaySVG = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
-  const searchedTags = [...props.chosenSearchTag];
+
 
 
   useEffect(() => {
@@ -23,6 +23,11 @@ const DisplaySVG = (props) => {
   },
    [currentPage, props.selectedTags]);
 
+
+  // async function getSVGBySearch() {
+  //   const searchedTags = props.searchedTags;
+  //   let url = `http://localhost:4000/svg_tag/search/${searchedTags}?page=${currentPage}&limit=${perPage}`;
+  // }
 
   async function getAllSVG() {
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
