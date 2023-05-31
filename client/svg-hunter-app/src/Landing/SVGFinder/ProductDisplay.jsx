@@ -9,7 +9,7 @@ const ProductDisplay = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ priceID: 'price_dummy' }), // Replace with the actual price ID
+        body: JSON.stringify({ priceID: 'price_1NAcY3BbFZD5Ir3VzW1Z0Z2T' }), // Replace with the actual price ID
       });
 
       if (response.ok) {
@@ -31,9 +31,7 @@ const ProductDisplay = (props) => {
           <h3>SVG Subscription</h3>
           <h5>$20.00 / year</h5>
         </div>
-        <form className='product-form' action='/checkout/create-checkout-session' method='POST' onSubmit={handleCheckout}>
-          <button className='checkout-btn'>Checkout</button>
-        </form>
+        <stripe-buy-button buy-button-id='dummy' publishable-key='dummy'></stripe-buy-button>
       </div>
     </>
   );
