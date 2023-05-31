@@ -3,18 +3,26 @@ import DisplayTags from './DisplayTags';
 import { Col, Container, Row } from 'reactstrap';
 import AsyncSelect from "react-select/async";
 import './SVG-Styles.css'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SVGFinder = (props) => {
     const [selectedTags, setSelectedTags] = useState("");
     const [totalTagArray, setTotalTagArray] = useState([]);
-    const [chosenSearchTag, setChosenSearchTag] = useState("");
+    const [searchedTag, setSearchedTag] = useState("");
 
     const loadOptions = (inputValue, callback) => {
       const filteredTags = totalTagArray.filter(tag => tag.includes(inputValue));   
       const options = filteredTags.map(tag => ({ value: tag, label: tag }));
       callback(options);
     };
+
+    useEffect(() => {
+      console.log("searchedTag: ", searchedTag);
+    }, [searchedTag]);
+
+    function handleSelectChange(selectedOption) {
+      setSearchedTag(selectedOption.value);
+    }
 
 
   return (
@@ -27,10 +35,11 @@ const SVGFinder = (props) => {
 
             <Col lg="6" className='svg-search-bar' >
               <AsyncSelect
-                className='svg-search-bar'
+                className='svg-search-input'
+                placeholder='Search'
                 cacheOptions
                 loadOptions={loadOptions}
-                onChange={(selectedOption) => setChosenSearchTag(selectedOption.value)}
+                onChange={handleSelectChange}
               />
             </Col>
 
@@ -49,7 +58,7 @@ const SVGFinder = (props) => {
           </Col>
 
           <Col lg='9' className='svg-display-column'>
-            <DisplaySVG selectedTags={selectedTags} chosenSearchTag={chosenSearchTag}/>
+            <DisplaySVG selectedTags={selectedTags} searchedTag={searchedTag}/>
 
           </Col>
 
