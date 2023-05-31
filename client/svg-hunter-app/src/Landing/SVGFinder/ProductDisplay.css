@@ -1,0 +1,39 @@
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 20px;
+  height: 35vh;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  margin-bottom: 10px;
+}
+
+.product-description h3 {
+  font-size: 32px;
+}
+
+.product-description h5 {
+  font-size: 22px;
+  color: #888;
+}
+
+.product-form {
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background-color: #0056b3;
+}

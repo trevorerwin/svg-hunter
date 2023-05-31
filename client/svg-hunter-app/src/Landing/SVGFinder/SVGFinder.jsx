@@ -4,6 +4,7 @@ import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
 import './SVG-Styles.css';
 import React, { useState, useEffect } from 'react';
+import ProductDisplay from './ProductDisplay';
 
 const SVGFinder = (props) => {
   const [selectedTags, setSelectedTags] = useState('');
@@ -78,17 +79,7 @@ const SVGFinder = (props) => {
       </div>
     );
   } else if (!subscribed) {
-    return (
-      <div className='login-prompt'>
-        <h1 className='login-prompt-header'>Access Restricted</h1>
-        <p className='login-prompt-text'>
-          You must have a paying subscription in order to access our SVG Finder. Please click the button below to pay and access our application through{' '}
-          <span className='login-stripe-text'>Stripe</span>
-        </p>
-
-        <stripe-buy-button buy-button-id={process.env.REACT_APP_STRIPE_BUTTON_ID} publishable-key={process.env.REACT_APP_STRIPE_PUBLISH_KEY}></stripe-buy-button>
-      </div>
-    );
+    return <ProductDisplay />;
   } else {
     return (
       <>
