@@ -1,6 +1,5 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const domain = 'http://localhost:3000';
 const router = require('express').Router();
 const db = require('../db.js');
 const fetchUserID = require('../middleware/fetch-user-id.js');
@@ -42,30 +41,6 @@ router.post('/create-customer', fetchUserID, async (req, res) => {
   } catch (error) {
     console.error('Error creating customer:', error);
     res.status(500).json({ error: 'Failed to create customer' });
-  }
-});
-
-router.post('/create-checkout-session', fetchUserID, async (req, res) => {
-  try {
-    const { priceID } = req.body;
-
-    const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: priceID,
-          quantity: 1,
-        },
-      ],
-      success_url: `${domain}/success.html`,
-      cancel_url: `${domain}/cancel.html`,
-    });
-
-    res.status(200).json({ id: session.id });
-  } catch (error) {
-    console.error('Error creating checkout session:', error);
-    res.status(500).json({ error: 'Failed to create checkout session' });
   }
 });
 
