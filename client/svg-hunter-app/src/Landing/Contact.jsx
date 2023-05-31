@@ -58,12 +58,15 @@ const Contact = () => {
                 back to you within 24 hours.
               </p>
             </div>
-
-            <div className="form-center" style={{ fontSize: "1.5rem" }}>
-              <Label>Name:</Label>
+            <div
+              className="form-center"
+              style={{ fontSize: "1.5rem", textAlign: "left" }}
+            >
+              <Label>Name</Label>
               <div className="d-flex justify-content-center">
                 <Input
                   className="input-field"
+                  placeholder="Full Name:"
                   required
                   type="text"
                   name="name"
@@ -73,11 +76,15 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="form-center" style={{ fontSize: "1.5rem" }}>
-              <Label>Email:</Label>
+            <div
+              className="form-center"
+              style={{ fontSize: "1.5rem", textAlign: "left" }}
+            >
+              <Label>Email</Label>
               <div className="d-flex justify-content-center">
                 <Input
                   className="input-field"
+                  placeholder="Email:"
                   required
                   type="email"
                   name="email"
@@ -87,11 +94,15 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="form-center mb-2" style={{ fontSize: "1.5rem" }}>
-              <Label>Password:</Label>
+            <div
+              className="form-center mb-2"
+              style={{ fontSize: "1.5rem", textAlign: "left" }}
+            >
+              <Label>Password</Label>
               <div className="d-flex justify-content-center">
                 <Input
                   className="input-field"
+                  placeholder="Password:"
                   required
                   type="text"
                   name="subject"
@@ -101,11 +112,15 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="form-center mb-2" style={{ fontSize: "1.5rem" }}>
-              <Label>Message:</Label>
+            <div
+              className="form-center mb-2"
+              style={{ fontSize: "1.5rem", textAlign: "left" }}
+            >
+              <Label>Message</Label>
               <div className="d-flex justify-content-center">
                 <textarea
                   className="message-field"
+                  placeholder="Type your message here..."
                   required
                   name="message"
                   value={formData.message}
