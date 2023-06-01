@@ -1,4 +1,5 @@
 import './ProductDisplay.css';
+import React, { useEffect } from 'react';
 
 const ProductDisplay = (props) => {
   const handleCheckout = async (event) => {
@@ -16,6 +17,7 @@ const ProductDisplay = (props) => {
         const data = await response.json();
         console.log(data);
         // const sessionId = data.id;
+        // console.log(sessionId);
         // Redirect the user to the checkout page using the session ID
         window.location.href = data.url;
       } else {
@@ -25,6 +27,19 @@ const ProductDisplay = (props) => {
       console.error('Error creating checkout session:', error);
     }
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success')) {
+      props.setSubscribed(true);
+      window.location.href = '/success';
+    }
+    if (params.get('canceled')) {
+      alert("Order canceled -- continue to shop around and checkout when you're ready.");
+      window.location.href = '/canceled';
+    }
+  }, []);
+
   return (
     <>
       <div className='product'>

@@ -11,6 +11,7 @@ import SVGFinder from './Landing/SVGFinder/SVGFinder';
 import HelpGuide from './Landing/HelpGuide';
 import AuthContext from './Auth/AuthContext';
 import ForgotPassword from './Auth/ForgotPassword';
+import ProductDisplaySuccess from './Landing/SVGFinder/ProductDisplaySuccess';
 
 function App() {
   const [token, setToken] = useState('');
@@ -39,6 +40,7 @@ function App() {
           <Route path='/help-guide' element={<HelpGuide />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/success' element={<ProductDisplaySuccess />} />
         </Routes>
       </AuthContext.Provider>
       <Footer />

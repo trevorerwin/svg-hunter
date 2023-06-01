@@ -79,7 +79,7 @@ const SVGFinder = (props) => {
       </div>
     );
   } else if (!subscribed) {
-    return <ProductDisplay />;
+    return <ProductDisplay setSubscribed={setSubscribed} />;
   } else {
     return (
       <>
