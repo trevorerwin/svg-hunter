@@ -123,6 +123,7 @@ const ResetPassword = () => {
                     onChange={(e) => setNewPassword(e.target.value)}
                     required
                     className={errors.newPassword ? "error" : ""}
+                    style={{ textAlign: "left" }}
                 />
                 {errors.newPassword && (
                     <p className="error">{errors.newPassword}</p>
@@ -137,6 +138,7 @@ const ResetPassword = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                     className={errors.confirmPassword ? "error" : ""}
+                    style={{ textAlign: "left" }}
                 />
                 {errors.confirmPassword && (
                     <p className="error">{errors.confirmPassword}</p>
@@ -154,7 +156,7 @@ const ResetPassword = () => {
                 />
                 {errors.email && <p className="error">{errors.email}</p>}
                 <br />
-                <label htmlFor="resetToken">Reset Token:</label>
+                {/* <label htmlFor="resetToken">Reset Token:</label>
                 <input
                     disabled
                     type="text"
@@ -165,7 +167,7 @@ const ResetPassword = () => {
                     required
                     // className={errors.resetToken ? "error" : ""}
                     style={{ textAlign: "left" }}
-                />
+                /> */}
 
                 <br />
                 <input type="submit" value="Submit" />

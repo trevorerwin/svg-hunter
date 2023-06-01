@@ -162,7 +162,7 @@ router.post("/send-email", async (req, res) => {
 
 router.post("/reset-password", async (req, res) => {
     try {
-        const { Email } = req.body;
+        const { Email, Username } = req.body;
 
         // Check if the email is provided
         if (!Email) {
@@ -198,9 +198,12 @@ router.post("/reset-password", async (req, res) => {
                 // Generate a reset link with the token
                 const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
 
-                const name = "User";
+                const sqlUsername = user.Username;
+
+                // const { Username } = req.body;
+                // console.log(Username)
                 const subject = "Password Reset";
-                const message = `Hi ${name},\n\nWe have received a password reset request for your account. Please click on the following link to reset your password:\n\n${resetLink}\n \nIf you didn't request a password reset, you can ignore this email.\n\nBest regards,\nThe SVG Hunter Team`;
+                const message = `Hi ${sqlUsername},\n\nWe have received a password reset request for your account. Please click on the following link to reset your password:\n\n${resetLink}\n \nIf you didn't request a password reset, you can ignore this email.\n\nBest regards,\nThe SVG Hunter Team`;
 
                 // Send the email
                 const transporter = nodemailer.createTransport({
@@ -254,9 +257,7 @@ router.patch("/update-password", async (req, res) => {
             }
 
             if (userArray.length === 0) {
-                return res
-                    .status(404)
-                    .json({ message: "User not found" });
+                return res.status(404).json({ message: "User not found" });
             }
 
             const user = userArray[0];
