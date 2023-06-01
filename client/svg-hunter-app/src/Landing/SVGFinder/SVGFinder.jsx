@@ -4,6 +4,7 @@ import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
 import './SVG-Styles.css'
 import React, { useState } from 'react';
+import { useFetcher } from 'react-router-dom';
 
 const SVGFinder = (props) => {
     const [selectedTags, setSelectedTags] = useState("");
@@ -11,6 +12,7 @@ const SVGFinder = (props) => {
     const [search, setSearch] = useState("");
     const [searchList, setSearchList] = useState([]);
     const [chosenSearchTag, setChosenSearchTag] = useState("");
+    const [newSVG, setNewSVG] = useState(false);
 
     function handleSelect(item) {
       setChosenSearchTag(item);
@@ -48,12 +50,13 @@ const SVGFinder = (props) => {
         
 
         <Row>
+          
           <Col lg='2' className='tag-display-column' >
-            <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray}/>
+            <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray} newSVG={newSVG} setNewSVG={setNewSVG}/>
           </Col>
 
           <Col lg='9' className='svg-display-column'>
-            <DisplaySVG selectedTags={selectedTags} chosenSearchTag={chosenSearchTag}/>
+            <DisplaySVG selectedTags={selectedTags} chosenSearchTag={chosenSearchTag} newSVG={newSVG}/>
 
           </Col>
 
