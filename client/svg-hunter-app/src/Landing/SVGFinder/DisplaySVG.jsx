@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import './SVG-Styles.css';
+// import { sortAlpha } from '../../Helper/Sort-alphabetical';
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
@@ -11,15 +12,17 @@ const DisplaySVG = (props) => {
   
 
   useEffect(() => {
-    if ((props.selectedTags === "" && props.selectedSearchTags.length === 0)) {
-      getAllSVG()
+    if (props.selectedTags !== "") {
+      getSVGByTags()
     } else if (props.selectedSearchTags.length > 0) {
-        getSVGBySearch()
+      getSVGBySearch();
     } else {
-      getSVGByTags();
+      getAllSVG();
     } 
   },
-   [currentPage, props.selectedTags, props.selectedSearchTags]);
+
+   [currentPage, props.selectedTags, props.newSVG, props.selectedSearchTags]);
+
 
 
   async function getSVGBySearch() {
@@ -52,7 +55,10 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg)
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+    
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);
@@ -60,11 +66,11 @@ const DisplaySVG = (props) => {
   }
 
 
-  async function getSVGByTags() {
-    console.log("getSVGByTags called", props.selectedTags)
-      const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
-      let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
-      
+console.log("Selected Tags:", props.selectedTags)
+async function getSVGByTags() {
+    
+        const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
+        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;      
     const requestOptions = {
       method: "GET",
     };
@@ -72,7 +78,13 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg).sort( (a, b) => {
+        let x = a.svgName.toUpperCase().trim(),
+            y = b.svgName.toUpperCase().trim();
+        return x === y ? 0 : x > y ? 1 : -1;});
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import './SVG-Styles.css';
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
-  // const [totalTagArray, setTotalTagArray] = useState([]);
+  const [totalTagArray, setTotalTagArray] = useState([]);
+  
 
 
   useEffect(() => {
@@ -15,6 +17,7 @@ const DisplayTags = (props) => {
     props.setSelectedTags(tagNames);
 
   }, [tagArray]);
+
 
 
   function processTotalData(totalDataArray) {
@@ -99,7 +102,7 @@ const DisplayTags = (props) => {
       console.error(error.message);
     }
   }
-  // console.log(props);
+
 
   const handleCheckboxChange = (index) => {
 
@@ -113,6 +116,12 @@ const DisplayTags = (props) => {
 
     return ( 
         <>
+        <div className='display-newest-btn-container' >
+          <button
+          type = "button" 
+          onClick={() => props.setNewSVG(!props.newSVG)}className='display-newest-button' 
+          >{props.newSVG? "Don't show newest": "Show Newest"  }</button>
+        </div>
         <div className="tag-display-window" >
             <h5 style={{textAlign: "center", marginTop: "10px", marginBottom: "10px"}}>POPULAR TAGS</h5>
             <ul style={{ listStyleType: "none", textAlign: "left" }}>

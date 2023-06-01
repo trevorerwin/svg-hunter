@@ -78,7 +78,6 @@ router.get('/multi-tag/:svgTag', (req, res) => {
     const svgTag = req.params.svgTag;
     const multiTagArray = []
     multiTagArray.push(svgTag)
-    console.log("pooped my pants" + multiTagArray)
 
     const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${multiTagArray}))`;
     const values = [];
@@ -98,26 +97,26 @@ router.get('/multi-tag/:svgTag', (req, res) => {
 });
 
 
-router.post('/multi-tag', (req, res) => {
-  try {
-    const svgTags = req.body.svgTags;
-    const multiTagArray = multiTag(svgTags);
+// router.post('/multi-tag', (req, res) => {
+//   try {
+//     const svgTags = req.body.svgTags;
+//     const multiTagArray = multiTag(svgTags);
 
-    const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${JSON.stringify(multiTagArray)}))`;
-    const values = [];
+//     const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${JSON.stringify(multiTagArray)}))`;
+//     const values = [];
 
-    db.query(sql, values, (error, results) => {
-      if (error) {
-        console.error('Error retrieving SVGs by tag: ', error);
-        res.status(500).json({ message: error.message });
-      } else {
-        res.status(200).json({ results: results });
-      }
-    });
-  } catch (error) {
-    console.error('Error retrieving SVGs by tag: ', error);
-    res.status(500).json({ message: 'Error retrieving SVGs by tag' });
-  }
-});
+//     db.query(sql, values, (error, results) => {
+//       if (error) {
+//         console.error('Error retrieving SVGs by tag: ', error);
+//         res.status(500).json({ message: error.message });
+//       } else {
+//         res.status(200).json({ results: results });
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Error retrieving SVGs by tag: ', error);
+//     res.status(500).json({ message: 'Error retrieving SVGs by tag' });
+//   }
+// });
 
 module.exports = router;
