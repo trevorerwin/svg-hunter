@@ -10,7 +10,6 @@ const DisplaySVG = (props) => {
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
   
-
   useEffect(() => {
     if (props.selectedTags !== "") {
       getSVGByTags()
