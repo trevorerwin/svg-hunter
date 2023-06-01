@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import './SVG-Styles.css';
+// import { sortAlpha } from '../../Helper/Sort-alphabetical';
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
@@ -11,17 +12,25 @@ const DisplaySVG = (props) => {
 
 
   useEffect(() => {
+    if (props.selectedTags !== "") {
+      getSVGByTags()
+    // }
+    // if ((props.selectedTags === "" || props.searchedTags === "")) {
+    //   getAllSVG()
+    // } 
 
-    if ((props.selectedTags === "" || props.searchedTags === "")) {
 
-      getAllSVG()
-    // } else if (props.searchedTags !== "") {
+    //  else if (props.newSVG === true) {
+    // getSVGByDate() 
+
+
     //     getSVGBySearch()
     } else {
-      getSVGByTags();
+      getAllSVG();
+      // getSVGByTags()
     } 
   },
-   [currentPage, props.selectedTags]);
+   [currentPage, props.selectedTags, props.newSVG]);
 
 
   async function getAllSVG() {
@@ -34,12 +43,32 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg)
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+    
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);
     }
   }
+
+  // async function getSVGByDate() {
+  //   let url = `http://localhost:4000/svg/display-new?page=${currentPage}&limit=${perPage}`;
+
+  //   const requestOptions = {
+  //     method: 'GET',
+  //   };
+
+  //   try {
+  //     const response = await fetch(url, requestOptions);
+  //     const data = await response.json();
+  //     const SVGData = data.results.map((svg) => svg);
+  //     setSVGArray(SVGData);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // }
 // console.log(selectedTags)
 console.log(props.selectedTags)
 async function getSVGByTags() {
@@ -54,7 +83,13 @@ async function getSVGByTags() {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg).sort( (a, b) => {
+        let x = a.svgName.toUpperCase().trim(),
+            y = b.svgName.toUpperCase().trim();
+        return x === y ? 0 : x > y ? 1 : -1;});
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);

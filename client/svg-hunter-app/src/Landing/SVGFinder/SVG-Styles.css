@@ -61,7 +61,7 @@
   border: solid 2px #ad6ee7;
   margin: 20px 30px 0 0;
   position: sticky;
-  top: 180px;
+  top: 210px;
 }
 
 .tag-display-column {
@@ -76,4 +76,20 @@
 .svg-page-buttons {
   display: flex;
   justify-content: center;
+}
+
+.display-newest-button {
+  background: smokywhite;
+  border: solid 2px #ad6ee7;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.display-newest-btn-container {
+  
+  margin-left: 25px;
+  margin-top: 10px;
+  position: sticky;
+  top: 170px;
+  
 }
