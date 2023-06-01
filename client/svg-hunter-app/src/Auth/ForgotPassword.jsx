@@ -4,6 +4,8 @@ import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 const ForgotPassword = (props) => {
     const [email, setEmail] = useState("");
+    const [emailSent, setEmailSent] = useState(false); // Track whether email is sent
+    const [error, setError] = useState(""); // Track error message
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -30,10 +32,12 @@ const ForgotPassword = (props) => {
 
             if (response.ok) {
                 // Password reset email sent successfully
-                navigate("/auth");
+                setEmailSent(true);
+                setError("");
             } else {
                 // Handle error response from the backend
-                console.error("Error resetting password:", data.message);
+                setEmailSent(false);
+                setError(data.message);
             }
         } catch (error) {
             console.error("Error resetting password:", error.message);
@@ -58,6 +62,24 @@ const ForgotPassword = (props) => {
                     <div className="btn-password">
                         <Button type="submit">Reset Password</Button>
                     </div>
+
+                    {emailSent && (
+                        <div
+                            className="alert alert-success text-center"
+                            style={{ marginTop: "20px" }}
+                        >
+                            Reset password email sent.
+                        </div>
+                    )}
+
+                    {error && (
+                        <div
+                            className="alert alert-danger text-center"
+                            style={{ marginTop: "20px" }}
+                        >
+                            {error}
+                        </div>
+                    )}
 
                     <p>
                         Remember your password?{" "}

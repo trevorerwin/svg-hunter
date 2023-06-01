@@ -78,7 +78,7 @@ router.post("/login", (req, res) => {
             }
 
             if (userArray.length === 0) {
-                return res.status(401).json({ message: "pooped my pants" });
+                return res.status(401).json({ message: "User Not Found" });
             }
 
             const user = userArray[0];
@@ -89,7 +89,7 @@ router.post("/login", (req, res) => {
             // console.log(user);
 
             if (!isPassphraseValid) {
-                return res.json({ message: "Invalid credentials" });
+                return res.json({ message: "Invalid Passphrase" });
             }
             // TODO make secret web token secret in dotenv file
             // Generate a JWT token
@@ -200,7 +200,7 @@ router.post("/reset-password", async (req, res) => {
 
                 const name = "User";
                 const subject = "Password Reset";
-                const message = `Hi ${name},\n\nWe have received a password reset request for your account. Please click on the following link to reset your password:\n\n${resetLink}\n Make sure to copy and paste this in the Reset Token input field: ${resetToken}\nIf you didn't request a password reset, you can ignore this email.\n\nBest regards,\nThe SVG Hunter Team`;
+                const message = `Hi ${name},\n\nWe have received a password reset request for your account. Please click on the following link to reset your password:\n\n${resetLink}\n \nIf you didn't request a password reset, you can ignore this email.\n\nBest regards,\nThe SVG Hunter Team`;
 
                 // Send the email
                 const transporter = nodemailer.createTransport({
@@ -256,7 +256,7 @@ router.patch("/update-password", async (req, res) => {
             if (userArray.length === 0) {
                 return res
                     .status(404)
-                    .json({ message: "User not found or invalid reset token" });
+                    .json({ message: "User not found" });
             }
 
             const user = userArray[0];
