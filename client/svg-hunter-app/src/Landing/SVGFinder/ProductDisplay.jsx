@@ -4,12 +4,14 @@ const ProductDisplay = (props) => {
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:4000/checkout/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: token,
         },
-        body: JSON.stringify({ priceID: 'price_1NAcY3BbFZD5Ir3VzW1Z0Z2T' }), // Replace with the actual price ID
+        body: JSON.stringify({ priceID: 'dummy' }), // Replace with the actual price ID
       });
 
       if (response.ok) {
@@ -31,7 +33,11 @@ const ProductDisplay = (props) => {
           <h3>SVG Subscription</h3>
           <h5>$20.00 / year</h5>
         </div>
-        <stripe-buy-button buy-button-id='dummy' publishable-key='dummy'></stripe-buy-button>
+        <form className='product-form' onSubmit={handleCheckout}>
+          <button className='checkout-btn' type='submit'>
+            Checkout
+          </button>
+        </form>
       </div>
     </>
   );
