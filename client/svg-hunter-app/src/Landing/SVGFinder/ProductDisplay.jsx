@@ -4,21 +4,20 @@ const ProductDisplay = (props) => {
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
-      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:4000/checkout/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: token,
         },
         body: JSON.stringify({ priceID: 'dummy' }), // Replace with the actual price ID
       });
 
       if (response.ok) {
         const data = await response.json();
-        const sessionId = data.id;
+        console.log(data);
+        // const sessionId = data.id;
         // Redirect the user to the checkout page using the session ID
-        window.location.href = `https://localhost:4000/checkout?session_id=${sessionId}`;
+        window.location.href = data.url;
       } else {
         console.error('Failed to create checkout session');
       }

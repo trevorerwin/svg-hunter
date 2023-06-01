@@ -9,6 +9,7 @@ const stripeController = require('../svg-hunter/controllers/stripe.controller');
 const checkoutController = require('../svg-hunter/controllers/checkout.controller');
 
 app.use(cors());
+
 app.use(express.json());
 
 app.use('/user', userController);

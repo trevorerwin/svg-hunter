@@ -18,10 +18,10 @@ router.post('/create-checkout-session', async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url: `${domain}/success.html`,
-      cancel_url: `${domain}/cancel.html`,
+      success_url: `${domain}/success`,
+      cancel_url: `${domain}/cancel`,
     });
-    res.redirect(303, session.url);
+    res.json({ url: session.url });
   } catch (error) {
     console.error('Error creating checkout session:', error);
     res.status(500).json({ error: 'Failed to create checkout session' });

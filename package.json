@@ -22,5 +22,6 @@
     "react-router-dom": "^6.11.2",
     "reactstrap": "^9.1.10",
     "stripe": "^12.6.0"
-  }
+  },
+  "proxy": "http://localhost:4242"
 }
