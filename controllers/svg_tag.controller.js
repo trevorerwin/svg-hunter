@@ -12,8 +12,10 @@ function multiTag(...tags) {
 router.get('/display-by-tag/:svgTag', (req, res) => {
   try {
     const svgTag = req.params.svgTag;
-    console.log(svgTag)
-    const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag = ?)`;
+    const searchedTagArray = []
+    searchedTagArray.push(svgTag)
+    
+    const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${searchedTagArray}))`;
     const values = [svgTag];
 
     db.query(sql, values, (error, results) => {
@@ -44,13 +46,37 @@ router.get('/display-all', (req, res) => {
   }
 });
 
+
+// -------------------- Display By Searched Tag
+// router.get(`/search/`, (req, res) => {
+//   try {
+//     const searchedTag = req.params.searchedTag;
+//     console.log("Searched Tag Endpoint", searchedTag);
+
+//     const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag = '${searchedTag}')`;
+
+//     db.query(sql, values, (error, results) => {
+//       if (error) {
+//         console.error('Error retrieving SVGs by Searched: ', error);
+//         res.status(500).json({ message: error.message });
+//       } else {
+//         res.status(200).json({ results: results });
+//       }
+//     });
+
+//   } catch (error) {
+//     res.json({ message: error.message });
+//   } 
+//   });
+
+
 // ---------------------- Display By Multiple Tags --------------------------------
 // http://localhost:4000/svg_tag/multi-tag/:svgTag
 router.get('/multi-tag/:svgTag', (req, res) => {
   
   try {
     const svgTag = req.params.svgTag;
-   const multiTagArray = []
+    const multiTagArray = []
     multiTagArray.push(svgTag)
 
     const sql = `SELECT * FROM gomot1_upright_svghunter.SVG WHERE id IN (SELECT svgId FROM gomot1_upright_svghunter.SVG_Tags WHERE svgTag IN (${multiTagArray}))`;
