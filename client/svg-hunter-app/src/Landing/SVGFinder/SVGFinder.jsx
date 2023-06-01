@@ -28,7 +28,9 @@ const SVGFinder = (props) => {
 
     function handleSelectChange(selectedOptions) {
       const selectedTags = selectedOptions ? selectedOptions.map(option => option.value) : [];
-      setSelectedSearchTags(selectedTags);
+      // setSelectedSearchTags(selectedTags);
+      const selectedTagsJoined = selectedTags.join(",");
+      setSelectedTags(selectedTagsJoined)
       setSearchedTag(""); // Clear the searched tag to allow searching for another tag
     }
 
@@ -50,7 +52,7 @@ const SVGFinder = (props) => {
                 placeholder='Search'
                 loadOptions={loadOptions}
                 onChange={handleSelectChange}
-                value={selectedSearchTags.map(tag => ({ value: tag, label: tag }))}
+                value={selectedTags ? selectedTags.split(",").map(tag => ({ value: tag, label: tag })) : ''}
               />
             </Col>
 
