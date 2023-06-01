@@ -11,24 +11,21 @@ const DisplaySVG = (props) => {
   
 
   useEffect(() => {
-    console.log("DisplaySVG props: ", props.searchedTag)
-    if ((props.selectedTags === "" && props.searchedTag === "")) {
+    if ((props.selectedTags === "" && props.selectedSearchTags.length === 0)) {
       getAllSVG()
-    } else if (props.searchedTag !== "") {
-        console.log("useEffect second if - getSVGBySearch")
+    } else if (props.selectedSearchTags.length > 0) {
         getSVGBySearch()
     } else {
-      console.log("useEffect else - getSVGByTags")
       getSVGByTags();
     } 
   },
-   [currentPage, props.selectedTags, props.searchedTag]);
+   [currentPage, props.selectedTags, props.selectedSearchTags]);
 
 
   async function getSVGBySearch() {
-    console.log("getSVGBySearch called", props.searchedTag)
-    const searchedTag = props.searchedTag;
-    let url = `http://localhost:4000/svg_tag/display-by-tag/${searchedTag}?page=${currentPage}&limit=${perPage}`;
+    console.log("getSVGBySearch called", props.selectedSearchTags)
+    const searchedTags = props.selectedSearchTags.map(tag => `"${tag.trim()}"`).join(', ');
+    let url = `http://localhost:4000/svg_tag/display-by-tag/${searchedTags}?page=${currentPage}&limit=${perPage}`;
 
     const requestOptions = {
       method: "GET",
@@ -37,7 +34,7 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGSearchedData = data.results;
+      const SVGSearchedData = data.results.map((svg) => svg);
       setSVGArray(SVGSearchedData);
     } catch (error) {
       console.error(error.message);
