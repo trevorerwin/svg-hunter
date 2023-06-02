@@ -18,7 +18,7 @@
 }
 
 /* Mobile Responsives Section */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 520px) {
 
     .container,
     .card-body {

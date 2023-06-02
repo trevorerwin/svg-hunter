@@ -21,7 +21,7 @@ const Home = (props) => {
         </p>
         <br />
       </div>
-      <br />
+      {/* Column Two */}
       {/* Each card have section 1, section 2, and section 3 */}
       <CardGroup className="container">
         <Card>
@@ -63,7 +63,7 @@ const Home = (props) => {
           </CardBody>
         </Card>
       </CardGroup>
-      <br />
+      {/* Column Three */}
       {/* For the pricing and signup section */}
       <div className="container" style={{ backgroundColor: "whitesmoke" }}>
         <br />
