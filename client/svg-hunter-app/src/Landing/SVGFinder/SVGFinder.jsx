@@ -1,23 +1,35 @@
-// mount the DisplaySVG and DisplayTags components to this file
 import DisplaySVG from './DisplaySVG';
 import DisplayTags from './DisplayTags';
 import { Col, Container, Input, Row } from 'reactstrap';
 import './SVG-Styles.css';
 import React, { useState, useEffect } from 'react';
 import ProductDisplay from './ProductDisplay';
+import CreatableSelect from 'react-select/async';
+import { useFetcher } from 'react-router-dom';
 
 const SVGFinder = (props) => {
   const [selectedTags, setSelectedTags] = useState('');
   const [totalTagArray, setTotalTagArray] = useState([]);
   const [search, setSearch] = useState('');
-  const [searchList, setSearchList] = useState([]);
-  const [chosenSearchTag, setChosenSearchTag] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
-
-  function handleSelect(item) {
-    setChosenSearchTag(item);
-  }
+  const [newSVG, setNewSVG] = useState(false);
+  const [searchedTag, setSearchedTag] = useState("");
+  const [selectedSearchTags, setSelectedSearchTags] = useState([]);
+  
+  const loadOptions = (inputValue, callback) => {
+      const filteredTags = totalTagArray.filter(tag => tag.includes(inputValue) && !selectedSearchTags.includes(tag));   
+      const options = filteredTags.map(tag => ({ value: tag, label: tag }));
+      callback(options);
+  };
+ 
+  function handleSelectChange(selectedOptions) {
+      const selectedTags = selectedOptions ? selectedOptions.map(option => option.value) : [];
+      // setSelectedSearchTags(selectedTags);
+      const selectedTagsJoined = selectedTags.join(",");
+      setSelectedTags(selectedTagsJoined)
+      setSearchedTag(""); // Clear the searched tag to allow searching for another tag
+    }
 
   async function displayByInput(e) {
     setSearch(e.target.value);
@@ -32,12 +44,10 @@ const SVGFinder = (props) => {
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('Authorization', token);
-
     const requestOptions = {
       headers: myHeaders,
       method: 'GET',
     };
-
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
@@ -62,7 +72,7 @@ const SVGFinder = (props) => {
 
     checkSubscriptionStatus();
   }, []);
-
+    
   if (!authenticated) {
     return (
       <div className='login-prompt'>
@@ -86,31 +96,34 @@ const SVGFinder = (props) => {
         <div className='svg-finder-page'>
           <Container fluid className='svg-search-bar-container'>
             <Row className='w-100'>
-              <Col lg='2'></Col>
-
-              <Col lg='7' className='svg-search-bar'>
-                <Input onChange={displayByInput} className='svg-search-input' placeholder='Search' />
+              <Col lg="3">
               </Col>
 
-              <Col lg='1' className='svg-search-btn'>
-                <button className='search-btn'>Search</button>
-              </Col>
+              <Col lg="6" className='svg-search-bar' >
+                <CreatableSelect
+                  className='svg-search-input'
+                  isMulti
+                  placeholder='Search'
+                  loadOptions={loadOptions}
+                  onChange={handleSelectChange}
+                  value={selectedTags ? selectedTags.split(",").map(tag => ({ value: tag, label: tag })) : ''}
+                />
+             </Col>
 
-              <Col lg='2'></Col>
+              <Col lg="3">
+              </Col>
             </Row>
           </Container>
 
           <Container fluid className='SVG-finder-container'>
             <Row>
-              <Col lg='2' className='tag-display-column'>
-                <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray} />
+              <Col lg='2' className='tag-display-column' >
+                <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray} newSVG={newSVG} setNewSVG={setNewSVG}/>
               </Col>
 
               <Col lg='9' className='svg-display-column'>
-                <DisplaySVG selectedTags={selectedTags} chosenSearchTag={chosenSearchTag} />
+                <DisplaySVG selectedTags={selectedTags} selectedSearchTags={selectedSearchTags} newSVG={newSVG} />
               </Col>
-
-              <Col lg='1'></Col>
             </Row>
           </Container>
         </div>

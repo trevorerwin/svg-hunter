@@ -17,7 +17,6 @@ router.get("/display-by-name/:svgName", (req, res) => {
     }
 });
 
-
 // http://localhost:4000/svg/display-all
 router.get("/display-all", (req, res) => {
     try {
@@ -31,6 +30,23 @@ router.get("/display-all", (req, res) => {
         res.json({ message: error.message });
     }
 });
+
+
+// http://localhost:4000/svg/display-new
+router.get("/display-new", (req, res) => {
+    try {
+        let sql = `SELECT * FROM gomot1_upright_svghunter.SVG ORDER BY Id DESC`;
+
+        db.query(sql, (error, results) => {
+            if (error) throw error;
+            res.json({ results: results });
+        });
+    } catch (error) {
+        res.json({ message: error.message });
+    }
+});
+
+
 
 
 

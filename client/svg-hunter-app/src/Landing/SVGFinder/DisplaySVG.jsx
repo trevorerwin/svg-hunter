@@ -1,30 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import './SVG-Styles.css';
+// import { sortAlpha } from '../../Helper/Sort-alphabetical';
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
-  const searchedTags = [...props.chosenSearchTag];
 
-
+  
   useEffect(() => {
-
-    if ((props.selectedTags === "" || props.searchedTags === "")) {
-
-      getAllSVG()
-    // } else if (props.searchedTags !== "") {
-    //     getSVGBySearch()
+    if (props.selectedTags !== "") {
+      getSVGByTags()
+    } else if (props.selectedSearchTags.length > 0) {
+      getSVGBySearch();
     } else {
-      getSVGByTags();
+      getAllSVG();
     } 
   },
-   [currentPage, props.selectedTags]);
 
+   [currentPage, props.selectedTags, props.newSVG, props.selectedSearchTags]);
+
+
+
+  async function getSVGBySearch() {
+    console.log("getSVGBySearch called", props.selectedSearchTags)
+    const searchedTags = props.selectedSearchTags.map(tag => `"${tag.trim()}"`).join(', ');
+    let url = `http://localhost:4000/svg_tag/display-by-tag/${searchedTags}?page=${currentPage}&limit=${perPage}`;
+
+    const requestOptions = {
+      method: "GET",
+    };
+  
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      const SVGSearchedData = data.results.map((svg) => svg);
+      setSVGArray(SVGSearchedData);
+    } catch (error) {
+      console.error(error.message);
+    }   
+  };
 
   async function getAllSVG() {
+    console.log("getAllSVG called")
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
 
     const requestOptions = {
@@ -34,19 +54,22 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg)
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+    
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);
     }
   }
-// console.log(selectedTags)
-console.log(props.selectedTags)
+
+
+console.log("Selected Tags:", props.selectedTags)
 async function getSVGByTags() {
     
         const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
-        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
-      
+        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;      
     const requestOptions = {
       method: "GET",
     };
@@ -54,7 +77,13 @@ async function getSVGByTags() {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      const SVGData = data.results.map((svg) => svg);
+      let SVGData = data.results.map((svg) => svg).sort( (a, b) => {
+        let x = a.svgName.toUpperCase().trim(),
+            y = b.svgName.toUpperCase().trim();
+        return x === y ? 0 : x > y ? 1 : -1;});
+      if (props.newSVG === true) {
+        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);
