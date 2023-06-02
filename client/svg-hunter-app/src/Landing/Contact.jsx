@@ -1,45 +1,51 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Input, Button, Label } from "reactstrap";
 import axios from "axios";
 import "../styles/Contact.css";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const { name, email, subject, message } = formData;
-
-    // Send the email data to the backend server
-    try {
-      await axios.post("http://localhost:4000/user/send-email", {
-        name,
-        email, // Use the user-entered email as the recipient
-        subject,
-        message,
-      });
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
     });
-  };
 
+    const [emailSent, setEmailSent] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const { name, email, subject, message } = formData;
+
+        // Send the email data to the backend server
+        try {
+            await axios.post("http://localhost:4000/user/send-email", {
+                name,
+                email, // Use the user-entered email as the recipient
+                subject,
+                message,
+            });
+
+            // Show the "Email sent" alert
+            setEmailSent(true);
+
+            setFormData({
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+            });
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+    };
+
+    
   return (
     <>
       <br />
@@ -58,8 +64,7 @@ const Contact = () => {
                 back to you within 24 hours.
               </p>
             </div>
-            <div
-              className="form-center"
+            <div className="form-center"
               style={{ fontSize: "1.5rem", textAlign: "left" }}
             >
               <Label>Name</Label>
@@ -128,7 +133,6 @@ const Contact = () => {
                 />
               </div>
             </div>
-
             <div className="text-center mt-4">
               <Button
                 style={{
@@ -142,11 +146,18 @@ const Contact = () => {
                 Submit
               </Button>
             </div>
+            {emailSent && (
+              <div
+                className="alert alert-success text-center"
+                style={{ marginTop: "20px" }}
+              >
+                Email sent!
+              </div>
+            )}
           </FormGroup>
         </Form>
       </div>
     </>
   );
 };
-
 export default Contact;
