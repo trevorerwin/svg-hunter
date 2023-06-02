@@ -25,37 +25,25 @@ router.get("/all-users", async (req, res) => {
 });
 
 // http:localhost:4000/user/signup
-router.post("/signup", async (req, res) => {
-    try {
-        const { Username, Email, Passphrase, Name } = req.body;
-
-        const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
-
-        const sql =
-            "INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)";
-        const values = [
-            Username,
-            Email,
-            hashedPassphrase,
-            Name,
-            `${process.env.SECRET}`,
-        ];
-        db.query(sql, values, (error) => {
-            if (error) {
-                console.error("Error signing up: ", error);
-                res.status(500).json({ message: error.message });
-            } else {
-                const token = jwt.sign(
-                    { Username, Email },
-                    `${process.env.SECRET}`
-                );
-                res.status(200).json({ message: "new user created", token });
-            }
-        });
-    } catch (error) {
-        console.error("Error signing up: ", error);
-        res.status(500).json({ message: "Error signing up" });
-    }
+router.post('/signup', async (req, res) => {
+  try {
+    const { Username, Email, Passphrase, Name } = req.body;
+    const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
+    const sql = 'INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)';
+    const values = [Username, Email, hashedPassphrase, Name, `${process.env.USER_GROUP}`];
+    db.query(sql, values, (error) => {
+      if (error) {
+        console.error('Error signing up: ', error);
+        res.status(500).json({ message: error.message });
+      } else {
+        const token = jwt.sign({ Username, Email }, `${process.env.SECRET}`);
+        res.status(200).json({ message: 'new user created', token });
+      }
+    });
+  } catch (error) {
+    console.error('Error signing up: ', error);
+    res.status(500).json({ message: 'Error signing up' });
+  }
 });
 
 // http://localhost:4000/user/login
