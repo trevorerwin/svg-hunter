@@ -44,15 +44,19 @@ const ForgotPassword = (props) => {
         }
     };
 
+
     return (
         <>
-            <h2 className="text-center">{props.title}</h2>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="forgot-password"
+       style={{ display: "flex", justifyContent: "center" }}
+      >
+                <h2 className="text-center">{props.title}</h2>
+         
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label>Email:</Label>
                         <Input
-                            style={{ width: "200px" }}
+                            style={{ width: "100%" }}
                             value={email}
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +64,7 @@ const ForgotPassword = (props) => {
                     </FormGroup>
 
                     <div className="btn-password">
-                        <Button type="submit">Reset Password</Button>
+                        <Button id="reset-password" type="submit">Reset Password</Button>
                     </div>
 
                     {emailSent && (
@@ -81,7 +85,7 @@ const ForgotPassword = (props) => {
                         </div>
                     )}
 
-                    <p>
+                    <p className="remember">
                         Remember your password?{" "}
                         <Link to="/auth">Go back to login</Link>
                     </p>
@@ -89,6 +93,7 @@ const ForgotPassword = (props) => {
             </div>
         </>
     );
+
 };
 
 export default ForgotPassword;

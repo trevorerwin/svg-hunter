@@ -42,12 +42,24 @@
     }
 }
 
+/* Login/Signup/AuthToggle/Reset Password Css style */
+
 #submit-button-login {
     background-color: #ad6ee7;
 }
 
+#submit-button-login:hover {
+  background-color: #ad6ee7;
+  color: #61dafb;
+}
+
 #submit-button-signup {
     background-color: #ad6ee7;
+}
+
+#submit-button-signup:hover {
+  background-color: #ad6ee7;
+  color: #61dafb;
 }
 
 #login-text {
@@ -86,9 +98,34 @@ a.center {
 }
 
 .text-center {
-    text-align: center;
-    color: #ad6ee7;
+
+  text-align: center;
+  color: #ad6ee7;
 }
+
+#reset-password {
+  background-color: #ad6eef;
+  color: white;
+  margin-top: 20px;
+  ;
+}
+
+.form-center {
+  text-align: center;
+}
+
+#reset-password:hover {
+  background-color: #ad6eef;
+  color: #61dafb;
+}
+
+.remember {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 50px;
+}
+
+  
 
 .error {
     text-align: center;
@@ -105,3 +142,4 @@ a.center {
 .login-form .error input[type="password"] {
     text-align: left;
 }
+

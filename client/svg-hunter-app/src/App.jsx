@@ -8,7 +8,8 @@ import { Route, Routes } from "react-router-dom";
 import Contact from "./Landing/Contact";
 import Home from "./Landing/Home";
 import SVGFinder from "./Landing/SVGFinder/SVGFinder";
-import HelpGuide from "./Landing/HelpGuide";
+
+
 import AuthContext from "./Auth/AuthContext";
 import ForgotPassword from "./Auth/ForgotPassword";
 import ResetPassword from "./Auth/create-new-password";
@@ -37,7 +38,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/auth" element={<AuthToggle />} />
                     <Route path="/svg-hunter" element={<SVGFinder />} />
-                    <Route path="/help-guide" element={<HelpGuide />} />
+            
                     <Route path="/contact" element={<Contact />} />
                     <Route
                         path="/forgotPassword"
