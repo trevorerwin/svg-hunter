@@ -1,17 +1,16 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import Footer from "./Footer";
-import Header from "./Header";
-import NavBar from "./NavBar";
-import AuthToggle from "./Auth/AuthToggle";
-import { Route, Routes } from "react-router-dom";
-import Contact from "./Landing/Contact";
-import Home from "./Landing/Home";
-import SVGFinder from "./Landing/SVGFinder/SVGFinder";
-
-
-import AuthContext from "./Auth/AuthContext";
-import ForgotPassword from "./Auth/ForgotPassword";
+import './App.css';
+import React, { useState, useEffect } from 'react';
+import Footer from './Footer';
+import Header from './Header';
+import NavBar from './NavBar';
+import AuthToggle from './Auth/AuthToggle';
+import { Route, Routes } from 'react-router-dom';
+import Contact from './Landing/Contact';
+import Home from './Landing/Home';
+import SVGFinder from './Landing/SVGFinder/SVGFinder';
+import AuthContext from './Auth/AuthContext';
+import ForgotPassword from './Auth/ForgotPassword';
+import ProductDisplaySuccess from './Landing/SVGFinder/ProductDisplaySuccess';
 import ResetPassword from "./Auth/create-new-password";
 
 function App() {
@@ -38,16 +37,10 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/auth" element={<AuthToggle />} />
                     <Route path="/svg-hunter" element={<SVGFinder />} />
-            
                     <Route path="/contact" element={<Contact />} />
-                    <Route
-                        path="/forgotPassword"
-                        element={<ForgotPassword title={"Forgot Password"} />}
-                    />
-                    <Route
-                        path="/reset-password"
-                        element={<ResetPassword title={"Reset Password"} />}
-                    />
+                    <Route path="/forgotPassword" element={<ForgotPassword title={"Forgot Password"} />} />
+                    <Route path="/reset-password" element={<ResetPassword title={"Reset Password"} />} />
+                    <Route path='/success' element={<ProductDisplaySuccess />} />
                 </Routes>
             </AuthContext.Provider>
             <Footer />

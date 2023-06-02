@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -23,6 +24,8 @@
     "react-router-dom": "^6.11.2",
     "react-select": "^5.7.3",
     "reactstrap": "^9.1.10",
-    "stripe": "^12.6.0"
-  }
+    "stripe": "^12.6.0",
+    "stripe-cli": "^0.1.0"
+  },
+  "proxy": "http://localhost:4242"
 }

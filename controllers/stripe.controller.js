@@ -1,6 +1,5 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const domain = 'http://localhost:3000';
 const router = require('express').Router();
 const db = require('../db.js');
 const fetchUserID = require('../middleware/fetch-user-id.js');

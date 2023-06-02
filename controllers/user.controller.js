@@ -58,7 +58,6 @@ router.post("/login", (req, res) => {
                 .json({ message: "Username and passphrase are required" });
         }
 
-
         const sql = `SELECT * FROM sitelok WHERE Username = '${Username}'`;
         db.query(sql, async (error, userArray) => {
             if (error) {
@@ -87,24 +86,20 @@ router.post("/login", (req, res) => {
             res.status(200).json({ message: "Login successful", token });
         });
     } catch (error) {
-
         console.error("Error logging in: ", error);
         return res.status(500).json({ message: error.message });
       }
 
       if (userArray.length === 0) {
-        return res.status(401).json({ message: "pooped my pants" });
+        return res.status(401).json({ message: 'pooped my pants' });
       }
 
       const user = userArray[0];
-      const isPassphraseValid = await bcrypt.compare(
-        Passphrase,
-        user.Passphrase
-      );
+      const isPassphraseValid = await bcrypt.compare(Passphrase, user.Passphrase);
       console.log(user);
 
       if (!isPassphraseValid) {
-        return res.json({ message: "Invalid credentials" });
+        return res.json({ message: 'Invalid credentials' });
       }
       // TODO make secret web token secret in dotenv file
       // Generate a JWT token
@@ -275,7 +270,6 @@ router.patch("/update-password", async (req, res) => {
                     "New password, username, email, and reset token are required",
             });
         }
-
         // Retrieve the user from the database
         const sql = `SELECT * FROM sitelok WHERE Username = '${Username}' AND Email = '${Email}' AND ResetToken = '${ResetToken}'`;
         db.query(sql, async (error, userArray) => {
