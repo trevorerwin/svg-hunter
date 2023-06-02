@@ -1,6 +1,6 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const domain = 'http://localhost:4000';
+const domain = 'http://localhost:3000';
 const router = require('express').Router();
 const express = require('express');
 const db = require('../db.js');

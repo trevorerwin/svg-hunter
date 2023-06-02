@@ -1,7 +1,10 @@
 import './ProductDisplay.css';
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductDisplay = (props) => {
+  const navigate = useNavigate();
+
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
@@ -32,7 +35,7 @@ const ProductDisplay = (props) => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('success')) {
       props.setSubscribed(true);
-      window.location.href = '/success';
+      navigate('/success');
     }
     if (params.get('canceled')) {
       alert("Order canceled -- continue to shop around and checkout when you're ready.");
