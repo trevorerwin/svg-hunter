@@ -1,7 +1,12 @@
+import './ProductDisplaySuccess.css';
+
 const ProductDisplaySuccess = (props) => {
   return (
     <>
-      <h2>Success</h2>
+      <div className='success-page'>
+        <h1 className='success-heading'>Checkout Success</h1>
+        <p className='success-message'>Thank you for your purchase!</p>
+      </div>
     </>
   );
 };

@@ -9,6 +9,7 @@ const stripeController = require('../svg-hunter/controllers/stripe.controller');
 const checkoutController = require('../svg-hunter/controllers/checkout.controller');
 
 app.use(cors());
+app.use('/checkout', checkoutController);
 
 app.use(express.json());
 
@@ -16,7 +17,6 @@ app.use('/user', userController);
 app.use('/svg', svgController);
 app.use('/svg_tag', svg_tagController);
 app.use('/stripe', stripeController);
-app.use('/checkout', checkoutController);
 
 app.listen(process.env.PORT, () => {
   console.log(`mysql server running on port ${process.env.PORT}`);
