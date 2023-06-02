@@ -200,8 +200,6 @@ router.post("/reset-password", async (req, res) => {
 
                 const sqlUsername = user.Username;
 
-                // const { Username } = req.body;
-                // console.log(Username)
                 const subject = "Password Reset";
                 const message = `Hi ${sqlUsername},\n\nWe have received a password reset request for your account. Please click on the following link to reset your password:\n\n${resetLink}\n \nIf you didn't request a password reset, you can ignore this email.\n\nBest regards,\nThe SVG Hunter Team`;
 
