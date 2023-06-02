@@ -6,13 +6,13 @@ const Home = (props) => {
   return (
     <>
       {/* Column One */}
-      <main className="main-part">
+      <div className="container" style={{ backgroundColor: "whitesmoke" }}>
         <br />
-        <h2 class="center" id="title">
+        <h2 className="center" id="title">
           <strong>The First Premium SVG Finder</strong>
         </h2>
         <br />
-        <p class="center">
+        <p className="center">
           SVG Hunter is a program that works on Mac or Windows computer to allow
           you to search and find Free Premium SVGs for you to use with your
           cutting devices. We at SVGHunter.com have created a database where we
@@ -20,11 +20,12 @@ const Home = (props) => {
           searching.
         </p>
         <br />
-      </main>
-      {/* Each card have section 1, secontion 2, and section 3 */}
-      <CardGroup>
+      </div>
+      {/* Column Two */}
+      {/* Each card have section 1, section 2, and section 3 */}
+      <CardGroup className="container">
         <Card>
-          <CardBody>
+          <CardBody className="card-body">
             <CardTitle className="center" tag="h3" id="title">
               <strong>
                 {" "}
@@ -38,7 +39,7 @@ const Home = (props) => {
           </CardBody>
         </Card>
         <Card>
-          <CardBody>
+          <CardBody className="card-body">
             <CardTitle className="center" tag="h3" id="title">
               <strong>1000’s of Free SVGs in the Database</strong>
             </CardTitle>
@@ -62,33 +63,34 @@ const Home = (props) => {
           </CardBody>
         </Card>
       </CardGroup>
+      {/* Column Three */}
       {/* For the pricing and signup section */}
-      <main className="main-part">
+      <div className="container" style={{ backgroundColor: "whitesmoke" }}>
         <br />
-        <h3 class="center" id="title">
+        <h3 className="center" id="title">
           <strong>Pricing & Signup</strong>
         </h3>
-        <h5 class="center" id="title">
+        <h5 className="center" id="title">
           <strong>Year Signup - $20</strong>{" "}
         </h5>
         <br />
-        <p>
+        <p className="center">
           You’ll get access to the monthly download of the database that will be
           updated and maintained weekly. Once you sign up you’ll be given an
           email with login and password. It is on the member page where you’ll
           be able to download the program as well as get the database.
         </p>
-        <p>
+        <p className="center">
           This program is set up as an automatic renewal. Access Codes are set
           to expire on the 1st of the each month. At that time you’ll return to
           the members page to retrieve the latest Access Code.
         </p>
-        <p>
+        <p className="center">
           You can cancel the membership at any time. All annual sales/payments
           are final. Access to the database/svghunter will continue to be active
           until your anniversary date.
         </p>
-      </main>
+      </div>
     </>
   );
 };
