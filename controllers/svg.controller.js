@@ -17,7 +17,6 @@ router.get("/display-by-name/:svgName", (req, res) => {
     }
 });
 
-
 // http://localhost:4000/svg/display-all
 router.get("/display-all", (req, res) => {
     try {
@@ -32,6 +31,7 @@ router.get("/display-all", (req, res) => {
     }
 });
 
+
 // http://localhost:4000/svg/display-new
 router.get("/display-new", (req, res) => {
     try {
@@ -45,6 +45,8 @@ router.get("/display-new", (req, res) => {
         res.json({ message: error.message });
     }
 });
+
+
 
 
 

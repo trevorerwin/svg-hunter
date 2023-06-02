@@ -1,8 +1,33 @@
 .contact-container {
+    max-width: 1000px;
+    max-height: 2000px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    box-shadow: 0px 10px 40px -10px;
+    width: 100%;
+    padding: 2rem;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.input-field {
+    width: 100%;
+    height: 50px;
+    font-family: "Roboto";
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    ;
+}
+
+.message-field {
+    width: 100%;
+    resize: none;
+    height: 180px;
+    font-family: "Roboto";
+    font-size: 1.5rem;
 }
 
 .form-header {
@@ -78,15 +103,26 @@ input[type="email"]:focus {
 }
 
 #change-button-color {
-    background-color: whitesmoke;
-    color: black;
+    background-color: #ad6eef;
+    color: white;
 }
 
 #change-button-color:hover {
     background-color: #ad6ee7;
-    color: white;
+    color: #61dafb;
 }
 
 #move-p-tag {
     margin-top: 25px;
+}
+
+/* Mobile Responsive for contact-container */
+
+@media screen and (max-width: 768px) {
+    .contact-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 1rem;
+        flex-direction: column;
+    }
 }
