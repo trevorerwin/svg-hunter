@@ -4,48 +4,47 @@ import axios from "axios";
 import "../styles/Contact.css";
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [emailSent, setEmailSent] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { name, email, subject, message } = formData;
+
+    // Send the email data to the backend server
+    try {
+      await axios.post("http://localhost:4000/user/send-email", {
+        name,
+        email, // Use the user-entered email as the recipient
+        subject,
+        message,
+      });
+
+      // Show the "Email sent" alert
+      setEmailSent(true);
+
+      setFormData({
         name: "",
         email: "",
         subject: "",
         message: "",
-    });
+      });
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
 
-    const [emailSent, setEmailSent] = useState(false);
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const { name, email, subject, message } = formData;
-
-        // Send the email data to the backend server
-        try {
-            await axios.post("http://localhost:4000/user/send-email", {
-                name,
-                email, // Use the user-entered email as the recipient
-                subject,
-                message,
-            });
-
-            // Show the "Email sent" alert
-            setEmailSent(true);
-
-            setFormData({
-                name: "",
-                email: "",
-                subject: "",
-                message: "",
-            });
-        } catch (error) {
-            console.error("Error sending email:", error);
-        }
-    };
-
-    
   return (
     <>
       <br />
@@ -64,13 +63,14 @@ const Contact = () => {
                 back to you within 24 hours.
               </p>
             </div>
-            <div className="form-center"
+            <div
+              className="form-center"
               style={{ fontSize: "1.5rem", textAlign: "left" }}
             >
               <Label>Name</Label>
               <div className="d-flex justify-content-center">
                 <Input
-                  className="input-field"
+                  className="custom-input"
                   placeholder="Full Name:"
                   required
                   type="text"
@@ -88,7 +88,7 @@ const Contact = () => {
               <Label>Email</Label>
               <div className="d-flex justify-content-center">
                 <Input
-                  className="input-field"
+                  className="custom-input"
                   placeholder="Email:"
                   required
                   type="email"
@@ -106,7 +106,7 @@ const Contact = () => {
               <Label>Password</Label>
               <div className="d-flex justify-content-center">
                 <Input
-                  className="input-field"
+                  className="custom-input"
                   placeholder="Password:"
                   required
                   type="text"
@@ -124,7 +124,7 @@ const Contact = () => {
               <Label>Message</Label>
               <div className="d-flex justify-content-center">
                 <textarea
-                  className="message-field"
+                  className="custom-textarea"
                   placeholder="Type your message here..."
                   required
                   name="message"

@@ -49,8 +49,8 @@
 }
 
 #submit-button-login:hover {
-  background-color: #ad6ee7;
-  color: #61dafb;
+    background-color: #ad6ee7;
+    color: #61dafb;
 }
 
 #submit-button-signup {
@@ -58,13 +58,15 @@
 }
 
 #submit-button-signup:hover {
-  background-color: #ad6ee7;
-  color: #61dafb;
+    background-color: #ad6ee7;
+    color: #61dafb;
 }
 
 #login-text {
     color: #ad6ee7;
 }
+
+
 
 .login-signup-toggle,
 .forgot-password {
@@ -99,33 +101,33 @@ a.center {
 
 .text-center {
 
-  text-align: center;
-  color: #ad6ee7;
+    text-align: center;
+    color: #ad6ee7;
 }
 
 #reset-password {
-  background-color: #ad6eef;
-  color: white;
-  margin-top: 20px;
-  ;
+    background-color: #ad6eef;
+    color: white;
+    margin-top: 20px;
+    ;
 }
 
 .form-center {
-  text-align: center;
+    text-align: center;
 }
 
 #reset-password:hover {
-  background-color: #ad6eef;
-  color: #61dafb;
+    background-color: #ad6eef;
+    color: #61dafb;
 }
 
 .remember {
-  font-size: 1rem;
-  text-align: center;
-  line-height: 50px;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 50px;
 }
 
-  
+
 
 .error {
     text-align: center;
@@ -143,3 +145,10 @@ a.center {
     text-align: left;
 }
 
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="username"]:focus,
+input[type="email"]:focus {
+    box-shadow: 0 0 20px #ad6ee7;
+    border: 2px solid #ad6ee7;
+}
