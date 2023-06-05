@@ -13,7 +13,7 @@ const ProductDisplay = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ priceID: 'dummy' }), // Replace with the actual price ID
+        body: JSON.stringify({ priceID: 'price_1NAd4JBbFZD5Ir3VadsttQAZ' }), // Replace with the actual price ID
       });
 
       if (response.ok) {
