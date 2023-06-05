@@ -50,6 +50,9 @@ const ProductDisplay = (props) => {
           <h3>SVG Subscription</h3>
           <h5>$20.00 / year</h5>
         </div>
+        <div className='product-text'>
+          <p>In order to use SVG Finder, you must have an active subscription. Please click on the link below to subscribe through Stripe</p>
+        </div>
         <form className='product-form' onSubmit={handleCheckout}>
           <button className='checkout-btn' type='submit'>
             Checkout

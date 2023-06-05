@@ -5,7 +5,7 @@ import './SVG-Styles.css';
 import React, { useState, useEffect } from 'react';
 import ProductDisplay from './ProductDisplay';
 import CreatableSelect from 'react-select/async';
-import { useFetcher } from 'react-router-dom';
+import { useFetcher, useNavigate } from 'react-router-dom';
 
 const SVGFinder = (props) => {
   const [selectedTags, setSelectedTags] = useState('');
@@ -16,6 +16,7 @@ const SVGFinder = (props) => {
   const [newSVG, setNewSVG] = useState(false);
   const [searchedTag, setSearchedTag] = useState('');
   const [selectedSearchTags, setSelectedSearchTags] = useState([]);
+  const navigate = useNavigate();
 
   const loadOptions = (inputValue, callback) => {
     const filteredTags = totalTagArray.filter((tag) => tag.includes(inputValue) && !selectedSearchTags.includes(tag));
@@ -75,7 +76,7 @@ const SVGFinder = (props) => {
         <button
           className='login-prompt-button'
           onClick={() => {
-            /* Handle login redirect */
+            navigate('/auth');
           }}
         >
           Log In
