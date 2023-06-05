@@ -45,7 +45,8 @@ const Home = (props) => {
               <strong>Database is updated weekly</strong>
             </CardTitle>
             <CardText className='center'>
-              We are constantly keeping up with current trends and updating the database weekly. We are also adding new designers and websites to the database as we find them.
+              We are constantly keeping up with current trends and updating the database weekly. We are also adding new designers and websites to the database as we find them. You'll be able to view
+              these new additions in the "newest" section!
             </CardText>
           </CardBody>
         </Card>
