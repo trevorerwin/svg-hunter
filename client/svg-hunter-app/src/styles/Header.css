@@ -1,12 +1,8 @@
-.container-fluid {
-  
-}
-
 .header-container {
   position: relative;
   height: 80vh;
   overflow: hidden;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/header-photo.jpeg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/Crafting1.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -50,5 +46,4 @@
   .video-container {
     padding-bottom: 60%;
   }
-
 }
