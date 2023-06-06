@@ -25,25 +25,37 @@ router.get("/all-users", async (req, res) => {
 });
 
 // http:localhost:4000/user/signup
-router.post('/signup', async (req, res) => {
-  try {
-    const { Username, Email, Passphrase, Name } = req.body;
-    const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
-    const sql = 'INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)';
-    const values = [Username, Email, hashedPassphrase, Name, `${process.env.USER_GROUP}`];
-    db.query(sql, values, (error) => {
-      if (error) {
-        console.error('Error signing up: ', error);
-        res.status(500).json({ message: error.message });
-      } else {
-        const token = jwt.sign({ Username, Email }, `${process.env.USER_GROUP}`);
-        res.status(200).json({ message: 'new user created', token });
-      }
-    });
-  } catch (error) {
-    console.error('Error signing up: ', error);
-    res.status(500).json({ message: 'Error signing up' });
-  }
+router.post("/signup", async (req, res) => {
+    try {
+        const { Username, Email, Passphrase, Name } = req.body;
+
+        const hashedPassphrase = await bcrypt.hash(Passphrase, 10);
+
+        const sql =
+            "INSERT INTO sitelok (Username, Email, Passphrase, Name, Usergroups) VALUES (?, ?, ?, ?, ?)";
+        const values = [
+            Username,
+            Email,
+            hashedPassphrase,
+            Name,
+            `${process.env.SECRET}`,
+        ];
+        db.query(sql, values, (error) => {
+            if (error) {
+                console.error("Error signing up: ", error);
+                res.status(500).json({ message: error.message });
+            } else {
+                const token = jwt.sign(
+                    { Username, Email },
+                    `${process.env.SECRET}`
+                );
+                res.status(200).json({ message: "new user created", token });
+            }
+        });
+    } catch (error) {
+        console.error("Error signing up: ", error);
+        res.status(500).json({ message: "Error signing up" });
+    }
 });
 
 // http://localhost:4000/user/login
@@ -57,7 +69,6 @@ router.post("/login", (req, res) => {
                 .status(400)
                 .json({ message: "Username and passphrase are required" });
         }
-
 
         const sql = `SELECT * FROM sitelok WHERE Username = '${Username}'`;
         db.query(sql, async (error, userArray) => {
@@ -87,41 +98,15 @@ router.post("/login", (req, res) => {
             res.status(200).json({ message: "Login successful", token });
         });
     } catch (error) {
-
         console.error("Error logging in: ", error);
-        return res.status(500).json({ message: error.message });
-      }
-
-      if (userArray.length === 0) {
-        return res.status(401).json({ message: "pooped my pants" });
-      }
-
-      const user = userArray[0];
-      const isPassphraseValid = await bcrypt.compare(
-        Passphrase,
-        user.Passphrase
-      );
-      console.log(user);
-
-      if (!isPassphraseValid) {
-        return res.json({ message: "Invalid credentials" });
-      }
-      // TODO make secret web token secret in dotenv file
-      // Generate a JWT token
-      const token = jwt.sign({ Username }, `${process.env.SECRET}`);
-      // Send the token in the response
-      res.status(200).json({ message: "Login successful", token });
-    });
-  } catch (error) {
-    console.error("Error logging in: ", error);
-    res.status(500).json({ message: error.message });
-  }
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // http://localhost:4000/user/send-email
 router.post("/send-email", async (req, res) => {
-  try {
-    const { name, email, subject, message } = req.body;
+    try {
+        const { name, email, subject, message } = req.body;
 
         if (!name || !email || !subject || !message) {
             return res.status(400).json({ message: "Missing required fields" });
@@ -170,24 +155,9 @@ router.post("/send-email", async (req, res) => {
         sendToSender();
         res.json({ message: "email sent" });
     } catch (error) {
-
         console.error("Error sending email:", error);
-        return res.status(500).json({ message: "Error sending email" });
-      }
-      transporter.sendMail(mailOptions2, (error, info) => {
-        if (error) {
-          console.error("Error sending email:", error);
-          return res
-            .status(500)
-            .json({ message: "Error sending email" });
-        }
-      });
-      res.status(200).json({ message: "Email sent" });
-    });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ message: "Error sending email" });
-  }
+        res.status(500).json({ message: "Error sending email" });
+    }
 });
 
 router.post("/reset-password", async (req, res) => {
