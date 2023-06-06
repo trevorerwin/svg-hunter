@@ -7,10 +7,8 @@ const ForgotPassword = (props) => {
   const [emailSent, setEmailSent] = useState(false); // Track whether email is sent
   const [error, setError] = useState(''); // Track error message
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const url = 'http://localhost:4000/user/reset-password';
     const bodyObject = {
       Email: email,
@@ -63,6 +61,7 @@ const ForgotPassword = (props) => {
 
           {emailSent && (
             <div className='alert alert-success text-center' style={{ marginTop: '20px' }}>
+
               Reset password email sent.
             </div>
           )}
@@ -72,7 +71,6 @@ const ForgotPassword = (props) => {
               {error}
             </div>
           )}
-
           <p className='remember'>
             Remember your password? <Link to='/auth'>Go back to login</Link>
           </p>

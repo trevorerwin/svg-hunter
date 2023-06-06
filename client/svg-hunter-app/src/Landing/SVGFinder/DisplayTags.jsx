@@ -4,6 +4,7 @@ import './SVG-Styles.css';
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
   const [totalTagArray, setTotalTagArray] = useState([]);
+  let joinedTags = "";
   
 
 
@@ -13,9 +14,21 @@ const DisplayTags = (props) => {
 
 
   useEffect(() => {
+    let selectedTagsArray = props.selectedTags.split(",");
+    const isInTagArray = tagArray.map((tag) => {
+      if (selectedTagsArray.includes(tag.tagName)) {
+        return { tagName: tag.tagName, isChecked: true };
+      } else {
+        return { tagName: tag.tagName, isChecked: false };
+      }
+    });
+    setTagArray(isInTagArray);
+  }, [props.selectedTags]);
+
+
+  useEffect(() => {
     let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
     props.setSelectedTags(tagNames);
-
   }, [tagArray]);
 
 
@@ -25,16 +38,12 @@ const DisplayTags = (props) => {
     totalDataArray = totalDataArray.map((word) => word.tagName.replace(/^-/, "").trim());   
     // Remove empty strings from the array
     totalDataArray = totalDataArray.filter((word) => word.trim() !== '');
-    
     // Convert all strings to lowercase
     totalDataArray = totalDataArray.map(word => word.toLowerCase());
-    
     // Remove duplicate strings from the array
     totalDataArray = [...new Set(totalDataArray)];
-    
     // Sort the strings alphabetically
     totalDataArray.sort();
-  
     return totalDataArray;
   }
 
@@ -44,10 +53,8 @@ const DisplayTags = (props) => {
     dataArray = dataArray.map((tag) =>{
       return{tagName:  tag.tagName.toLowerCase().replace(/^-/, ""), isChecked: false}
     });
-
     // Step 2: Remove empty strings from the array
     dataArray = dataArray.filter((tag) => tag.tagName !== "");
-
     // Step 3: Count the number of times each string occurs in the array
     const counts = {};
     dataArray.forEach((tag) => {
@@ -55,28 +62,21 @@ const DisplayTags = (props) => {
       const lowercaseTag = tag.tagName.toLowerCase();
       counts[lowercaseTag] = (counts[lowercaseTag] || 0) + 1;
     });
-
     // Step 4: If a string occurs 10 or more times, add it to a new array
-   
     let newTagArray = []
     for (let item in counts) {
       if (counts[item] >= 10) {
-        
         newTagArray.push(item)
       } 
     }
     const lowerCaseTagArray = newTagArray.map((tag) => tag.toLowerCase());
-
     // Step 5: Remove duplicate strings from the new array
     let uniqueTags = [...new Set(lowerCaseTagArray)];
-
      uniqueTags = uniqueTags.map(tag=> {
       return{tagName:  tag, isChecked: false}
     })
-
     // Step 6: Sort the strings in the new array alphabetically
     uniqueTags.sort((word1, word2)=> word1.tagName>word2.tagName ? 1 : -1);
-
     return uniqueTags;
   }
 
@@ -105,12 +105,9 @@ const DisplayTags = (props) => {
 
 
   const handleCheckboxChange = (index) => {
-
    let prev= [...tagArray]
    prev[index].isChecked = !prev[index].isChecked
-   
     setTagArray(prev);
-
   };
 
 
