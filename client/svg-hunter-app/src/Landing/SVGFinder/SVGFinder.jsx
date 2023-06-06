@@ -70,33 +70,34 @@ const SVGFinder = (props) => {
       checkSubscriptionStatus();
   }, []);
 
-  if (!authenticated) {
-      return (
-          <div className="login-prompt">
-              <h1 className="login-prompt-header">Access Restricted</h1>
-              <p className="login-prompt-text">
-                  Please log in to access the SVGFinder and explore our
-                  collection of SVGs.
-              </p>
-              <button
-                  className="login-prompt-button"
-                  onClick={() => {
-                      /* Handle login redirect */
-                  }}
-              >
-                  Log In
-              </button>
-          </div>
-      );
-  } else if (!subscribed) {
-      return <ProductDisplay setSubscribed={setSubscribed} />;
-  } else {
-  return (
-    <>
-      <div className="svg-finder-page">
-        <Container fluid className="svg-search-bar-container">
-          <Row className="w-100">
-            <Col lg="3"></Col>
+    if (!authenticated) {
+        return (
+            <div className="login-prompt">
+                <h1 className="login-prompt-header">Access Restricted</h1>
+                <p className="login-prompt-text">
+                    Please log in to access the SVGFinder and explore our
+                    collection of SVGs.
+                </p>
+                <button
+                    className="login-prompt-button"
+                    onClick={() => {
+                        /* Handle login redirect */
+                    }}
+                >
+                    Log In
+                </button>
+            </div>
+        );
+    } else if (!subscribed) {
+        return <ProductDisplay setSubscribed={setSubscribed} />;
+    } else {
+        return (
+            <>
+                <div className="svg-finder-page">
+                    <Container fluid className="svg-search-bar-container" style={{zIndex: '100'}}>
+                        <Row className="w-100">
+                            <Col lg="3"></Col>
+
 
             <Col lg="6" className="svg-search-bar">
               <CreatableSelect

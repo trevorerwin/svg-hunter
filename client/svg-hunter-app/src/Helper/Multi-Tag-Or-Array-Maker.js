@@ -6,3 +6,5 @@ export function multiTag(...tags) {
     const multiTagArray = tags.join(' OR ');
     return multiTagArray;
   }
+
+  
