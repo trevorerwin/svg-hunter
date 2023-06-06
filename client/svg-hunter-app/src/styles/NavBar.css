@@ -20,11 +20,11 @@
 }
 
 .navbar-container a:hover {
-  color: #61dafb;
+  color: #ad6ee7;
 }
 
 .navbar-container a:active {
-  color: #61dafb;
+  color: #ad6ee7;
 }
 
 .navbar-links {
@@ -52,7 +52,7 @@
 
 .line-1.active {
   transform: rotate(-45deg) translate(-5px, 6px);
-  background-color: #61dafb;
+  background-color: #ad6ee7;
 }
 
 .line-2.active {
@@ -61,7 +61,7 @@
 
 .line-3.active {
   transform: rotate(45deg) translate(-5px, -6px);
-  background-color: #61dafb;
+  background-color: #ad6ee7;
 }
 
 @media (max-width: 640px) {

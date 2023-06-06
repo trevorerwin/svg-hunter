@@ -13,7 +13,7 @@ const ProductDisplay = (props) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ priceID: 'dummy' }), // Replace with the actual price ID
+        body: JSON.stringify({ priceID: 'price_1NAd4JBbFZD5Ir3VadsttQAZ' }), // Replace with the actual price ID
       });
 
       if (response.ok) {
@@ -49,6 +49,9 @@ const ProductDisplay = (props) => {
         <div className='product-description'>
           <h3>SVG Subscription</h3>
           <h5>$20.00 / year</h5>
+        </div>
+        <div className='product-text'>
+          <p>In order to use SVG Finder, you must have an active subscription. Please click on the link below to subscribe through Stripe</p>
         </div>
         <form className='product-form' onSubmit={handleCheckout}>
           <button className='checkout-btn' type='submit'>
