@@ -112,7 +112,6 @@ const ResetPassword = () => {
                     className={errors.username ? "error" : ""}
                     style={{ textAlign: "left" }}
                 />
-                {errors.username && <p className="error">{errors.username}</p>}
                 <br />
                 <label htmlFor="newPassword">New Password:</label>
                 <input
@@ -125,9 +124,6 @@ const ResetPassword = () => {
                     className={errors.newPassword ? "error" : ""}
                     style={{ textAlign: "left" }}
                 />
-                {errors.newPassword && (
-                    <p className="error">{errors.newPassword}</p>
-                )}
                 <br />
                 <label htmlFor="confirmPassword">Confirm Password:</label>
                 <input
@@ -140,9 +136,6 @@ const ResetPassword = () => {
                     className={errors.confirmPassword ? "error" : ""}
                     style={{ textAlign: "left" }}
                 />
-                {errors.confirmPassword && (
-                    <p className="error">{errors.confirmPassword}</p>
-                )}
                 <br />
                 <label htmlFor="email">Email:</label>
                 <input
@@ -154,26 +147,19 @@ const ResetPassword = () => {
                     required
                     className={errors.email ? "error" : ""}
                 />
+                <br />
+                {errors.username && <p className="error">{errors.username}</p>}
+                {errors.newPassword && (
+                    <p className="error">{errors.newPassword}</p>
+                )}
+                {errors.confirmPassword && (
+                    <p className="error">{errors.confirmPassword}</p>
+                )}
                 {errors.email && <p className="error">{errors.email}</p>}
-                <br />
-                {/* <label htmlFor="resetToken">Reset Token:</label>
-                <input
-                    disabled
-                    type="text"
-                    id="resetToken"
-                    name="resetToken"
-                    value={resetToken}
-                    onChange={(e) => setResetToken(e.target.value)}
-                    required
-                    // className={errors.resetToken ? "error" : ""}
-                    style={{ textAlign: "left" }}
-                /> */}
-
-                <br />
                 <input type="submit" value="Submit" />
             </form>
 
-            <div className="togglePassword">
+            <div className="togglePassword" style={{ marginTop: "5px" }}>
                 <input
                     type="checkbox"
                     id="showPassword"
