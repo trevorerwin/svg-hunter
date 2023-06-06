@@ -13,8 +13,6 @@ const DisplaySVG = (props) => {
   useEffect(() => {
     if (props.selectedTags !== "") {
       getSVGByTags()
-    } else if (props.selectedSearchTags.length > 0) {
-      getSVGBySearch();
     } else {
       getAllSVG();
     } 
@@ -23,25 +21,6 @@ const DisplaySVG = (props) => {
    [currentPage, props.selectedTags, props.newSVG, props.selectedSearchTags]);
 
 
-
-  async function getSVGBySearch() {
-    console.log("getSVGBySearch called", props.selectedSearchTags)
-    const searchedTags = props.selectedSearchTags.map(tag => `"${tag.trim()}"`).join(', ');
-    let url = `http://localhost:4000/svg_tag/display-by-tag/${searchedTags}?page=${currentPage}&limit=${perPage}`;
-
-    const requestOptions = {
-      method: "GET",
-    };
-  
-    try {
-      const response = await fetch(url, requestOptions);
-      const data = await response.json();
-      const SVGSearchedData = data.results.map((svg) => svg);
-      setSVGArray(SVGSearchedData);
-    } catch (error) {
-      console.error(error.message);
-    }   
-  };
 
   async function getAllSVG() {
     console.log("getAllSVG called")
@@ -100,18 +79,13 @@ async function getSVGByTags() {
     }
   };
 
-  // Calculate the start and end index of SVGs to display for the current page
+  
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
-
-  // Slice the SVGArray to include only the SVGs for the current page
   const displayedSVGs = SVGArray.slice(startIndex, endIndex);
-
-  // Calculate the total number of pages based on the total number of SVGs
   const totalPages = Math.ceil(SVGArray.length / perPage);
-
-  // Generate an array of page numbers to display in pagination
   const pageNumbers = [];
+
   if (totalPages <= maxPageNumbers) {
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(i);
@@ -135,8 +109,8 @@ async function getSVGByTags() {
   }
 
   function shortenName(name) {
-    if (name.length > 20) {
-      return name.slice(0, 20) + '...';
+    if (name.length > 16) {
+      return name.slice(0, 16) + '...';
     } else {
       return name;
     }
@@ -144,7 +118,6 @@ async function getSVGByTags() {
 
   return (
     <>
-      {/* <h3>Hello from DisplaySVG</h3> */}
       <Container>
         <Row
           style={{
@@ -166,6 +139,7 @@ async function getSVGByTags() {
                       borderRadius: '5px',
                       padding: '20px',
                       boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                      zIndex: 0,
                     }}
                     src={svg.svgData}
                     alt={svg.svgName}
