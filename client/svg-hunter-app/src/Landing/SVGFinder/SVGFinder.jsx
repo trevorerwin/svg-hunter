@@ -92,63 +92,63 @@ const SVGFinder = (props) => {
     } else if (!subscribed) {
         return <ProductDisplay setSubscribed={setSubscribed} />;
     } else {
-        return (
-            <>
-                <div className="svg-finder-page">
-                    <Container fluid className="svg-search-bar-container">
-                        <Row className="w-100">
-                            <Col lg="3"></Col>
+    return (
+        <>
+            <div className="svg-finder-page">
+                <Container fluid className="svg-search-bar-container">
+                    <Row className="w-100">
+                        <Col lg="3"></Col>
 
-                            <Col lg="6" className="svg-search-bar">
-                                <CreatableSelect
-                                    className="svg-search-input"
-                                    isMulti
-                                    placeholder="Search"
-                                    loadOptions={loadOptions}
-                                    onChange={handleSelectChange}
-                                    value={
-                                        selectedTags
-                                            ? selectedTags
-                                                  .split(",")
-                                                  .map((tag) => ({
-                                                      value: tag,
-                                                      label: tag,
-                                                  }))
-                                            : ""
-                                    }
-                                />
-                            </Col>
+                        <Col lg="6" className="svg-search-bar">
+                            <CreatableSelect
+                                className="svg-search-input"
+                                isMulti
+                                placeholder="Search"
+                                loadOptions={loadOptions}
+                                onChange={handleSelectChange}
+                                value={
+                                    selectedTags
+                                        ? selectedTags
+                                              .split(",")
+                                              .map((tag) => ({
+                                                  value: tag,
+                                                  label: tag,
+                                              }))
+                                        : ""
+                                }
+                            />
+                        </Col>
 
-                            <Col lg="3"></Col>
-                        </Row>
-                    </Container>
+                        <Col lg="3"></Col>
+                    </Row>
+                </Container>
 
-                    <Container fluid className="SVG-finder-container">
-                        <Row>
-                            <Col lg="2" className="tag-display-column">
-                                <DisplayTags
-                                    selectedTags={selectedTags}
-                                    setSelectedTags={setSelectedTags}
-                                    totalTagArray={totalTagArray}
-                                    setTotalTagArray={setTotalTagArray}
-                                    newSVG={newSVG}
-                                    setNewSVG={setNewSVG}
-                                />
-                            </Col>
+                <Container fluid className="SVG-finder-container">
+                    <Row>
+                        <Col lg="2" className="tag-display-column">
+                            <DisplayTags
+                                selectedTags={selectedTags}
+                                setSelectedTags={setSelectedTags}
+                                totalTagArray={totalTagArray}
+                                setTotalTagArray={setTotalTagArray}
+                                newSVG={newSVG}
+                                setNewSVG={setNewSVG}
+                            />
+                        </Col>
 
-                            <Col lg="9" className="svg-display-column">
-                                <DisplaySVG
-                                    selectedTags={selectedTags}
-                                    selectedSearchTags={selectedSearchTags}
-                                    newSVG={newSVG}
-                                />
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-            </>
-        );
-    }
+                        <Col lg="9" className="svg-display-column">
+                            <DisplaySVG
+                                selectedTags={selectedTags}
+                                selectedSearchTags={selectedSearchTags}
+                                newSVG={newSVG}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        </>
+    );
+};
 };
 
 export default SVGFinder;

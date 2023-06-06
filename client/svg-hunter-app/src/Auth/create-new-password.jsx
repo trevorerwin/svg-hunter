@@ -123,9 +123,8 @@ const ResetPassword = () => {
             />
           </div>
         </div>
-
         {errors.username && <p className="error">{errors.username}</p>}
-        <br />
+       <br />
         <div
           className="new-input"
           style={{ fontSize: "1.5rem", textAlign: "left" }}
@@ -222,8 +221,11 @@ const ResetPassword = () => {
       </p>
 
       {success && (
-        <div className="alert alert-success">
-          Password change successful! Return to Login
+                <div className="alert alert-success">
+                    Password change successful! Return to Login
+                </div>
+            )}
+
         </div>
       )}
     </div>

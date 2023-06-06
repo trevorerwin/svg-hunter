@@ -146,18 +146,19 @@ const Contact = () => {
                 Submit
               </Button>
             </div>
-            {emailSent && (
-              <div
-                className="alert alert-success text-center"
-                style={{ marginTop: "20px" }}
-              >
-                Email sent!
-              </div>
-            )}
-          </FormGroup>
-        </Form>
-      </div>
-    </>
-  );
+                        {emailSent && (
+                            <div
+                                className="alert alert-success text-center"
+                                style={{ marginTop: "20px" }}
+                            >
+                                Email sent!
+                            </div>
+                        )}
+                        </FormGroup>
+                </Form>
+
+            </div>
+        </>
+    );
 };
 export default Contact;
