@@ -67,10 +67,9 @@
 }
 
 
-
 .login-signup-toggle,
 .forgot-password {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     width: 100%;
     max-width: 500px;
     padding: 2rem;
@@ -81,7 +80,7 @@
     flex-direction: column;
     margin: 0 auto;
     /* Change the margin to center horizontally */
-    margin-top: 20px;
+    margin-top: 50px;
     /* Optional margin on the top */
 }
 
