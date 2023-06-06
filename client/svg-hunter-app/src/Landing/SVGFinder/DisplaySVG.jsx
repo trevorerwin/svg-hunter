@@ -9,21 +9,17 @@ const DisplaySVG = (props) => {
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
-  
   useEffect(() => {
-    if (props.selectedTags !== "") {
-      getSVGByTags()
+    if (props.selectedTags !== '') {
+      setCurrentPage(1);
+      getSVGByTags();
     } else {
       getAllSVG();
-    } 
-  },
-
-   [currentPage, props.selectedTags, props.newSVG, props.selectedSearchTags]);
-
-
+    }
+  }, [currentPage, props.selectedTags, props.newSVG]);
 
   async function getAllSVG() {
-    console.log("getAllSVG called")
+    console.log('getAllSVG called');
     let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
 
     const requestOptions = {
@@ -33,35 +29,45 @@ const DisplaySVG = (props) => {
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      let SVGData = data.results.map((svg) => svg)
+      let SVGData = data.results.map((svg) => svg);
       if (props.newSVG === true) {
-        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
-    
+        SVGData = SVGData.sort((a, b) => {
+          return b.id - a.id;
+        });
+      }
+
       setSVGArray(SVGData);
     } catch (error) {
       console.error(error.message);
     }
   }
 
-
-console.log("Selected Tags:", props.selectedTags)
-async function getSVGByTags() {
-    
-        const selectedTags = props.selectedTags.split(',').map(tag => `"${tag.trim()}"`).join(', ');
-        let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;      
+  console.log('Selected Tags:', props.selectedTags);
+  async function getSVGByTags() {
+    const selectedTags = props.selectedTags
+      .split(',')
+      .map((tag) => `"${tag.trim()}"`)
+      .join(', ');
+    let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
     };
-  
+
     try {
       const response = await fetch(url, requestOptions);
       const data = await response.json();
-      let SVGData = data.results.map((svg) => svg).sort( (a, b) => {
-        let x = a.svgName.toUpperCase().trim(),
+      let SVGData = data.results
+        .map((svg) => svg)
+        .sort((a, b) => {
+          let x = a.svgName.toUpperCase().trim(),
             y = b.svgName.toUpperCase().trim();
-        return x === y ? 0 : x > y ? 1 : -1;});
+          return x === y ? 0 : x > y ? 1 : -1;
+        });
       if (props.newSVG === true) {
-        SVGData = SVGData.sort((a, b)=>{return b.id-a.id})}
+        SVGData = SVGData.sort((a, b) => {
+          return b.id - a.id;
+        });
+      }
 
       setSVGArray(SVGData);
     } catch (error) {
@@ -79,7 +85,6 @@ async function getSVGByTags() {
     }
   };
 
-  
   const startIndex = (currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
   const displayedSVGs = SVGArray.slice(startIndex, endIndex);
