@@ -60,38 +60,38 @@ const SVGFinder = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem("token");
-    //     if (token) {
-    //         setAuthenticated(true);
-    //     } else {
-    //         setAuthenticated(false);
-    //     }
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setAuthenticated(true);
+        } else {
+            setAuthenticated(false);
+        }
 
-    //     checkSubscriptionStatus();
-    // }, []);
+        checkSubscriptionStatus();
+    }, []);
 
-    // if (!authenticated) {
-    //     return (
-    //         <div className="login-prompt">
-    //             <h1 className="login-prompt-header">Access Restricted</h1>
-    //             <p className="login-prompt-text">
-    //                 Please log in to access the SVGFinder and explore our
-    //                 collection of SVGs.
-    //             </p>
-    //             <button
-    //                 className="login-prompt-button"
-    //                 onClick={() => {
-    //                     /* Handle login redirect */
-    //                 }}
-    //             >
-    //                 Log In
-    //             </button>
-    //         </div>
-    //     );
-    // } else if (!subscribed) {
-    //     return <ProductDisplay setSubscribed={setSubscribed} />;
-    // } else {
+    if (!authenticated) {
+        return (
+            <div className="login-prompt">
+                <h1 className="login-prompt-header">Access Restricted</h1>
+                <p className="login-prompt-text">
+                    Please log in to access the SVGFinder and explore our
+                    collection of SVGs.
+                </p>
+                <button
+                    className="login-prompt-button"
+                    onClick={() => {
+                        /* Handle login redirect */
+                    }}
+                >
+                    Log In
+                </button>
+            </div>
+        );
+    } else if (!subscribed) {
+        return <ProductDisplay setSubscribed={setSubscribed} />;
+    } else {
     return (
         <>
             <div className="svg-finder-page">
@@ -149,6 +149,6 @@ const SVGFinder = (props) => {
         </>
     );
 };
-// };
+};
 
 export default SVGFinder;
