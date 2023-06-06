@@ -95,7 +95,7 @@ const SVGFinder = (props) => {
         return (
             <>
                 <div className="svg-finder-page">
-                    <Container fluid className="svg-search-bar-container">
+                    <Container fluid className="svg-search-bar-container" style={{zIndex: '100'}}>
                         <Row className="w-100">
                             <Col lg="3"></Col>
 

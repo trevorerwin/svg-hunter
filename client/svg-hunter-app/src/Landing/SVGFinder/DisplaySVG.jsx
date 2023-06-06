@@ -166,6 +166,7 @@ async function getSVGByTags() {
                       borderRadius: '5px',
                       padding: '20px',
                       boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                      zIndex: 0,
                     }}
                     src={svg.svgData}
                     alt={svg.svgName}
