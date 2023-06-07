@@ -61,7 +61,6 @@ const ForgotPassword = (props) => {
 
           {emailSent && (
             <div className='alert alert-success text-center' style={{ marginTop: '20px' }}>
-
               Reset password email sent.
             </div>
           )}
