@@ -5,22 +5,21 @@ import './SVG-Styles.css';
 
 const DisplaySVG = (props) => {
   const [SVGArray, setSVGArray] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const perPage = 60; // number of SVGs to display per page
   const maxPageNumbers = 3; // maximum number of page numbers to display
 
   useEffect(() => {
     if (props.selectedTags !== '') {
-      setCurrentPage(1);
       getSVGByTags();
     } else {
       getAllSVG();
     }
-  }, [currentPage, props.selectedTags, props.newSVG]);
+  }, [props.currentPage, props.selectedTags, props.newSVG]);
 
   async function getAllSVG() {
     console.log('getAllSVG called');
-    let url = `http://localhost:4000/svg/display-all?page=${currentPage}&limit=${perPage}`;
+    let url = `http://localhost:4000/svg/display-all?page=${props.currentPage}&limit=${perPage}`;
 
     const requestOptions = {
       method: 'GET',
@@ -48,7 +47,7 @@ const DisplaySVG = (props) => {
       .split(',')
       .map((tag) => `"${tag.trim()}"`)
       .join(', ');
-    let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${currentPage}&limit=${perPage}`;
+    let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${props.currentPage}&limit=${perPage}`;
     const requestOptions = {
       method: 'GET',
     };
@@ -76,16 +75,16 @@ const DisplaySVG = (props) => {
   }
 
   const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
+    props.setCurrentPage(props.currentPage + 1);
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+    if (props.currentPage > 1) {
+      props.setCurrentPage(props.currentPage - 1);
     }
   };
 
-  const startIndex = (currentPage - 1) * perPage;
+  const startIndex = (props.currentPage - 1) * perPage;
   const endIndex = startIndex + perPage;
   const displayedSVGs = SVGArray.slice(startIndex, endIndex);
   const totalPages = Math.ceil(SVGArray.length / perPage);
@@ -96,7 +95,7 @@ const DisplaySVG = (props) => {
       pageNumbers.push(i);
     }
   } else {
-    const middlePage = Math.max(1, Math.min(currentPage, totalPages - maxPageNumbers + 1));
+    const middlePage = Math.max(1, Math.min(props.currentPage, totalPages - maxPageNumbers + 1));
     const endPage = Math.min(middlePage + maxPageNumbers - 1, totalPages);
 
     for (let i = middlePage; i <= endPage; i++) {
@@ -170,7 +169,7 @@ const DisplaySVG = (props) => {
                 // scroll to the top of the DisplaySVG component
                 window.scrollTo(0, 655.66);
               }}
-              disabled={currentPage === 1}
+              disabled={props.currentPage === 1}
               style={{
                 marginRight: '5px',
                 marginBottom: '30px',
@@ -187,14 +186,14 @@ const DisplaySVG = (props) => {
                 ) : (
                   <button
                     onClick={() => {
-                      setCurrentPage(pageNumber);
+                      props.setCurrentPage(pageNumber);
                       // scroll to the top of the DisplaySVG component
                       window.scrollTo(0, 655.66);
                     }}
                     style={{
                       marginRight: '5px',
                       marginBottom: '30px',
-                      fontWeight: pageNumber === currentPage ? 'bold' : 'normal',
+                      fontWeight: pageNumber === props.currentPage ? 'bold' : 'normal',
                       border: 'none',
                     }}
                   >
@@ -209,7 +208,7 @@ const DisplaySVG = (props) => {
                 // scroll to the top of the DisplaySVG component
                 window.scrollTo(0, 655.66);
               }}
-              disabled={currentPage === totalPages}
+              disabled={props.currentPage === totalPages}
               style={{
                 marginRight: '5px',
                 marginBottom: '30px',

@@ -10,13 +10,13 @@ import { useFetcher, useNavigate } from 'react-router-dom';
 const SVGFinder = (props) => {
   const [selectedTags, setSelectedTags] = useState('');
   const [totalTagArray, setTotalTagArray] = useState([]);
-  const [search, setSearch] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const [newSVG, setNewSVG] = useState(false);
-  const [searchedTag, setSearchedTag] = useState('');
-  const [selectedSearchTags, setSelectedSearchTags] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+  // const perPage = 60; // number of SVGs to display per page
+  // const maxPageNumbers = 3; // maximum number of page numbers to display
 
   const loadOptions = (inputValue, callback) => {
     if (inputValue.length > 1) {
@@ -33,6 +33,8 @@ const SVGFinder = (props) => {
     const searchedTags = selectedOptions ? selectedOptions.map((option) => option.value) : [];
     const searchedTagsJoined = searchedTags.join(',');
     setSelectedTags(searchedTagsJoined);
+    setCurrentPage(1);
+    window.scrollTo(0, 655.66);
   }
 
   async function checkSubscriptionStatus() {
@@ -121,11 +123,11 @@ const SVGFinder = (props) => {
           <Container fluid className='SVG-finder-container'>
             <Row>
               <Col lg='2' className='tag-display-column'>
-                <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray} newSVG={newSVG} setNewSVG={setNewSVG} />
+                <DisplayTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} totalTagArray={totalTagArray} setTotalTagArray={setTotalTagArray} newSVG={newSVG} setNewSVG={setNewSVG} currentPage={currentPage} setCurrentPage={setCurrentPage} />
               </Col>
 
               <Col lg='9' className='svg-display-column'>
-                <DisplaySVG selectedTags={selectedTags} newSVG={newSVG} />
+                <DisplaySVG selectedTags={selectedTags} newSVG={newSVG} currentPage={currentPage} setCurrentPage={setCurrentPage} />
               </Col>
             </Row>
           </Container>

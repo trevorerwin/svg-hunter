@@ -3,8 +3,8 @@ import './SVG-Styles.css';
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
-  const [totalTagArray, setTotalTagArray] = useState([]);
-  let joinedTags = "";
+  // const [totalTagArray, setTotalTagArray] = useState([]);
+  // let joinedTags = "";
   
 
 
@@ -23,12 +23,16 @@ const DisplayTags = (props) => {
       }
     });
     setTagArray(isInTagArray);
+    props.setCurrentPage(1);
+    window.scrollTo(0, 655.66);
   }, [props.selectedTags]);
 
 
   useEffect(() => {
-    let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
-    props.setSelectedTags(tagNames);
+    const selectedTagArray = props.selectedTags ? props.selectedTags.split(",") : []
+    let tagNamesArray = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName)
+    let combinedTagArray = tagNamesArray.concat(selectedTagArray.filter(tag=> tagNamesArray.indexOf(tag)<0))
+    props.setSelectedTags(combinedTagArray.join(","));
   }, [tagArray]);
 
 
