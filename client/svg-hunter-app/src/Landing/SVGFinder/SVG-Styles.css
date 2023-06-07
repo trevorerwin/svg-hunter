@@ -33,7 +33,7 @@
   position: sticky;
   align-items: center;
   top: 120px;
-  z-index: 99;
+  z-index: 2;
 }
 
 .error-image:hover {
@@ -74,7 +74,6 @@
   box-shadow: none !important;
 }
 
-
 .SVG-finder-container {
   padding: 0;
 }
@@ -110,10 +109,14 @@
 }
 
 .display-newest-btn-container {
-  
   margin-left: 25px;
   margin-top: 10px;
   position: sticky;
   top: 210px;
-  
+}
+@media (max-width: 640px) {
+  .display-newest-btn-container {
+    position: relative;
+    top: 0;
+  }
 }
