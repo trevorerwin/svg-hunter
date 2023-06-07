@@ -91,13 +91,14 @@ input[type="email"]:focus {
 }
 
 #change-button-color {
-    background-color: #ad6eef;
+    background-color: #282c34;
     color: white;
+    border-radius: 10px;
 }
 
 #change-button-color:hover {
-    background-color: #ad6ee7;
-    color: #61dafb;
+    background-color: #282c34;
+    color: #ad6ee7;
 }
 
 #move-p-tag {

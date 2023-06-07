@@ -45,21 +45,21 @@
 /* Login/Signup/AuthToggle/Reset Password Css style */
 
 #submit-button-login {
-  background-color: #ad6ee7;
+  background-color: #282c34;
 }
 
 #submit-button-login:hover {
-    background-color: #ad6ee7;
-    color: #61dafb;
+    background-color: #282c34;
+    color: #ad6ee7;
 }
 
 #submit-button-signup {
-  background-color: #ad6ee7;
+  background-color: #282c34;
 }
 
 #submit-button-signup:hover {
-    background-color: #ad6ee7;
-    color: #61dafb;
+    background-color: #282c34;
+    color: #ad6ee7;
 }
 
 #login-text {
@@ -96,6 +96,7 @@ a.center {
   justify-content: center;
   margin: 0 auto;
   font-size: 1rem;
+  border-radius: 10px;
 }
 
 .text-center {
@@ -104,9 +105,10 @@ a.center {
 }
 
 #reset-password {
-  background-color: #ad6eef;
+  background-color: #282c34;
   color: white;
   margin-top: 20px;
+  border-radius: 10px;
 
 }
 
@@ -115,8 +117,8 @@ a.center {
 }
 
 #reset-password:hover {
-    background-color: #ad6eef;
-    color: #61dafb;
+    background-color: #282c34;
+    color: #ad6ee7;
 }
 
 .remember {
