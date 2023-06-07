@@ -27,8 +27,10 @@ const DisplayTags = (props) => {
 
 
   useEffect(() => {
-    let tagNames = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName).join(",")
-    props.setSelectedTags(tagNames);
+    const selectedTagArray = props.selectedTags ? props.selectedTags.split(",") : []
+    let tagNamesArray = tagArray.filter(tag=> tag.isChecked === true).map(tag=>tag.tagName)
+    let combinedTagArray = tagNamesArray.concat(selectedTagArray.filter(tag=> tagNamesArray.indexOf(tag)<0))
+    props.setSelectedTags(combinedTagArray.join(","));
   }, [tagArray]);
 
 
