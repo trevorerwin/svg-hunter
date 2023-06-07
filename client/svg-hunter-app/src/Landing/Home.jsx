@@ -32,7 +32,7 @@ const Home = (props) => {
         <Card>
           <CardBody className='card-body'>
             <CardTitle className='center' tag='h3' id='title'>
-              <strong>1000`s of Free SVGs in the Database</strong>
+              <strong>1000's of Free SVGs in the Database</strong>
             </CardTitle>
             <CardText className='center'>
               Let`s face it - there`s a lot of SVG files out there. SVG Hunter will only display those of quality and it will give you the option to visit the creators page that has the download link.
