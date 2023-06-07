@@ -3,8 +3,8 @@ import './SVG-Styles.css';
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
-  const [totalTagArray, setTotalTagArray] = useState([]);
-  let joinedTags = "";
+  // const [totalTagArray, setTotalTagArray] = useState([]);
+  // let joinedTags = "";
   
 
 
@@ -23,6 +23,8 @@ const DisplayTags = (props) => {
       }
     });
     setTagArray(isInTagArray);
+    props.setCurrentPage(1);
+    window.scrollTo(0, 655.66);
   }, [props.selectedTags]);
 
 
