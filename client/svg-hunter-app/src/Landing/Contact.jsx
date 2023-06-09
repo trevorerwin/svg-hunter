@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, FormGroup, Input, Button, Label } from "reactstrap";
 import axios from "axios";
 import "../styles/Contact.css";
+import APIURL from "../Helper/environment";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const Contact = () => {
 
         // Send the email data to the backend server
         try {
-            await axios.post("http://localhost:4000/user/send-email", {
+            await axios.post(`${APIURL}/user/send-email`, {
                 name,
                 email, // Use the user-entered email as the recipient
                 subject,

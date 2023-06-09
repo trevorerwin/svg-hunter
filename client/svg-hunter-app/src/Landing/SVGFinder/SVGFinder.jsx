@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import ProductDisplay from './ProductDisplay';
 import CreatableSelect from 'react-select/async';
 import { useFetcher, useNavigate } from 'react-router-dom';
+import APIURL from '../../Helper/environment';
 
 const SVGFinder = (props) => {
   const [selectedTags, setSelectedTags] = useState('');
@@ -39,7 +40,7 @@ const SVGFinder = (props) => {
 
   async function checkSubscriptionStatus() {
     const token = localStorage.getItem('token');
-    let url = `http://localhost:4000/user/get-user`;
+    let url = `${APIURL}/user/get-user`;
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('Authorization', token);

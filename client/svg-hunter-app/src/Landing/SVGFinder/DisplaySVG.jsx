@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import './SVG-Styles.css';
+import APIURL from '../../Helper/environment';
 // import { sortAlpha } from '../../Helper/Sort-alphabetical';
 
 const DisplaySVG = (props) => {
@@ -19,7 +20,7 @@ const DisplaySVG = (props) => {
 
   async function getAllSVG() {
     console.log('getAllSVG called');
-    let url = `http://localhost:4000/svg/display-all?page=${props.currentPage}&limit=${perPage}`;
+    let url = `${APIURL}/svg/display-all?page=${props.currentPage}&limit=${perPage}`;
 
     const requestOptions = {
       method: 'GET',
@@ -47,7 +48,7 @@ const DisplaySVG = (props) => {
       .split(',')
       .map((tag) => `"${tag.trim()}"`)
       .join(', ');
-    let url = `http://localhost:4000/svg_tag/multi-tag/${selectedTags}?page=${props.currentPage}&limit=${perPage}`;
+    let url = `${APIURL}/svg_tag/multi-tag/${selectedTags}?page=${props.currentPage}&limit=${perPage}`;
     const requestOptions = {
       method: 'GET',
     };

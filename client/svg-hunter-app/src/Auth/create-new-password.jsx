@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './resetPassword.css';
 import { useLocation } from 'react-router-dom';
 import { Button, Input, Label } from 'reactstrap';
+import APIURL from '../Helper/environment'
 
 const ResetPassword = () => {
   const [username, setUsername] = useState('');
@@ -62,7 +63,7 @@ const ResetPassword = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/user/update-password', {
+      const response = await fetch(`${APIURL}/user/update-password`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

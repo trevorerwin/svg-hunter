@@ -1,6 +1,7 @@
 import './ProductDisplay.css';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import APIURL from '../../Helper/environment';
 
 const ProductDisplay = (props) => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ const ProductDisplay = (props) => {
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/checkout/create-checkout-session', {
+      const response = await fetch(`${APIURL}/checkout/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

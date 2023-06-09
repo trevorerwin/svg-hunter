@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './SVG-Styles.css';
+import APIURL from "../../Helper/environment";
 
 const DisplayTags = (props) => {
   const [tagArray, setTagArray] = useState([]);
@@ -86,7 +87,7 @@ const DisplayTags = (props) => {
 
 
   async function getAllTags() {
-    let url = `http://localhost:4000/svg_tag/display-all`;
+    let url = `${APIURL}/svg_tag/display-all`;
 
     const requestOptions = {
       method: "GET",

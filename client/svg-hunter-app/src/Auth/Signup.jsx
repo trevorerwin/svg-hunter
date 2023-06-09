@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import AuthContext from "./AuthContext";
+import APIURL from "../Helper/environment";
 
 // firstName lastName username password
 const Signup = (props) => {
@@ -20,7 +21,7 @@ const Signup = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     // take path from your postman
-    let url = `http://localhost:4000/user/signup`;
+    let url = `${APIURL}/user/signup`;
     // take what works in your postman, copy the body over and set them to the variables
     let bodyObject = {
       Name: Name,

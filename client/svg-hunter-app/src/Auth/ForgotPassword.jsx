@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import APIURL from '../Helper/environment'
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ const ForgotPassword = (props) => {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = 'http://localhost:4000/user/reset-password';
+    const url = `${APIURL}/user/reset-password`;
     const bodyObject = {
       Email: email,
     };

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import "../App.css";
 import AuthContext from "./AuthContext";
+import APIURL from "../Helper/environment";
 
 const Login = (props) => {
   // UseState variables
@@ -18,7 +19,7 @@ const Login = (props) => {
   async function handleSubmit(e) {
     e.preventDefault();
     //take path from postman
-    let url = `http://localhost:4000/user/login`;
+    let url = `${APIURL}/user/login`;
     //take the body of postman
     let bodyObject = {
       Username: Username,
